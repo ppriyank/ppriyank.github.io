@@ -482,12 +482,14 @@ h1.title {
 }
 
 p.tagline {
+  float: left;
   padding: 20px 20px 0;
   color: #fff;
   font-size: 17px;
 }
 
 #main {
+  clear: both;
   margin-top: 20px;
   padding: 0 20px 90px;
   background-color: #fff;
@@ -561,6 +563,7 @@ p.tagline {
 }
 
 .download-bar .avatar img {
+  float: right;
   display: block;
 }
 
@@ -574,20 +577,21 @@ p.tagline {
   width: auto;
   height: auto;
   opacity: 1;
-  filter:alpha(opacity=100);  /* IE 5-7 */
+  filter:alpha(opacity=100);  
 }
 
 .download-bar a.document {
+  float:left;
   background: transparent url(../images/CV.png) no-repeat 0 2px;
-  padding-right: 35px;
+  padding-left: 35px;
   margin-top: 0px;
   display: block;
-  float: right;
+  /*float: right;*/
   text-indent: 0;
-  width: auto;
+  width: auto ;
   height: auto;
-  opacity: 1;
-  filter:alpha(opacity=100);  /* IE 5-7 */
+  /*opacity: 1;*/
+  filter:alpha(opacity=100);  
 }
 
 .current-section {
@@ -669,15 +673,13 @@ a.code {
   display: inline-block;
   text-indent: -10000px;
   opacity: 0.8;
-  filter:alpha(opacity=80);  /* IE 5-7 */
-  transition: opacity ease-in-out 0.3s;
-  -webkit-transition: opacity ease-in-out 0.3s;  /* Safari <=6.1, Android <= 4.3 */
+  filter:alpha(opacity=80);  
 }
 
 a.document {
   background: transparent url(../images/CV.png) no-repeat 0 2px;
-  width: 30px;
-  height: 21px;
+  width: auto ; 
+  height: auto ; 
   display: block;
   display: inline-block;
   text-indent: -10000px;
@@ -749,9 +751,10 @@ footer .creds small {
 }
 
   .avatar {
+    float: right;
   background-color: #666;
   display: block;
-  margin: -100px 2px 0 0;
+  margin: -60px 20px -20px 300px;
   /*width: 60px;*/
   position: relative;
   /*z-index: -1;*/
