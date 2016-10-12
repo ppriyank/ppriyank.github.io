@@ -11,6 +11,11 @@ html {
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
+/*html, body {
+    margin: 0;
+    
+}
+*/
 
 /**
  * Remove default margin.
@@ -18,6 +23,7 @@ html {
 
 body {
   margin: 0;
+  
 }
 
 /* HTML5 display definitions
@@ -224,6 +230,7 @@ pre {
  * Address odd `em`-unit font size rendering in all browsers.
  */
 
+ 
 code,
 kbd,
 pre,
@@ -450,15 +457,23 @@ h1.title {
   margin: 30px 20px 10px;
   font-size: 60px;
   font-weight: bold;
-  font-style: italic;
-  font-family:Georgia, serif;
+  /*font-style: italic;*/
+  font-family:Helvetica;
   text-align: center;
 }
 
 .wrapper {
-  width: 675px;
+  width: 800px;
   margin: 0 auto;
 }
+
+
+.wrapperCV {
+  width: 1200px;
+  margin: 0 auto;
+  height: 600px ;
+}
+
 
 #container {
   border: 1px solid #2a2a2a;
@@ -542,7 +557,7 @@ p.tagline {
   border: 1px solid black;
   display: block;
   padding: 4px;
-  float: left;
+  float: right;
 }
 
 .download-bar .avatar img {
@@ -555,6 +570,19 @@ p.tagline {
   margin-top: 8px;
   display: block;
   float: left;
+  text-indent: 0;
+  width: auto;
+  height: auto;
+  opacity: 1;
+  filter:alpha(opacity=100);  /* IE 5-7 */
+}
+
+.download-bar a.document {
+  background: transparent url(../images/CV.png) no-repeat 0 2px;
+  padding-right: 35px;
+  margin-top: 0px;
+  display: block;
+  float: right;
   text-indent: 0;
   width: auto;
   height: auto;
@@ -646,12 +674,32 @@ a.code {
   -webkit-transition: opacity ease-in-out 0.3s;  /* Safari <=6.1, Android <= 4.3 */
 }
 
+a.document {
+  background: transparent url(../images/CV.png) no-repeat 0 2px;
+  width: 30px;
+  height: 21px;
+  display: block;
+  display: inline-block;
+  text-indent: -10000px;
+  opacity: 0.8;
+  filter:alpha(opacity=80);  /* IE 5-7 */
+  transition: opacity ease-in-out 0.3s;
+  -webkit-transition: opacity ease-in-out 0.3s;  /* Safari <=6.1, Android <= 4.3 */
+}
+
+
+
 a.zip:hover,
 a.tar:hover,
 a.code:hover {
   opacity: 1;
   filter:alpha(opacity=100);
 }
+a.document:hover {
+  opacity: 1;
+  filter:alpha(opacity=100);
+}
+
 
 a.download-button {
   border: 1px solid black;
@@ -700,12 +748,14 @@ footer .creds small {
   margin-left: 15px;
 }
 
-footer .owner .avatar {
+  .avatar {
   background-color: #666;
   display: block;
-  margin: -19px 10px 0 0;
-  width: 60px;
-  float: left;
+  margin: -100px 2px 0 0;
+  /*width: 60px;*/
+  position: relative;
+  /*z-index: -1;*/
+  float: right;
 }
 
 footer .owner img {
