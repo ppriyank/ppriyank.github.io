@@ -34,8 +34,8 @@
 /* Profile Image */
 
 #profileImage {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 230px;
     margin: auto;
     margin-top: calc(25%);
 }
