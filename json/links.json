@@ -2,7 +2,7 @@
     {
         "name": "Github",
         "color": "red",
-        "icon": "github-box",
+        "icon": "github-circle",
         "url": "https://github.com/ppriyank"
 	},
     {
@@ -22,17 +22,5 @@
         "color": "red",
         "icon": "instagram",
         "url": "https://www.instagram.com/banarasi_guy/"
-	},
-    {
-        "name": "New York University",
-        "color": "red",
-        "icon": "school",
-        "url": ""
-    },
-    {
-        "name": "Indian Institute of Technology, Kanpur (IIT Kanpur)",
-        "color": "red",
-        "icon": "school",
-        "url": ""
-    }
+	}
 ]
