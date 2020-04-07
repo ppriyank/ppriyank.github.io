@@ -187,15 +187,3 @@
 .secondary-dark-b {
     background-color: #FFA000;
 }
-
-@media(min-width: 993px) {
-
-	#profileColumn {
-		position: fixed;
-	}
-
-	#portfolioColumn {
-		margin-left: 33.3333333333%;
-	}
-	
-}
