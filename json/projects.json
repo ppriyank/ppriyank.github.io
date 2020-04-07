@@ -1,0 +1,28 @@
+[
+    {
+        "name": "FasterRCNN Tutorial",
+        "description": "Pytorch based FasterRCNN for custom dataset with explanation",
+        "gif": "images/object_detection.gif",
+        "github":"https://github.com/ppriyank/Pytorch-CustomDataset-FasterRCNN/"
+    },
+    {
+        "name": "Coreference Resolution using Bert",
+        "description": "Pytorch and Tensorflow implementation of the Corefernce Resoulution along with multitask training and Replacement of Bi-directional LSTM with transformers model. The work also involves ablation study of the model",
+        "image": "images/coreference_resolution.png",
+        "github":"https://github.com/ppriyank/Bert-Coref-Resolution-Lee-",
+        "pdf":"https://drive.google.com/file/d/1zB15PTq-ScZz-s2IGEPopHIXLY5vPtxr/view?usp=sharing"
+    },
+    {
+        "name": "Spatial transformers for traffic signal classification",
+        "description": "Pytorch Implementation of Deep neural network for traffic sign recognition systems: An analysis of spatial transformers and stochastic optimisation methods",
+        "image": "images/spatial_transformer.png",
+        "github":"https://github.com/ppriyank/Deep-neural-network-for-traffic-sign-recognition-systems"
+    },
+    {
+        "name": "Adveserial Attack for IBM Cloud",
+        "description": "Part of course project to construct robust adversarial audio attacks on automatic speech recognition systems. We start with basic perturbations of the sound waveform and then move on to adversarial attacks. Given any audio waveform, we then apply our targeted black-box iterative optimization- based attack to IBM Cloud Speech-To-Text APIs and Google Cloud Speech-To-Text APIs. We are able to successfully at- tack the APIs by changing most of the original transcription.",
+        "image": "images/adveserial_attack.png",
+        "github":"https://github.com/ppriyank/Adveserial-Attacks",
+        "pdf":"https://drive.google.com/open?id=1CnnJKnxKXY_cxIh5-JoWK5mgmH-A8O9Q"
+    }
+]

@@ -4,6 +4,9 @@ var workRequest = new XMLHttpRequest();
 var publication = document.getElementById("publicationContainer");
 var publicationRequest = new XMLHttpRequest();
 
+var projects = document.getElementById("projectContainer");
+var projectsRequest = new XMLHttpRequest();
+
 
 var link = document.getElementById("socialLinkContent");
 var linkRequest = new XMLHttpRequest();
@@ -23,41 +26,65 @@ linkRequest.onreadystatechange = function () {
 };
 linkRequest.send(null);
 
-workRequest.open("GET", "json/items.json", true);
-workRequest.onreadystatechange = function () {
-    if (workRequest.readyState === 4) {
-        if (workRequest.status === 200 || workRequest.status == 0) {
-            var html = "";
-            JSON.parse(workRequest.responseText).forEach(function (work) {
-                console.log(work.name);
-                // console.log(html);
-                // if (work.name != "Publication"){
-                    html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + work.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + work.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + work.link + " target=\"_blank\">Visit</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + work.name + "<i class=\"material-icons right\">close</i></span><p>" + work.description + "</p></div></div></div>";    
-                // }
-                // else{
-                 // html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + work.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + work.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + work.arxiv + " target=\"_blank\"> arxiv </a></p></div><i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + work.github + " target=\"_blank\"> github </a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + work.name + "<i class=\"material-icons right\">close</i></span><p>" + work.description + "</p></div></div></div>";       
-                // }
-                
-            });
-            work.innerHTML = html;
-        }
-    }
-};
-workRequest.send(null);
-
-
 publicationRequest.open("GET", "json/publication.json", true);
 publicationRequest.onreadystatechange = function () {
     if (publicationRequest.readyState === 4) {
         if (publicationRequest.status === 200 || publicationRequest.status == 0) {
             var html = "";
             JSON.parse(publicationRequest.responseText).forEach(function (publication) {
-                console.log("-------------");
                 console.log(publication.name);
-                html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + publication.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + publication.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + publication.arxiv + " target=\"_blank\">Arxiv</a></p><p><a href=" + publication.github + " target=\"_blank\">Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + publication.name + "<i class=\"material-icons right\">close</i></span><p>" + publication.description + "</p></div></div></div>";    
+                html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + publication.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + publication.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + publication.arxiv + " target=\"_blank\">Arxiv  </a>    <a href=" + publication.github + " target=\"_blank\">  Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + publication.name + "<i class=\"material-icons right\">close</i></span><p>" + publication.description + "</p></div></div></div>";    
             });
             publication.innerHTML = html;
         }
     }
 };
 publicationRequest.send(null);
+
+
+projectsRequest.open("GET", "json/projects.json", true);
+projectsRequest.onreadystatechange = function () {
+    if (projectsRequest.readyState === 4) {
+        if (projectsRequest.status === 200 || projectsRequest.status == 0) {
+            var html = "";
+            JSON.parse(projectsRequest.responseText).forEach(function (projects) {
+                console.log(projects.name);
+                if (projects.pdf)
+                    html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + projects.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.pdf + " target=\"_blank\">Pdf  </a>    <a href=" + projects.github + " target=\"_blank\">  Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
+                else if (projects.gif){
+                    // console.log(projects.gif);
+                    html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator centered-and-cropped\"  width=\"300\" height=\"280\" src=\"" + projects.gif +  "\" alt=\"this slowpoke moves\"></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.github + " target=\"_blank\">  Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
+                }
+                else
+                    html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + projects.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.github + " target=\"_blank\">Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
+                    
+            });
+            projects.innerHTML = html;
+        }
+    }
+};
+projectsRequest.send(null);
+
+
+
+// workRequest.open("GET", "json/items.json", true);
+// workRequest.onreadystatechange = function () {
+//     if (workRequest.readyState === 4) {
+//         if (workRequest.status === 200 || workRequest.status == 0) {
+//             var html = "";
+//             JSON.parse(workRequest.responseText).forEach(function (work) {
+//                 console.log(work.name);
+//                 // console.log(html);
+//                 // if (work.name != "Publication"){
+//                     html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + work.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + work.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + work.link + " target=\"_blank\">Visit</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + work.name + "<i class=\"material-icons right\">close</i></span><p>" + work.description + "</p></div></div></div>";    
+//                 // }
+//                 // else{
+//                  // html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + work.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + work.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + work.arxiv + " target=\"_blank\"> arxiv </a></p></div><i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + work.github + " target=\"_blank\"> github </a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + work.name + "<i class=\"material-icons right\">close</i></span><p>" + work.description + "</p></div></div></div>";       
+//                 // }
+                
+//             });
+//             work.innerHTML = html;
+//         }
+//     }
+// };
+// workRequest.send(null);
