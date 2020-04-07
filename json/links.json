@@ -2,7 +2,7 @@
     {
         "name": "Github",
         "color": "red",
-        "icon": "Github",
+        "icon": "github",
         "url": "https://github.com/ppriyank"
 	},
     {
@@ -14,13 +14,13 @@
     {
         "name": "Link",
         "color": "red",
-        "icon": "Linkedin",
+        "icon": "linkedin",
         "url": "https://www.linkedin.com/in/priyank-pathak-11b9b08a/"
 	},
     {
         "name": "Instagram",
         "color": "red",
-        "icon": "Instagram",
+        "icon": "instagram",
         "url": "https://www.instagram.com/banarasi_guy/"
 	}
 ]
