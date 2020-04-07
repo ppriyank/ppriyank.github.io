@@ -26,13 +26,13 @@
     {
         "name": "New York University",
         "color": "red",
-        "icon": "schooloutline",
+        "icon": "school",
         "url": ""
     },
     {
         "name": "Indian Institute of Technology, Kanpur (IIT Kanpur)",
         "color": "red",
-        "icon": "schooloutline",
+        "icon": "school",
         "url": ""
     }
 ]
