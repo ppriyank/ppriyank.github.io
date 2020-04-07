@@ -1,114 +1,65 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
+<!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
-  <link rel="stylesheet" href="stylesheets/github-dark.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <!-- <script type="text/javascript" src="javascripts/script.js"></script> -->
-
-  <title> Priyank Pathak</title>
-  <meta name="description" content="Student, Indian Institute of Technology Kanpur">
-
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style type="text/css">
-body{
-    width:100%  /* or you can also set 900px*/
-}
-</style>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Your Name</title>
+    <meta name="keywords" content="Put, tags, here">
+    <meta name="description" content="Your description here!">
+    <meta name="author" content="Your Name">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/index.css" media="screen,projection" />
+    <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- Put your favicon here! (I highly suggest realfavicongenerator.net) -->
+    <meta name="theme-color" content="#f5f6fa">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed:500,600,700" rel="stylesheet">
+    <!-- If you want Google Analytics, do some Google searching, and pop it here. -->
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body>
+<body style="background-color: #f5f6fa">
+    <div>
+        <div class="row">
+            <div id="profileColumn" class="col s12 l4 center">
+                <img id="profileImage" src="./images/profile.jpg" class="z-depth-3 circle responsive-img" />
+                
+                <h2 id="heroName" class="center-align">Your Name</h2>
+                <h4 id="description" class="center-align">Some description goes here.</h4>
 
-  <div class="wrapper">
-    <header>
-      <h1 class="title"> PRIYANK PATHAK</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">Student, </br>
-       Indian Institute of Technology Kanpur 
-       
-       <a href="https://github.com/ppriyank" class="avatar"><img src="https://avatars2.githubusercontent.com/u/6764941?v=3&amp;s=180" width="144" height="144"> 
-       </a>
-
-       </p>
-       
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/ppriyank" class="code">View  Priyank Pathak on GitHub  </a>    
-          <a href="CV.html" class="document"> Priyank Pathak CV</a>
-          <!-- <a class="code" href=>Priyank Pathak CV</a> -->
-          <a class="document" href="resume.html">Priyank Pathak Resume</a>
-          
+                <div id="socialLinkSection">
+                    <section class="tab">
+                        <div id="socialLinkContent">
+                            <!-- Your social links are dynamically generated from links.json! -->
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- Replace the email address below with your own -->
+                <a id="contactButton" class="waves-effect waves-grey btn-flat" href="mailto:example@example.com"><p>Contact Me</p></a>
+                
+            </div>
+            
+            <div id="portfolioColumn" class="col s12 m12 l8">
+                
+                <div id="portfolioTitle">
+                    <p id="portfolioText">Portfolio</p>
+                    <!-- Type of work goes here -->
+                    <p id="firstCategoryText">My Work</p>
+                </div>
+                
+                <div class="row" id="portfolioItemContainer">
+                    <!-- Your work cards are dynamically generated from items.json! -->
+                </div>
+                
+            </div>
         </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <hr>
-
-<p>My name is Priyank Pathak and I'm a student at IIT Kanpur. My department is <strong>Dual Major Electrical Engineering and Computer Science</strong>. I've a 5 year degree and currently I'm in my penultimate year. I'm a photographic enthusiast and loves to click in my free time.</p>
-
-<h3>
-<a id="about-me" class="anchor" href="#about-me" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About Me</h3>
-
-<p>I've been always a hardworking student and apart from qualifying one of the toughest exams of the world, I've been able to score a perfect 10 pointer in my first year at college, which paved path for me to change my branch from Chemical Engineering to Electrical Engineering and later to Dual Major Computer Science, competing among toppers from all over India. I'm always looking for opportunities to extract much more from just college syllabus. Loves to code in <strong><em>python</em></strong> and <strong><em>C</em></strong>. I was originally a bit bucket user but will shortly transfer all my project here.</p>
-
-<p>I'm an active photographic enthusiast and loves video editing as well. You can check some of my best works at here  <a href="https:///500px.com/ppriyank">500px.com</a>. Have made more than 15 videos for campus junta for entertainment purposes with one some videos registered with more than 10K+ views. </p>
-
-<h3>
-<a id="research-interest" class="anchor" href="#research-interest" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Research Interest</h3>
-
-<p>I prefer practical life implementable projects more than theoretical projects.
-Have to complete projects in all available field to decide which field interests me. </p>
-
-<blockquote>
-<p><em><strong>Image Processing</strong></em>: Winter Project,
-Detection of Descriptor points using SURF to calculate the number of objects in a given image.</p>
-
-<p><em><strong>Networking</strong></em> : Currently working, 
-Integrating webmail and Facebook APIs with Django for implementing lost and found portal for campus </p>
-
-<p><em><strong>Data Structures</strong></em> : Upcoming Winter Project 
-Designing and implementing Exam Scheduling to minimise the number of students getting affected due to clashes   of multiple exams on single day</p>
-</blockquote>
-
-<h3>
-<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact</h3>
-
-<p>D-310 Hall 1, IIT KANPUR 208016,<br>
-+91 9415221670<br>
-<a href="mailto:ppriyank@iitk.ac.in">ppriyank@iitk.ac.in</a> , <a href="mailto:priyankpathak50@gmail.com">priyankpathak50@gmail.com</a>  </p>
-
-<p>I will try to keep this site updated 
-</p>
-
-<p></p>
-        </article>
-      </div>
     </div>
-    <footer>
-      <div class="owner">
-
-      <p></a>View <a href="https://github.com/ppriyank">ppriyank</a> on <a href="https://www.github.com">GitHub</a></p>
-
-      </div>
-      <div class="creds">
-      <!--   <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small> -->
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/ppriyank/ppriyank.github.io/tarball/master" class="tar">tar</a><a href="https://github.com/ppriyank/ppriyank.github.io/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
-
-  
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
+
 </html>
