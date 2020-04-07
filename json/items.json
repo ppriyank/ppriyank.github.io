@@ -5,13 +5,6 @@
         "image": "images/image1.jpg",
         "link": "https://google.com"
     },
-        {
-        "name": "Publication",
-        "description": "Video Person Re-ID: Fantastic Techniques and Where to Find Them <br> Priyank Pathak, Amir Erfan Eshratifar, Michael Gormish <br><br><br> The ability to identify the same person from multiple camera views without the explicit use of facial recognition is receiving commercial and academic interest. The current status-quo solutions are based on attention neural models. In this paper, we propose Attention and CL loss, which is a hybrid of center and Online Soft Mining (OSM) loss added to the attention loss on top of a temporal attention-based neural network. The proposed loss function applied with bag-of-tricks for training surpasses the state of the art on the common person Re-ID datasets, MARS and PRID 2011. Our source code is publicly available on github.",
-        "image": "images/publication.png",
-        "github": "https://github.com/ppriyank/Video-Person-Re-ID-Fantastic-Techniques-and-Where-to-Find-Them",
-        "arxiv": "https://arxiv.org/abs/1912.05295"
-    },
     {
         "name": "Work Experience",
         "description": "This is where you put description about your projects.",
