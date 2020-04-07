@@ -12,7 +12,7 @@
         "url": "https://scholar.google.com/citations?user=vsAQxAcAAAAJ&hl=en&authuser=1"
 	},
     {
-        "name": "Link",
+        "name": "Linkedin",
         "color": "red",
         "icon": "linkedin",
         "url": "https://www.linkedin.com/in/priyank-pathak-11b9b08a/"
@@ -22,5 +22,17 @@
         "color": "red",
         "icon": "instagram",
         "url": "https://www.instagram.com/banarasi_guy/"
-	}
+	},
+    {
+        "name": "New York University",
+        "color": "red",
+        "icon": "schooloutline",
+        "url": ""
+    },
+    {
+        "name": "Indian Institute of Technology, Kanpur (IIT Kanpur)",
+        "color": "red",
+        "icon": "schooloutline",
+        "url": ""
+    }
 ]
