@@ -63,10 +63,9 @@ padding: 25px;
 
 #univ {
     display: inline-block;
-    filter: sepia(100%);   
-    filter: invert(100%); 
-    color: #212121;
-    z-index: -10;
+    /*filter: invert(100%); */
+    /*color: #000000;*/
+    z-index: -1;
     /*border-radius: 3px;*/
 }
 
