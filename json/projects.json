@@ -1,5 +1,12 @@
 [
     {
+        "name": "FasterRCNN Tutorial",
+        "description": "Pytorch based FasterRCNN for custom dataset with explanation",
+        "image": "images/object_detection.jpg",
+        "gif": "images/object_detection.gif",
+        "github":"https://github.com/ppriyank/Pytorch-CustomDataset-FasterRCNN/"
+    },
+    {
         "name": "Spatial Transformers (Traffic signal)",
         "description": "Pytorch Implementation of Deep neural network for traffic sign recognition systems: An analysis of spatial transformers and stochastic optimisation methods",
         "image": "images/spatial_transformer.jpg",
@@ -11,13 +18,6 @@
         "image": "images/adveserial_attack.jpg",
         "github":"https://github.com/ppriyank/Adveserial-Attacks",
         "pdf":"https://drive.google.com/open?id=1CnnJKnxKXY_cxIh5-JoWK5mgmH-A8O9Q"
-    },
-    {
-        "name": "FasterRCNN Tutorial",
-        "description": "Pytorch based FasterRCNN for custom dataset with explanation",
-        "image": "images/object_detection.jpg",
-        "gif": "images/object_detection.gif",
-        "github":"https://github.com/ppriyank/Pytorch-CustomDataset-FasterRCNN/"
     },
     {
         "name": "Coreference Resolution using Bert",
@@ -39,12 +39,6 @@
         "pdf":"https://drive.google.com/file/d/1ycdRQ_cIQPLHD7su5y8SRroA74hpx6gB/view?usp=sharing"
     },
     {
-        "name": "Heuristics for real time object tracking",
-        "description": "The project deals with a real time object de- tector and tracker, which estimates the object at a distance using a kinect-based camera feed. We aimed to create a real-time model since it is supposed to be deployed to a robot so that it could move in the direction of the ob- ject and based on the distance, adjust its posi- tion to pick up the object. We used the Reti- naNet model for object detection which in turn makes use of ResNet50 in the backend. Fur- thermore, tracking is deployed to ensure object tracking while computations are being done in the background. The camera feed is supposed to be around 30 frames and our pipeline us- ing object detection single-handedly can pro- duce 38 frames/sec. After training the model on CLEVR dataset, we fine-tuned it on real life mobile videos to remove the dependen- cies on the camera angle and increase robust- ness against background noise and dynami- cally changing camera angles.",
-        "image": "images/NYU-CV.jpg",
-        "pdf":"https://drive.google.com/file/d/18Hx15egRMtEFwLqfhcr9nWJA1M0e1E1j/view?usp=sharing"
-    },
-    {
         "name": "Generating defocused images",
         "description": "Current applications of deep learning aim at improved generation of images through super-resolution or generation. In this project the aim is to generate defocused images that are conditioned on the input. The aim is to be able to generate defocused portrait mode images automatically. In order to obtain a network that can generate such defocused images, it needs to be trained in a supervised manner, however, datasets are not currently available at scale to train defocused generations. We have created a dataset to train methods for generating such defocused images. Further, we have evaluated several architectures for generating defocused images in this project.",
         "image": "images/blurring.jpg",
@@ -55,5 +49,11 @@
         "description": "Multi-Agent Reinforcement Learning (MARL) is an emerging field which has gained considerable attention in recent times due to the success of the StarCraft II model AlphaStar. This attention has inspired a higher level of understanding and exploration in this field. Currently, MARL faces issues of scalability and training methodology that accounts for coordinated behaviour while maintaining real-time decision processes. This survey covers traditional RL frameworks like Markov Decision Process, Q-Learning, Actor-Critic and policy gradient, then transitions to recent methods like Multi-Agent Deep Deterministic Policy Gradient with Communication and QMIX architectures. Lastly the performance of learning agents via the StarCraft Multi-Agent Challenge is examined.",
         "image": "images/reinforcement_learning.png",
         "web":"MARL/final.html"
-    } 
+    },
+    {
+        "name": "Heuristics for real time object tracking",
+        "description": "The project deals with a real time object de- tector and tracker, which estimates the object at a distance using a kinect-based camera feed. We aimed to create a real-time model since it is supposed to be deployed to a robot so that it could move in the direction of the ob- ject and based on the distance, adjust its posi- tion to pick up the object. We used the Reti- naNet model for object detection which in turn makes use of ResNet50 in the backend. Fur- thermore, tracking is deployed to ensure object tracking while computations are being done in the background. The camera feed is supposed to be around 30 frames and our pipeline us- ing object detection single-handedly can pro- duce 38 frames/sec. After training the model on CLEVR dataset, we fine-tuned it on real life mobile videos to remove the dependen- cies on the camera angle and increase robust- ness against background noise and dynami- cally changing camera angles.",
+        "image": "images/NYU-CV.jpg",
+        "pdf":"https://drive.google.com/file/d/18Hx15egRMtEFwLqfhcr9nWJA1M0e1E1j/view?usp=sharing"
+    }
 ]
