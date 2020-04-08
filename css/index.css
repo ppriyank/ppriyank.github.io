@@ -2,18 +2,30 @@
     font-family: 'Saira Semi Condensed', sans-serif;
 }
 
+ul#menu li {
+  display:inline;
+}
+
+ul#menu { 
+margin: 10;
+padding: 10;
+float: left;
+}
+
+ul#menu a {
+padding: 25px;  
+}
 
 /* Style the header */
 .header {
-  overflow: hidden;
-  display: block;
-  float: left;
-  margin: auto;
-  width: 500px
-  padding: 25px;
-  /*padding: 10px 16px;*/
+  /*display: block;*/
+  position: fixed;
+  /*margin: auto;*/
+  /*width: 500px*/
+  /*padding: 25px;*/
   background-color: #f5f6fa;
 }
+
 
 /* Page content */
 .content {
@@ -54,6 +66,7 @@
     filter: sepia(100%);   
     filter: invert(100%); 
     color: #212121;
+    z-index: -10;
     /*border-radius: 3px;*/
 }
 
@@ -84,7 +97,7 @@
     width: 200px;
     height: 230px;
     margin: auto;
-    margin-top: calc(10%);
+    margin-top: calc(20%);
 }
 
 /* The various Texts */
@@ -207,16 +220,19 @@
     font-weight: 600;
     color: black;
     margin-top: 15px;
+    z-index: -1;
 }
 
 #contactButton p {
     margin: 0px;
     margin-top: -1px;
+    z-index: -1;
 }
 
 #contactButton:hover {
     color: white;
     background-color: black;
+    z-index: -1;
 }
 /* Colors */
 
