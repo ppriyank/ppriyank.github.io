@@ -2,40 +2,24 @@
     font-family: 'Saira Semi Condensed', sans-serif;
 }
 
-/* Social Links */
-
-
-/*ul {*/
-  /*list-style-type: none;*/
-  /*margin: auto;*/
-  /*padding: 25px;*/
-  /*overflow: hidden;*/
-/*}*/
-
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  padding: 25px;
-  background-color: #f5f6fa;
-}
 
 /* Style the header */
-/*.header {
+.header {
+  overflow: hidden;
+  display: block;
+  float: left;
   margin: auto;
   width: 500px
-  padding: 10px 16px;
+  padding: 25px;
+  /*padding: 10px 16px;*/
   background-color: #f5f6fa;
-}*/
-*/
+}
+
 /* Page content */
 .content {
-  /*margin: auto;*/
-  /*width: 500px*/
-  /*padding: 16px;*/
+  margin: auto;
+  width: 500px
+  padding: 16px;
   z-index: -1;
 }
 
@@ -48,10 +32,10 @@ li a {
 }
 
 /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
-/*.sticky + .content {
+.sticky + .content {
   margin: auto;
   padding-top: calc(1%);
-}*/
+}
 
 
 
@@ -61,6 +45,7 @@ li a {
     display: block;
     padding-right: 10px;
     padding-left: 10px;
+    z-index: -1;
     
 }
 
@@ -71,7 +56,6 @@ li a {
     color: #212121;
     /*border-radius: 3px;*/
 }
-
 
 
 #socialLinkContent {
@@ -86,6 +70,7 @@ li a {
     color: #212121;
     border-radius: 3px;
     padding: 5px 10px 5px 10px;
+    z-index: -1;
 }
 
 .links:hover {
