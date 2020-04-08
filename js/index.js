@@ -33,7 +33,7 @@ publicationRequest.onreadystatechange = function () {
             var html = "";
             JSON.parse(publicationRequest.responseText).forEach(function (publication) {
                 console.log(publication.name);
-                html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + publication.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + publication.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + publication.arxiv + " target=\"_blank\">Arxiv  </a>    <a href=" + publication.github + " target=\"_blank\">  Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + publication.name + "<i class=\"material-icons right\">close</i></span><p>" + publication.description + "</p></div></div></div>";    
+                html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + publication.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + publication.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + publication.link + " target=\"_blank\">Arxiv  </a>    <a href=" + publication.github + " target=\"_blank\">  Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + publication.name + "<i class=\"material-icons right\">close</i></span><p>" + publication.description + "</p></div></div></div>";    
             });
             publication.innerHTML = html;
         }

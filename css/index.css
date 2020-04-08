@@ -47,7 +47,7 @@
     width: 200px;
     height: 230px;
     margin: auto;
-    margin-top: calc(25%);
+    margin-top: calc(10%);
 }
 
 /* The various Texts */
@@ -62,6 +62,13 @@
 
 #portfolioTitle {
     margin-left: 8px;
+}
+
+#publicationText {
+    margin-top: 0px;
+    margin-bottom: -30px;
+    font-weight: 500;
+    font-size: 2.2rem;
 }
 
 #portfolioText {
@@ -99,6 +106,10 @@
 
 /* Breakpoint resizing */
 @media only screen and (max-width: 1260px) {
+    #publicationText {
+        font-size: 2rem;
+        margin-bottom: -20px;
+    }
     #portfolioText {
         font-size: 2rem;
         margin-bottom: -20px;
