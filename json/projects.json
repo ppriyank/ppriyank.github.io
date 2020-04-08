@@ -16,6 +16,7 @@
         "name": "FasterRCNN Tutorial",
         "description": "Pytorch based FasterRCNN for custom dataset with explanation",
         "image": "images/object_detection.jpg",
+        "gif": "images/object_detection.gif",
         "github":"https://github.com/ppriyank/Pytorch-CustomDataset-FasterRCNN/"
     },
     {
