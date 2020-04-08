@@ -49,14 +49,25 @@ projectsRequest.onreadystatechange = function () {
             var html = "";
             JSON.parse(projectsRequest.responseText).forEach(function (projects) {
                 console.log(projects.name);
-                if (projects.pdf)
+                // if (projects.name == "Spatial Transformers Traffic signal classification"){
+                //     console.log("=========");
+                //     html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" width=\"200px\" height=\"250px\" src=" + projects.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.github + " target=\"_blank\">  Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
+                // }
+                // if (projects.gif){
+                //     html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator centered-and-cropped\"   height=\"1920px\" width=\"1080px\" src=\"" + projects.gif +  "\" alt=\"this slowpoke moves\"></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.github + " target=\"_blank\">  Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
+                // }
+                if (projects.web)
+                    html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + projects.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.pdf + " target=\"_blank\">Website  </a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
+                else if (!projects.github)
+                    html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + projects.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.pdf + " target=\"_blank\">Pdf  </a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
+                else if (projects.pdf)
                     html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + projects.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.pdf + " target=\"_blank\">Pdf  </a>    <a href=" + projects.github + " target=\"_blank\">  Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
-                else if (projects.gif){
-                    // console.log(projects.gif);
-                    html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator centered-and-cropped\"  width=\"300\" height=\"280\" src=\"" + projects.gif +  "\" alt=\"this slowpoke moves\"></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.github + " target=\"_blank\">  Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
-                }
                 else
                     html += "<div class=\"col s12 m6 l6\"><div class=\"card hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=" + projects.image + "></div><div class=\"card-content\"><span class=\"card-title activator grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">keyboard_arrow_up</i></span><p><a href=" + projects.github + " target=\"_blank\">Github</a></p></div><div class=\"card-reveal\"><span class=\"card-title grey-text text-darken-4\">" + projects.name + "<i class=\"material-icons right\">close</i></span><p>" + projects.description + "</p></div></div></div>";    
+
+                // else 
+                
+                
                     
             });
             projects.innerHTML = html;

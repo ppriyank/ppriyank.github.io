@@ -1,28 +1,58 @@
 [
     {
-        "name": "FasterRCNN Tutorial",
-        "description": "Pytorch based FasterRCNN for custom dataset with explanation",
-        "gif": "images/object_detection.gif",
-        "github":"https://github.com/ppriyank/Pytorch-CustomDataset-FasterRCNN/"
-    },
-    {
-        "name": "Coreference Resolution using Bert",
-        "description": "Pytorch and Tensorflow implementation of the Corefernce Resoulution along with multitask training and Replacement of Bi-directional LSTM with transformers model. The work also involves ablation study of the model",
-        "image": "images/coreference_resolution.png",
-        "github":"https://github.com/ppriyank/Bert-Coref-Resolution-Lee-",
-        "pdf":"https://drive.google.com/file/d/1zB15PTq-ScZz-s2IGEPopHIXLY5vPtxr/view?usp=sharing"
-    },
-    {
-        "name": "Spatial transformers for traffic signal classification",
+        "name": "Spatial Transformers (Traffic signal)",
         "description": "Pytorch Implementation of Deep neural network for traffic sign recognition systems: An analysis of spatial transformers and stochastic optimisation methods",
-        "image": "images/spatial_transformer.png",
+        "image": "images/spatial_transformer.jpg",
         "github":"https://github.com/ppriyank/Deep-neural-network-for-traffic-sign-recognition-systems"
     },
     {
         "name": "Adveserial Attack for IBM Cloud",
         "description": "Part of course project to construct robust adversarial audio attacks on automatic speech recognition systems. We start with basic perturbations of the sound waveform and then move on to adversarial attacks. Given any audio waveform, we then apply our targeted black-box iterative optimization- based attack to IBM Cloud Speech-To-Text APIs and Google Cloud Speech-To-Text APIs. We are able to successfully at- tack the APIs by changing most of the original transcription.",
-        "image": "images/adveserial_attack.png",
+        "image": "images/adveserial_attack.jpg",
         "github":"https://github.com/ppriyank/Adveserial-Attacks",
         "pdf":"https://drive.google.com/open?id=1CnnJKnxKXY_cxIh5-JoWK5mgmH-A8O9Q"
-    }
+    },
+    {
+        "name": "FasterRCNN Tutorial",
+        "description": "Pytorch based FasterRCNN for custom dataset with explanation",
+        "image": "images/object_detection.jpg",
+        "github":"https://github.com/ppriyank/Pytorch-CustomDataset-FasterRCNN/"
+    },
+    {
+        "name": "Coreference Resolution using Bert",
+        "description": "Pytorch and Tensorflow implementation of the Corefernce Resoulution along with multitask training and Replacement of Bi-directional LSTM with transformers model. The work also involves ablation study of the model",
+        "image": "images/coreference_resolution.jpg",
+        "github":"https://github.com/ppriyank/Bert-Coref-Resolution-Lee-",
+        "pdf":"https://drive.google.com/file/d/1zB15PTq-ScZz-s2IGEPopHIXLY5vPtxr/view?usp=sharing"
+    },
+    {
+        "name": "VAE for painting timeline ",
+        "description": "The current architecture of VAE suffers from latent space saturation (with inefficient packing) and mode collapse. In this project we believe if the dataset is distributed among different architectures, mode collapse can be easily dealt with, yet retaining the properties of a normal VAE and getting a reasonable reconstruction. Furthermore, we postulate if the architecture shares the latent space over the modes the network would result in more efficient packing. Hencee, we aim to introduce more than one encoder, with the latent spaces mapped to a single decoder. In order to get the model to work, we are currently trying to incorporate different techniques to get a perfect reconstruction.",
+        "image": "images/vae_pictures.jpg",
+        "pdf":"https://drive.google.com/file/d/1ffeNJ8ypLvGzKYNpdpQB5CFKkt4WLo5T/view?usp=sharing"
+    },
+    {
+        "name": "Vision Summary Evaluation",
+        "description": "Currently, Text Evaluation is limited to use of ROUGE, BLEU, F1 Scores, which don’t match with human judgment scores. Taking an image from Computer Vision as an analogy for the document in a Linguistic space, we try to implement similar approaches for it in the hope of surpassing results of BLEU scores and ROUGE scores for text evaluation as well as text generation. The project report includes A proposal of sentence vector based evaluation metric (DUC-2004 dataset). Furthermore, a theoretical proposal for techniques of in- corporating state-of-the-art caption generators for Headline generation. Treat- ing summarization process as a caption generation problem as implemented in Computer Vision, thus a joint modal learning model for evaluating Headlines with respect to the whole document (Twenty News Dataset)",
+        "image": "images/NLP_summarization.jpg",
+        "pdf":"https://drive.google.com/file/d/1ycdRQ_cIQPLHD7su5y8SRroA74hpx6gB/view?usp=sharing"
+    },
+    {
+        "name": "Heuristics for real time object tracking",
+        "description": "The project deals with a real time object de- tector and tracker, which estimates the object at a distance using a kinect-based camera feed. We aimed to create a real-time model since it is supposed to be deployed to a robot so that it could move in the direction of the ob- ject and based on the distance, adjust its posi- tion to pick up the object. We used the Reti- naNet model for object detection which in turn makes use of ResNet50 in the backend. Fur- thermore, tracking is deployed to ensure object tracking while computations are being done in the background. The camera feed is supposed to be around 30 frames and our pipeline us- ing object detection single-handedly can pro- duce 38 frames/sec. After training the model on CLEVR dataset, we fine-tuned it on real life mobile videos to remove the dependen- cies on the camera angle and increase robust- ness against background noise and dynami- cally changing camera angles.",
+        "image": "images/NYU-CV.jpg",
+        "pdf":"https://drive.google.com/file/d/18Hx15egRMtEFwLqfhcr9nWJA1M0e1E1j/view?usp=sharing"
+    },
+    {
+        "name": "Generating defocused images",
+        "description": "Current applications of deep learning aim at improved generation of images through super-resolution or generation. In this project the aim is to generate defocused images that are conditioned on the input. The aim is to be able to generate defocused portrait mode images automatically. In order to obtain a network that can generate such defocused images, it needs to be trained in a supervised manner, however, datasets are not currently available at scale to train defocused generations. We have created a dataset to train methods for generating such defocused images. Further, we have evaluated several architectures for generating defocused images in this project.",
+        "image": "images/blurring.jpg",
+        "pdf":"https://drive.google.com/file/d/11WJbh1o5GeX_6Pio5QAheY44Ou2rlKh_/view?usp=sharing"
+    },
+ 	{
+        "name": "Survey Multi Agent RL",
+        "description": "Multi-Agent Reinforcement Learning (MARL) is an emerging field which has gained considerable attention in recent times due to the success of the StarCraft II model AlphaStar. This attention has inspired a higher level of understanding and exploration in this field. Currently, MARL faces issues of scalability and training methodology that accounts for coordinated behaviour while maintaining real-time decision processes. This survey covers traditional RL frameworks like Markov Decision Process, Q-Learning, Actor-Critic and policy gradient, then transitions to recent methods like Multi-Agent Deep Deterministic Policy Gradient with Communication and QMIX architectures. Lastly the performance of learning agents via the StarCraft Multi-Agent Challenge is examined.",
+        "image": "images/reinforcement_learning.png",
+        "web":"MARL/final.html"
+    } 
 ]
