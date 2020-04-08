@@ -17,12 +17,32 @@
     <!-- If you want Google Analytics, do some Google searching, and pop it here. -->
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+ul#menu li {
+  display:inline;
+}
+</style>
+
 </head>
+
+
+
 
 <body style="background-color: #f5f6fa">
     <div>
-        <div class="row">
+        <div class="row">        
+
             <div id="profileColumn" class="col s12 l4 center">
+               
+                <div class="header" id="myHeader">
+                  <ul id="menu" >
+                  <li><a class="hoverable waves-effect waves-light" href="#profileImage">About</a></li>
+                  <li><a class="hoverable waves-effect waves-light " href="#publicationText">Publication</a></li>
+                  <li><a class="hoverable waves-effect  waves-light" href="#projectText"> Projects</a></li>
+                  <li><a class="hoverable waves-effect  waves-light"  href="#workText"> Work Experience</a></li>
+                </ul>
+                </div>
+
                 <img id="profileImage" src="./images/profile.jpg" class="z-depth-3 circle responsive-img" />
                 
                 <h2 id="heroName" class="center-align">Priyank Pathak</h2>
@@ -40,22 +60,18 @@ I'm a Machine learning enthusiast, specializing in Computer Vision, which stems 
                 </div>
                 <!-- Replace the email address below with your own -->
                 <a id="contactButton" class="waves-effect waves-grey btn-flat" href="mailto:pp1953@nyu.edu"><p>Email</p></a>
-                
-                <h3 id="description" class="center-align">
-
-                  <ul style="list-style-type:circle;">
-                  <li>News</li>
-                  <li><a href="#publicationText">Publication</a></li>
-                  <li><a href="#projectText"> Projects</a></li>
-                  <li><a href="#workText"> Work Experience</a></li>
-                </ul>
-
-                </h3>
 
 
             </div>
             
+            
+
             <div id="portfolioColumn" class="col s12 m12 l8">
+                
+                
+
+
+            
                 <div id="portfolioTitle">
                     <p id="publicationText">Publication</p>
                     <p id="firstCategoryText"></p>
@@ -72,13 +88,13 @@ I'm a Machine learning enthusiast, specializing in Computer Vision, which stems 
                 </div>
                 <div id="portfolioTitle">
                     <p id="workText">Work Experience</p> <br>
-                    <p id="firstCategoryText">Deep Learning Research (Video Persod Re-id), Clarifai (Guide-Dr. Michael Gormish)</p>
+                    <p id="firstCategoryText">Deep Learning Research (Video Persod Re-id), Clarifai <br>(Guide-Dr. Michael Gormish)</p>
                     <ul style="list-style-type:circle;">
                   <li>Implemented and mixed various techniques, resulting in 82.1% mAP accuracy where previous reported SOTA is 80.8% on MARS dataset for video-based Person Re-id task, accompanied by a detailed experimental study of model</li>
                   <li>Built the Video back-end infrastructure for loading and training videos</li>
                 </ul>
 
-                <p id="firstCategoryText">Deep Learning Research (VAE-GAN for Audio), Rice University (Guide-Prof. Anshumali Srivastava)</p>
+                <p id="firstCategoryText">Deep Learning Research (VAE-GAN for Audio), Rice University <br>(Guide-Prof. Anshumali Srivastava)</p>
                     <ul style="list-style-type:circle;">
                   <li>Applied the VAE-GAN on audio spectrogram per frame to reconstruct phonemes of vocal recordings</li>
                   <li>Compared English trained model with French counterpart to visualize phonetic differences, using T-SNE plots</li>

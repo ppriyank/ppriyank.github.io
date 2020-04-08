@@ -4,17 +4,69 @@
 
 /* Social Links */
 
+
+/*ul {*/
+  /*list-style-type: none;*/
+  /*margin: auto;*/
+  /*padding: 25px;*/
+  /*overflow: hidden;*/
+/*}*/
+
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 25px;
+  background-color: #f5f6fa;
+}
+
+/* Style the header */
+/*.header {
+  margin: auto;
+  width: 500px
+  padding: 10px 16px;
+  background-color: #f5f6fa;
+}*/
+*/
+/* Page content */
+.content {
+  /*margin: auto;*/
+  /*width: 500px*/
+  /*padding: 16px;*/
+  z-index: -1;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  margin: auto;
+  position: fixed;
+  top: 0;
+  width: 500px
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+/*.sticky + .content {
+  margin: auto;
+  padding-top: calc(1%);
+}*/
+
+
+
 #socialLinkSection {
     margin-top: 3px;
     margin-bottom: 8px;
     display: block;
     padding-right: 10px;
     padding-left: 10px;
+    
 }
 
 #univ {
     display: inline-block;
-    /*filter: sepia(100%);   */
+    filter: sepia(100%);   
     filter: invert(100%); 
     color: #212121;
     /*border-radius: 3px;*/
