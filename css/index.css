@@ -71,6 +71,20 @@
     font-size: 2.2rem;
 }
 
+#workText {
+    margin-top: 0px;
+    margin-bottom: -30px;
+    font-weight: 500;
+    font-size: 2.2rem;
+}
+
+#projectText {
+    margin-top: 0px;
+    margin-bottom: -30px;
+    font-weight: 500;
+    font-size: 2.2rem;
+}
+
 #portfolioText {
     margin-top: 0px;
     margin-bottom: -30px;
@@ -107,6 +121,14 @@
 /* Breakpoint resizing */
 @media only screen and (max-width: 1260px) {
     #publicationText {
+        font-size: 2rem;
+        margin-bottom: -20px;
+    }
+    #workText {
+        font-size: 2rem;
+        margin-bottom: -20px;
+    }
+    #projectText {
         font-size: 2rem;
         margin-bottom: -20px;
     }
