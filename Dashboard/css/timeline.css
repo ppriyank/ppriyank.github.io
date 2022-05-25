@@ -1,0 +1,55 @@
+
+.Timeline  {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.Timeline svg {
+	fill:white;
+	/*stroke: white;*/
+	letter-spacing: normal;
+	text-transform: uppercase;
+	/*font-size: medium;*/
+	opacity: 1;
+	font-family: sans-serif;
+}
+
+.Timeline .label {
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 2;
+}
+
+.Timeline .label_indicator {
+	stroke: white; 
+	stroke-width: 1.8px;
+}
+
+/*
+.Rating .myYaxis path {
+	stroke: white;
+	stroke-width: 0.8px;
+}
+
+.Rating .myYaxis line {
+	stroke: white;
+	stroke-width: 0.8px;
+}
+*/
+/*.Rating .myYaxis text {
+	stroke: white;
+	stroke-width: 0.8px;
+}
+*/
+/*
+.Rating .myXaxis line {
+	stroke: white;
+	stroke-width: 0.8px;
+}
+
+.Rating .myXaxis path {
+	stroke: white;
+	stroke-width: 0.8px;
+}
+
+
+*/
