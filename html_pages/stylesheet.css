@@ -71,7 +71,7 @@ a {
 
 a:focus,
 a:hover {
-  color: #f09228;
+  color: #ff0000;
   text-decoration: none;
 }
 
@@ -127,19 +127,36 @@ name {
   -moz-transition: opacity .2s ease-in-out;
   -webkit-transition: opacity .2s ease-in-out;
 }
-/* 
+
 span.highlight {
   background-color: #fbfbfb;
-} */
+} 
 
-/* 
-.social-icons a {
+
+.social-icons i {
  text-decoration: none;
  color: #333;
- margin-right: 10px;
+ margin-right: 20px;
  font-size: 24px;
+ transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.social-icons a:hover {
- color: #0077b5; /* Change color on hover */
-} */
+.social-icons img {
+ text-decoration: none;
+ color: #333;
+ margin-right: 20px;
+ /* margin-top: 100px; */
+ max-width:25px;
+ transition: transform 0.3s ease, color 0.3s ease;
+ transform: translateY(3px); 
+}
+
+.social-icons i:hover {
+ color: #ff0000; 
+ transform: scale(1.2);
+  /* transition: transform 0.1s ease; */
+}
+.social-icons img:hover {
+ filter: brightness(0) saturate(100%) invert(17%) sepia(97%) saturate(7481%) hue-rotate(0deg) brightness(101%) contrast(119%);
+ transform: scale(1.2); 
+}

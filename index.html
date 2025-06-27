@@ -9,7 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="html_pages/stylesheet.css">
-    <link rel="icon" href="images/profile.jpg>">          
+    <link rel="icon" href="images/profile.jpg">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/></head>
+
 
 </head>
 
@@ -19,20 +23,94 @@
 
 
 <body style="background-color: #ffffff;">
+    
+    
     <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
     <tbody>
-    <tr style="padding:0px">
-        
-        <div id="tableContainer">
-            <script>
-                $.get("html_pages/header.html", function(data) {
-                    $('#tableContainer').append(data); 
-                })
-            </script>
-        </div>
-    </tr>
-</table>
+        <tr style="padding:0px">
+            <td style="padding:0px">
+                
+                
+                <!-- ########## HEADER  -->
+                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+                    <tbody>
+                        <tr style="padding:0px">
+                            <td style="padding:2.5%;width:63%;vertical-align:middle">
+                                <p style="text-align:center">
+                                    <name>Priyank Pathak</name>
+                                </p>
+                                <p>
+                                    I am a third-year Ph.D. student in Computer Vision at the Center for Research in Computer Vision (<a href="https://www.crcv.ucf.edu/">CRCV</a>), <a href="https://www.ucf.edu/">University of Central Florida (UCF)</a>, where I am fortunate to be advised by <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Prof. Yogesh S. Rawat</a>. 
+                                    My research focuses on Low-Resolution Recognition, Person Re-Identification (ReID), and Robustness in Deep Learning.
+                                    Prior to joining UCF, I earned my Master’s in Computer Science from <a href="https://cims.nyu.edu/dynamic/">New York University (NYU) Courant Institute</a>, where I completed my thesis under the guidance of <a href="https://cims.nyu.edu/people/profiles/FERGUS_Rob.html">Prof. Rob Fergus</a>. 
+                                    I hold dual Bachelor of Technology (B.Tech) degrees in Electrical Engineering and Computer Science from the <a href="https://www.iitk.ac.in/">Indian Institute of Technology (IIT) Kanpur</a>.
+                                </p>
 
+                                <p style="text-align:center">
+                                    Email: priyank@ucf.edu &nbsp;/&nbsp pp1953@nyu.edu <br>
+                                </p> 
+                                
+                                <div class="social-icons" style="text-align:center">
+                                    <a href="html_pages/data/Priyank_Pathak_Resume.pdf" target="_blank" title="Resume">
+                                    <i class="fa-sharp fa-solid fa-file"></i>
+                                    </a>   
+                                    <!-- &nbsp;/&nbsp -->
+                                    <a href="https://github.com/ppriyank" target="_blank" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                    </a>
+                                    <!-- &nbsp;/&nbsp -->
+                                    <a href="https://www.linkedin.com/in/priyank-pathak-11b9b08a/" target="_blank" title="Linkedin">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                    <!-- &nbsp;/&nbsp -->
+                                    <a href="https://scholar.google.com/citations?user=wnVyeJ0AAAAJ&hl=en" target="_blank" title="Scholar">
+                                    <img src="html_pages/data/icons8-google-scholar-500.png"></img>
+                                    </a>
+                                    <!-- &nbsp;/&nbsp -->
+                                    <a href="https://www.instagram.com/banarasi_guy/" target="_blank" title="Insta">
+                                    <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                    <!-- &nbsp;/&nbsp -->
+                                </div> 
+                                
+                                
+                            </td>
+                            <td style="padding:2.5%;width:40%;max-width:40%">
+                                <a href="html_pages/data/profile.jpg"><img style="width:100%;max-width:100%" alt="profile photo"
+                                    src="html_pages/data/profile.jpg" class="hoverZoomLink"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- ########## Research  -->
+                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+                    <tbody>
+                    <tr>
+                        <td style="padding:20px;width:100%;vertical-align:middle">
+                            <heading>Research</heading>
+                            <p>
+                                My research focuses on developing efficient training techniques for computer vision models, with a particular emphasis on enhancing the robustness of deep learning architectures in real-world scenarios. 
+                                I am especially interested in understanding and mitigating the effects of low-resolution inputs and other common artifacts encountered in practical applications.
+
+                                As a Ph.D. student, my work investigates how various types of noise—such as low-resolution, and environmental distortions—impact the performance of deep learning models, including transformers and vision-language models (VLMs). 
+                                I aim to design computationally efficient strategies to improve model resilience against these challenges.
+                                &nbsp; Previously, my Master's thesis centered on Person Re-Identification (ReID) in surveillance settings, a domain inherently affected by low-resolution and noisy visual data. 
+                            </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                
+
+            </td>
+        </tr>
+    </tbody>
+    </table>
+    
 
 
 </body>
