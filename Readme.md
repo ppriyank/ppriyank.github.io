@@ -1,16 +1,4 @@
-Credits: https://github.com/jacksonhvisuals/quicksilver
+This is the source code to Rohit Gupta's public academic website: https://rohit-gupta.github.io
 
 
-Use this : https://github.com/jonbarron/website
-
-
-Created using the server : `python3 -m http.server`
-
-
-
-### Todo :
-- [ ] Thumbnail pictures
-- [ ] Grey Patch on the right to menu
-- [ ] Mobile menu changes orientation
-
-
+The template was borrowed from Jon Barron: https://jonbarron.info/
