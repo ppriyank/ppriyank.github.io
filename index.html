@@ -1,6 +1,12 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>Priyank Pathak</title>
@@ -9,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="html_pages/stylesheet.css">
-    <link rel="icon" href="images/profile.jpg">
+    <link rel="icon" href="html_pages/data/profile.jpg">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/></head>
@@ -22,8 +28,16 @@
 
 
 
-<body style="background-color: #ffffff;">
+<body>
     
+    <div class="dark-mode-toggle">
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+
     
     <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
     <tbody>
@@ -128,7 +142,7 @@
                             ovvidcls_stop()
                         </script>
                     </td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
+                    <td style="padding:50px;width:75%;vertical-align:middle">
                         <papertitle>
                             Colors See Colors Ignore: Clothes Changing ReID with Color Disentanglement
                         </papertitle>
@@ -136,7 +150,7 @@
                         <strong>Priyank Pathak</strong>,
                         <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>,
                         <br><em>ICCV</em>, 2025<br>
-                        <a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/5599_ECCV_2024_paper.php">Paper</a> /
+                        <a href="">Paper</a> /
                         <a href="https://github.com/ppriyank/ICCV-CSCI-Person-ReID">Code</a>
                         <p> We propose a lightweight, annotation-free proxy for mitigating appearance bias in ReID models, when clothing annotations arent avaialble.  
                              We propose Colors See, Colors Ignore (CSCI), a RGB-only method that leverages color information directly from raw images or video frames. CSCI efficiently captures colorrelated appearance bias (‘Color See’) while disentangling it from identity-relevant ReID features (‘Color Ignore’).
@@ -163,7 +177,7 @@
                             mlcont_stop()
                         </script>
                     </td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
+                    <td style="padding:50px;width:75%;vertical-align:middle">
                             <papertitle>
                                 LR0.FM: Low-Res Benchmark and Improving Robustness for Zero-Shot Classification in Foundation Models
                             </papertitle>
@@ -203,7 +217,7 @@
                             mlcont_stop()
                         </script>
                     </td>
-                    <td style="padding:20px;width:75%;vertical-align:middle">
+                    <td style="padding:50px;width:75%;vertical-align:middle">
                             <papertitle>
                                 Video person re-id: Fantastic techniques and where to find them (student abstract)
                             </papertitle>
