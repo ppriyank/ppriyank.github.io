@@ -20,7 +20,6 @@ function toggleDarkMode() {
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/></head>
 
-
 </head>
 
 
@@ -110,7 +109,7 @@ function toggleDarkMode() {
                             <heading>Research</heading>
                             <p>
                                 My research focuses on developing efficient training techniques for computer vision models, with a particular emphasis on understanding the adverse effect of noise and enhancing the robustness of deep learning architectures in real-world scenarios. 
-                                As a Ph.D. student, my work investigates how various types of noise—such as low-resolution, and environmental distortions—impact the performance of deep learning models, including transformers and vision-language models (VLMs). 
+                                As a Ph.D. student, my work investigates how various types of noise—such as low-resolution and environmental distortions—impact the performance of deep learning models, including transformers and vision-language models (VLMs). 
                                 &nbsp; Previously, my Master's thesis centered on Person Re-Identification (ReID) in surveillance settings, a domain inherently affected by low-resolution and noisy visual data. 
                             </p>
                         </td>
@@ -123,26 +122,13 @@ function toggleDarkMode() {
                 <!-- ########## Papers  -->
                 <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
                 <tbody>
-                <tr onmouseout="ovvidcls_stop()" onmouseover="ovvidcls_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle">
+                <tr>
+                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
                         <div class="one">
-                            <div class="two" id='ovvidcls_image'>
-                                <img src='images/csci.gif' width="200">
-                            </div>
-                                <img src='images/csci.gif' width="200">
+                            <img src='images/csci.gif' width="200">
                         </div>
-                        <script type="text/javascript">
-                            function ovvidcls_start() {
-                                document.getElementById('ovvidcls_image').style.opacity = "1";
-                            }
-
-                            function ovvidcls_stop() {
-                                document.getElementById('ovvidcls_image').style.opacity = "0";
-                            }
-                            ovvidcls_stop()
-                        </script>
                     </td>
-                    <td style="padding:50px;width:75%;vertical-align:middle">
+                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
                         <papertitle>
                             Colors See Colors Ignore: Clothes Changing ReID with Color Disentanglement
                         </papertitle>
@@ -153,32 +139,19 @@ function toggleDarkMode() {
                         <a href="">Paper</a> /
                         <a href="https://ucf-crcv.github.io/ReID/CSCI/">Project Page</a> /
                         <a href="https://github.com/ppriyank/ICCV-CSCI-Person-ReID">Code</a> 
-                        <p> We propose a lightweight, annotation-free proxy for mitigating appearance bias in ReID models, when clothing annotations arent avaialble.  
-                             We propose Colors See, Colors Ignore (CSCI), a RGB-only method that leverages color information directly from raw images or video frames. CSCI efficiently captures colorrelated appearance bias (‘Color See’) while disentangling it from identity-relevant ReID features (‘Color Ignore’).
+                        <p> We propose a lightweight, annotation-free proxy for mitigating appearance bias in ReID models, when clothing annotations aren't available.  
+                             We propose Colors See, Colors Ignore (CSCI), an RGB-only method that leverages color information directly from raw images or video frames. CSCI efficiently captures color-related appearance bias (‘Color See’) while disentangling it from identity-relevant ReID features (‘Color Ignore’).
                         </p>
                     </td>
                 </tr>
-                
-
-                <tr onmouseout="mlcont_stop()" onmouseover="mlcont_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle">
+            
+                <tr>
+                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
                         <div class="one">
-                            <div class="two" id='mlcont_image'>
-                                <img src="images/lr0_fm.gif" width="200">
-                            </div>
                             <img src="images/lr0_fm.gif" width="200">
                         </div>
-                        <script type="text/javascript">
-                            function mlcont_start() {
-                                document.getElementById('mlcont_image').style.opacity = "1";
-                            }
-                            function mlcont_stop() {
-                                document.getElementById('mlcont_image').style.opacity = "0";
-                            }
-                            mlcont_stop()
-                        </script>
                     </td>
-                    <td style="padding:50px;width:75%;vertical-align:middle">
+                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
                             <papertitle>
                                 LR0.FM: Low-Res Benchmark and Improving Robustness for Zero-Shot Classification in Foundation Models
                             </papertitle>
@@ -200,25 +173,13 @@ function toggleDarkMode() {
                 </tr>
 
 
-                <tr onmouseout="mlcont_stop()" onmouseover="mlcont_start()">
-                    <td style="padding:20px;width:25%;vertical-align:middle">
+                <tr>
+                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
                         <div class="one">
-                            <div class="two" id='mlcont_image'>
-                                <img src="images/fantastic_technique.png" width="200" style="transform: translateY(60px);">
-                            </div>
-                            <img src="images/fantastic_technique.png" width="200" style="transform: translateY(60px);">
+                            <img src="images/fantastic_technique.png" width="200" style="transform: translateY(20px);">
                         </div>
-                        <script type="text/javascript">
-                            function mlcont_start() {
-                                document.getElementById('mlcont_image').style.opacity = "1";
-                            }
-                            function mlcont_stop() {
-                                document.getElementById('mlcont_image').style.opacity = "0";
-                            }
-                            mlcont_stop()
-                        </script>
                     </td>
-                    <td style="padding:50px;width:75%;vertical-align:middle">
+                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
                             <papertitle>
                                 Video person re-id: Fantastic techniques and where to find them (student abstract)
                             </papertitle>
@@ -231,24 +192,140 @@ function toggleDarkMode() {
                         <a href="https://cdn.aaai.org/ojs/7219/7219-13-10448-1-10-20200526.pdf">Paper</a> /
                         <a href="https://github.com/ppriyank/Video-Person-Re-ID-Fantastic-Techniques-and-Where-to-Find-Them">Code</a>
                         <p></p>
-                        <p>One of the first works to solve Person Reid exploring multiple techniques to improve accuracy on video ReID model.</p>
+                        <p>One of the first works to solve Person Reid exploring multiple techniques to improve accuracy on the Video ReID model.</p>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
+                        <div class="one">
+                            <img src='images/PixelOnion.png' width="200">
+                        </div>
+                    </td>
+                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
+                        <papertitle>
+                            Pixel Onion: Peeling Layers of Zero-Shot Object Detection in Pixelation
+                        </papertitle>
+                        <br>
+                        <strong>Priyank Pathak*</strong>,
+                        <a href="https://scholar.google.com/citations?hl=en&user=lepAbWsAAAAJ">Mukilan Karuppasamy*</a>,
+                        <a href="https://scholar.google.com/citations?user=2pHFEhMAAAAJ&hl=en">Aaditya Baranwal</a>,
+                        <a href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>,
+                        <a href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>,
+                        <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>,
+                        <br><em>Under Review</em><br>
+                        <em>* equal contribution</em><br>
+                        <p> We critically examine the SOTA Zero-Shot Object Detectors' vulnerability to resolution degradation (`pixelation'). Two key takeaways are 
+                            1) The choice of backbone alone can substantially enhance robustness, while prompting (language) plays a minimal role. 
+                            2) Robustness is also a function of the dataset/domain of images at inference. A certain type of image are not affected by pixelation.
+                        </p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="padding:80px 20px 0px 20px;width:25%;vertical-align:middle">
+                        <div class="one">
+                            <img src='images/ubd_idea.jpg' width="200">        
+                        </div>
+                    </td>
+                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
+                        <papertitle>
+                            Coarse Attribute Prediction with Task Agnostic Distillation for Real World Clothes Changing ReID
+                        </papertitle>
+                        <br>
+                        <strong>Priyank Pathak</strong>,
+                        <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>,
+                        <br><em>Under Review</em><br>
+                        <a href="https://arxiv.org/pdf/2505.12580">Arxiv</a> 
+                        <p></p>
+                        <p> We introduce Robustness against Low-Quality (RLQ) in clothes changing real-world ReID to make the model robust against low-quality artifacts like pixelation, out-of-focus blur, and motion blur.
+                        </p>
                     </td>
                 </tr>
 
                 </tbody>
                 </table>
 
+                
+                <!-- ########## Internships  -->            
+                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+                    <tbody>
+                    <tr>
+                        <td style="padding:20px;width:100%;vertical-align:middle">
+                            <heading>Work Experience</heading>
+                            <hr>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                    <!-- ########## jobs  -->            
+                    <table style="width:100%; border:0; border-spacing:0; border-collapse:collapse; margin:auto;">
+                    <tbody>
+                        <tr style="vertical-align:middle;">
+                        <td style="padding:20px 50px 20px 50px; width:25%;vertical-align:middle">
+                            <img src="images/nus.png" width="90">
+                        </td>
+                        <td style="padding:0; width:75%;">
+                            <papertitle>Research Assistant, National University of Singapore</papertitle><br>
+                            <em>Internship</em><br>
+                            Aug'22 - Dec'2022
+                        </td>
+                        </tr>
+                        
+                        <tr style="vertical-align:middle;">
+                        <td style="padding:20px 50px 20px 50px; width:25%;vertical-align:middle">
+                            <img src="images/amobee.png" width="100">
+                        </td>
+                        <td style="padding:0; width:75%;">
+                            <papertitle>Research Engineer, Amobee</papertitle><br>
+                            <em>Full-time</em><br>
+                            June'20 - Aug'2021
+                        </td>
+                        </tr>
+
+                        <tr style="vertical-align:middle;">
+                        <td style="padding:20px 50px 20px 50px; width:25%;vertical-align:middle">
+                            <img src="images/clarifai.png" width="100">
+                        </td>
+                        <td style="padding:0; width:75%;">
+                            <papertitle>Deep Learning Research Intern, Clarifai,</papertitle><br>
+                            <em>Internship</em><br>
+                            May'19 - Sept'19
+                        </td>
+                        </tr>
+
+                        <tr style="vertical-align:middle;">
+                        <td style="padding:20px 50px 20px 50px; width:25%;vertical-align:middle">
+                            <img src="images/rice.png" width="100">
+                        </td>
+                        <td style="padding:0; width:75%;">
+                            <papertitle>Deep Learning Research Intern, Rice University,</papertitle><br>
+                            <em>Internship</em><br>
+                            May'17 - Aug'17
+                        </td>
+                        </tr>
+                        
+                    </tbody>
+                    </table>
+                
+                
+
+                
+                
             
-            
-
-
-
-
-
-
-
-
                 <!-- ########## MISC -->
+                 <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+                    <tbody>
+                    <tr>
+                        <td style="padding:20px;width:100%;vertical-align:middle">
+                            <heading>Miscellaneous</heading>
+                            <hr>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
                 <table width="100%" align="center" border="0" cellpadding="20">
                     <tbody>
                     <tr>
@@ -268,17 +345,16 @@ function toggleDarkMode() {
                         <td width="75%" valign="middle">
                             <a href="https://arxiv.org/pdf/2011.13475"> Fine-Grained Re-Identification (Master's Thesis)</a><br>
                             <a href="https://arxiv.org/pdf/2212.14215"> Local Learning on Transformers via Feature Reconstruction </a><br>
-                            <a href="https://arxiv.org/pdf/2505.12580?"> Coarse Attribute Prediction with Task Agnostic Distillation for Real World Clothes Changing ReID </a><br>
                         </td>
                     </tr>
 
 
-
+                    
                     <tr>
                         <td align="center" style="padding:20px;width:25%;vertical-align:middle">
                             <heading>Misc Projects</heading>
                             <p>
-                                I sometime release implementations for papers. 
+                                I sometimes release implementations for others' papers. 
                             </p>
                             </td>
                             <td width="75%" valign="middle">
