@@ -159,6 +159,10 @@ span.highlight {
  transform: translateY(3px); 
 }
 
+.company-icons img {
+ transition: transform 0.3s ease, color 0.3s ease;
+}
+
 .social-icons img:hover {
  filter: brightness(0) saturate(100%) invert(17%) sepia(97%) saturate(7481%) hue-rotate(0deg) brightness(101%) contrast(119%);
  transform: scale(1.2); 
@@ -185,6 +189,15 @@ body.dark-mode .social-icons img {
   filter: brightness(0) saturate(100%) invert(100%);
 }
 
+body.dark-mode .company-icons img {
+  /* filter: brightness(0) saturate(100%) invert(100%); */
+  filter: brightness(200%) invert(100%) saturate(0%) brightness(500%);
+}
+
+body.dark-mode .company-icons2 img {
+  /* filter: brightness(0) saturate(100%) invert(100%); */
+  filter: saturate(0%) brightness(200%) 
+}
 
 
 body.dark-mode .social-icons img:hover {
@@ -265,3 +278,4 @@ input:checked + .slider {
 input:checked + .slider:before {
  transform: translateX(26px);
 }
+
