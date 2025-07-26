@@ -137,8 +137,19 @@ span.highlight {
 
 
 
+.me {
+  /* font-size: 15px; */
+  font-weight: bold;
+  /* text-decoration: underline; */
+  color: #d70000;
+}
 
-
+.dark-mode .me {
+  /* font-size: 15px; */
+  font-weight: bold;
+  /* text-decoration: underline; */
+  color: #ffff00;
+}
 
 
 /* SOCIAL MEDIA ICONS */
