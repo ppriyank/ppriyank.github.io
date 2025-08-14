@@ -248,9 +248,19 @@ function toggleDarkMode() {
                         <strong class="me">Priyank Pathak,</strong>
                         <a href="https://scholar.google.com/citations?hl=en&user=lepAbWsAAAAJ">Mukilan Karuppasamy*</a>,
                         <a href="https://scholar.google.com/citations?user=2pHFEhMAAAAJ&hl=en">Aaditya Baranwal</a>,
-                        <a href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>,
-                        <a href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>,
-                        <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>,
+                        <!-- <a href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>, -->
+                        <!-- <a href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>, -->
+                        <!-- <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>, -->
+                        <span class="more-authors"
+                            data-authors='[
+                            {"name":"Shyam Marjit, ","url":"https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en"},
+                            {"name":"Shruti Vyas, ", "url":"https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ"},
+                            {"name":"Yogesh S. Rawat","url":"https://www.cs.ucf.edu/person/yogeshrawat/"}
+                            ]'
+                            data-default="3 more authors">3 more authors
+                        </span>
+
+                        <!-- <span class="more-authors" title="" onclick=" var element=$(this); element.attr('title', ''); var more_authors_text=element.text() == '2 more authors' ? 'Hendrik Antoon Lorentz, Karl Przibram' : '2 more authors'; var cursorPosition=0; var textAdder=setInterval(function(){ element.html(more_authors_text.substring(0, cursorPosition + 1)); if (++cursorPosition == more_authors_text.length){ clearInterval(textAdder); } }, '10'); ">Hendrik Antoon Lorentz, Karl Przibram</span> -->
                         <br><em>Under Review</em><br>
                         <em>* equal contribution</em><br>
                         <p> We critically examine the SOTA Zero-Shot Object Detectors' vulnerability to resolution degradation (`pixelation'). Two key takeaways are 
@@ -459,6 +469,38 @@ function toggleDarkMode() {
     
 
 
-</body>
+<script>
+  document.querySelectorAll('.more-authors').forEach(span => {
+    span.addEventListener('click', () => {
+      const authors = JSON.parse(span.getAttribute('data-authors'));
+      const defaultText = span.getAttribute('data-default');
+      const isCollapsed = span.textContent.trim() === defaultText;
 
+      if (isCollapsed) {
+        span.innerHTML = ''; // Clear span
+        let i = 0;
+
+        const revealNext = () => {
+          if (i < authors.length) {
+            const a = document.createElement('a');
+            a.href = authors[i].url;
+            a.textContent = authors[i].name;
+            a.className = 'author-link';
+            a.target = '_blank';
+            span.appendChild(a);
+            i++;
+            setTimeout(revealNext, 300); // Delay between each name
+          }
+        };
+
+        revealNext();
+      } else {
+        span.textContent = defaultText;
+      }
+    });
+  });
+</script>
+
+
+</body>
 </html>

@@ -292,3 +292,15 @@ input:checked + .slider:before {
  background-color: rgb(0, 0, 0);
 }
 
+
+
+span.more-authors {
+  color: var(--global-text-color-light);
+  border-bottom: 1px dashed var(--global-text-color-light);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--global-text-color);
+    border-bottom: 1px dashed var(--global-text-color);
+  }
+}
