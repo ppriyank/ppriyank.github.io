@@ -5,6 +5,64 @@
 function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
 }
+
+function reveal_name(element) {
+    // Stop any existing animation to prevent conflicts
+    const existingInterval = element.dataset.animationInterval;
+    if (existingInterval) {
+        clearInterval(parseInt(existingInterval));
+    }
+
+    // Get text and data from attributes
+    const shortText = element.getAttribute('data-short-text');
+    const authorsJson = element.getAttribute('data-authors');
+    const authors = JSON.parse(authorsJson);
+    const isExpanded = element.getAttribute('data-is-expanded') === 'true';
+
+    // Determine the new state and content
+    element.setAttribute('data-is-expanded', !isExpanded);
+    element.removeAttribute('title');
+
+    if (isExpanded) {
+        // Collapse the text, no animation needed here
+        element.innerHTML = shortText;
+    } else {
+        // Expand the text with links and animation
+        let authorIndex = 0;
+        let charIndex = 0;
+
+        // Clear the content to start fresh with the animation
+        element.innerHTML = '';
+
+        const textAdder = setInterval(() => {
+            if (authorIndex < authors.length) {
+                const author = authors[authorIndex];
+                const name = author.name;
+                const separator = authorIndex < authors.length - 1 ? ', ' : '';
+
+                // Type out the author's name
+                if (charIndex < name.length) {
+                    // Append the next character to the current content
+                    element.textContent += name.charAt(charIndex);
+                    charIndex++;
+                } else {
+                    // Name is fully typed, add the separator and move to the next name
+                    element.textContent += separator;
+                    
+                    // Reset for the next author
+                    charIndex = 0;
+                    authorIndex++;
+                }
+            } else {
+                // All authors have been revealed
+                clearInterval(textAdder);
+                element.dataset.animationInterval = '';
+            }
+        }, 20); // Adjust animation speed here
+
+        element.dataset.animationInterval = textAdder;
+    }
+}
 </script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -251,16 +309,21 @@ function toggleDarkMode() {
                         <!-- <a href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>, -->
                         <!-- <a href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>, -->
                         <!-- <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>, -->
-                        <span class="more-authors"
+                        <span
+                            class="more-authors"
+                            onclick="reveal_name(this)"
+                            data-short-text="3 more authors"
                             data-authors='[
-                            {"name":"Shyam Marjit, ","url":"https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en"},
-                            {"name":"Shruti Vyas, ", "url":"https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ"},
-                            {"name":"Yogesh S. Rawat","url":"https://www.cs.ucf.edu/person/yogeshrawat/"}
+                                {"name": "Shyam Marjit", "url": "https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en"}, 
+                                {"name": "Shruti Vyas", "url": "https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ"}, 
+                                {"name": "Yogesh S. Rawat", "url": "https://www.cs.ucf.edu/person/yogeshrawat/"}
                             ]'
-                            data-default="3 more authors">3 more authors
+                            data-is-expanded="false">
+                            3 more authors
                         </span>
+                        <!-- <span class="more-authors" onclick=" var element=$(this); element.attr('title', ''); var more_authors_text=element.text() == '3 more authors' ? 'Shyam Marjit, Shruti Vyas, Yogesh S. Rawat' : '3 more authors'; var cursorPosition=0; var textAdder=setInterval(function(){ element.html(more_authors_text.substring(0, cursorPosition + 1)); if (++cursorPosition == more_authors_text.length){ clearInterval(textAdder); } }, '10'); ">Shyam Marjit, Shruti Vyas, Yogesh S. Rawat</span> -->
+                        
 
-                        <!-- <span class="more-authors" title="" onclick=" var element=$(this); element.attr('title', ''); var more_authors_text=element.text() == '2 more authors' ? 'Hendrik Antoon Lorentz, Karl Przibram' : '2 more authors'; var cursorPosition=0; var textAdder=setInterval(function(){ element.html(more_authors_text.substring(0, cursorPosition + 1)); if (++cursorPosition == more_authors_text.length){ clearInterval(textAdder); } }, '10'); ">Hendrik Antoon Lorentz, Karl Przibram</span> -->
                         <br><em>Under Review</em><br>
                         <em>* equal contribution</em><br>
                         <p> We critically examine the SOTA Zero-Shot Object Detectors' vulnerability to resolution degradation (`pixelation'). Two key takeaways are 
@@ -289,8 +352,20 @@ function toggleDarkMode() {
                         <a href="https://scholar.google.com/citations?user=KI128PgAAAAJ&hl=en">Shresth Grover</a>,
                         <strong class="me">Priyank Pathak,</strong>
                         <a href="https://scholar.google.com/citations?user=gsHhV5kAAAAJ&hl=en">Akash Kumar</a>,
-                        <a href="https://scholar.google.com/citations?user=E_UlAVQAAAAJ&hl=en">Vibhav Vineet</a>,
-                        <a href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>,
+                        <!-- <a href="https://scholar.google.com/citations?user=E_UlAVQAAAAJ&hl=en">Vibhav Vineet</a>,
+                        <a href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>, -->
+
+                        <span
+                            class="more-authors"
+                            onclick="reveal_name(this)"
+                            data-short-text="3 more authors"
+                            data-authors='[
+                                {"name": "Vibhav Vineet", "url": "https://scholar.google.com/citations?user=E_UlAVQAAAAJ&hl=en"}, 
+                                {"name": "Yogesh S. Rawat", "url": "https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en"}
+                            ]'
+                            data-is-expanded="false">
+                            2 more authors
+                        </span>
                         <br><em>Under Review</em><br>
                         <p> CosPlan includes four diverse datasets, involving maze navigation, block re-arrangement, image re-construction, and real-world object re-organization. 
                             The benchmark tests VLMs on two key abilities: Error Detection (identifying mistakes in the initial context) and Sequence Completion (correcting the error and completing the sequence to reach the goal).
@@ -466,40 +541,7 @@ function toggleDarkMode() {
         </tr>
     </tbody>
     </table>
-    
 
-
-<script>
-  document.querySelectorAll('.more-authors').forEach(span => {
-    span.addEventListener('click', () => {
-      const authors = JSON.parse(span.getAttribute('data-authors'));
-      const defaultText = span.getAttribute('data-default');
-      const isCollapsed = span.textContent.trim() === defaultText;
-
-      if (isCollapsed) {
-        span.innerHTML = ''; // Clear span
-        let i = 0;
-
-        const revealNext = () => {
-          if (i < authors.length) {
-            const a = document.createElement('a');
-            a.href = authors[i].url;
-            a.textContent = authors[i].name;
-            a.className = 'author-link';
-            a.target = '_blank';
-            span.appendChild(a);
-            i++;
-            setTimeout(revealNext, 300); // Delay between each name
-          }
-        };
-
-        revealNext();
-      } else {
-        span.textContent = defaultText;
-      }
-    });
-  });
-</script>
 
 
 </body>

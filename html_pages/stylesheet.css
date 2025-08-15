@@ -298,6 +298,9 @@ span.more-authors {
   color: var(--global-text-color-light);
   border-bottom: 1px dashed var(--global-text-color-light);
   cursor: pointer;
+  font-style: italic;
+  text-decoration: underline dotted;
+
 
   &:hover {
     color: var(--global-text-color);
