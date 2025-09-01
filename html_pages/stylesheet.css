@@ -307,3 +307,45 @@ span.more-authors {
     border-bottom: 1px dashed var(--global-text-color);
   }
 }
+
+
+
+/* Fade-in base style */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* When visible */
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Uniform spacing between paper rows */
+.papers-table tr {
+  padding: 0;
+  margin: 0;
+}
+
+/* Normalize paper row layout */
+.papers-table td {
+  /* padding: 25px 30px; equal top/bottom + left/right spacing */
+  padding: 20px 30px; /* equal top/bottom + left/right spacing */
+  vertical-align: middle;
+}
+
+/* Extra gap between different papers */
+/* Add uniform gap between rows */
+.papers-table tr + tr {
+  border-top: 30px solid transparent; /* space between rows */
+}
+
+.papers-table img {
+  display: block;
+  margin: 0 auto;   /* centers images */
+  padding: 10px 0;  /* small vertical breathing space */
+}
+

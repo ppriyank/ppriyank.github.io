@@ -63,6 +63,23 @@ function reveal_name(element) {
         element.dataset.animationInterval = textAdder;
     }
 }
+
+// Fade-in on scroll using IntersectionObserver
+document.addEventListener("DOMContentLoaded", () => {
+  const faders = document.querySelectorAll('.fade-in');
+  const options = { threshold: 0.2 };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target); // fade in only once
+      }
+    });
+  }, options);
+
+  faders.forEach(fader => observer.observe(fader));
+});
 </script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -162,14 +179,14 @@ function reveal_name(element) {
                 <!-- ########## Research  -->
                 <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
                     <tbody>
-                    <tr>
+                    <tr class="fade-in">
                         <td style="padding:30px 20px 0px 20px;width:100%;vertical-align:middle">
                             <heading>Research</heading>
                             <hr>
                             <p>
-                                My research focuses on developing efficient training techniques for computer vision models, with a particular emphasis on understanding the adverse effect of noise and enhancing the robustness of deep learning architectures in real-world scenarios. 
-                                As a Ph.D. student, my work investigates how various types of noise—such as low-resolution and environmental distortions—impact the performance of deep learning models, including transformers and vision-language models (VLMs). 
-                                &nbsp; Previously, my Master's thesis centered on Person Re-Identification (ReID) in surveillance settings, a domain inherently affected by low-resolution and noisy visual data. 
+                                My research focuses on developing <u>efficient training</u> techniques for computer vision models, with a particular emphasis on understanding the adverse effect of noise and <u>enhancing the robustness</u> of deep learning architectures in real-world scenarios. 
+                                My work investigates how various types of noise—such as low-resolution and environmental distortions (fog, rain, snow, etc.) impact the performance of deep learning models, including transformers and vision-language models (VLMs), <u>in zero-shot setting</u>. 
+                                &nbsp; On the side, I have extensive experience in <u>Person Re-Identification (ReID)</u> (also, my Master's thesis) centered on real-world CCTV cameras, a domain inherently affected by low-resolution and noisy visual data. 
                             </p>
                         </td>
                     </tr>
@@ -178,70 +195,20 @@ function reveal_name(element) {
 
             
                 <!-- ########## Papers  -->
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+                <table  class="papers-table fade-in">
                 <tbody>
-                
-                <tr>
-                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
-                        <div class="one">
-                            <div class="two" id='ovvidcls_image'>
-                                <img src='images/ubd_idea.jpg' width="200">        
-                            </div>
-                                <img src='images/ubd_idea.jpg' width="200">        
-                        </div>
-                    </td>
-                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
-                        <papertitle>
-                            Coarse Attribute Prediction with Task Agnostic Distillation for Real World Clothes Changing ReID
-                        </papertitle>
-                        <br>
-                        <strong class="me">Priyank Pathak,</strong>
-                        <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>,
-                        <br><em>BMVC, 2025</em><br>
-                        <a href="https://arxiv.org/pdf/2505.12580">Arxiv</a> 
-                        <p></p>
-                        <p> We introduce Robustness against Low-Quality (RLQ) in clothes changing real-world ReID to make the model robust against low-quality artifacts like pixelation, out-of-focus blur, and motion blur.
-                        </p>
-                    </td>
-                </tr>
+                <br><br>
 
+                <!-- LR-TK0 - ICLR / ICCV -->
                 <tr>
-                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
+                    <td>
+                    <!-- <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle"> -->
                         <div class="one">
-                            <div class="two" id='ovvidcls_image'>
-                                <img src='images/csci.gif' width="200">
-                            </div>
-                                <img src='images/csci.gif' width="200">
+                            <img src="images/lr0_fm.gif" width="180">
                         </div>
                     </td>
-                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
-                        <papertitle>
-                            Colors See Colors Ignore: Clothes Changing ReID with Color Disentanglement
-                        </papertitle>
-                        <br>
-                        <strong class="me">Priyank Pathak,</strong>
-                        <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>,
-                        <br><em>ICCV</em>, 2025<br>
-                        <a href="">Paper</a> /
-                        <a href="https://ucf-crcv.github.io/ReID/CSCI/">Project Page</a> /
-                        <a href="https://github.com/ppriyank/ICCV-CSCI-Person-ReID">Code</a> 
-
-                        <p> Lightweight, annotation-free proxy for mitigating appearance bias in ReID models, when "expensive" clothing annotations aren't available.  
-                            Colors See, Colors Ignore (CSCI), an efficient RGB-only method leverages color information directly from raw images or video frames. 
-                        </p>
-                    </td>
-                </tr>
-            
-                <tr>
-                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
-                        <div class="one">
-                            <div class="two" id='ovvidcls_image'>
-                                <img src="images/lr0_fm.gif" width="200">
-                            </div>
-                                <img src="images/lr0_fm.gif" width="200">
-                        </div>
-                    </td>
-                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
+                    <td>
+                    <!-- <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle"> -->
                             <papertitle>
                                 LR0.FM: Low-Res Benchmark and Improving Robustness for Zero-Shot Classification in Foundation Models
                             </papertitle>
@@ -254,7 +221,8 @@ function reveal_name(element) {
                         <br><em>ICLR</em>, 2025<br>
                         <a href="https://openreview.net/forum?id=AsFxRSLtqR&referrer=%5Bthe%20profile%20of%20Priyank%20Pathak%5D(%2Fprofile%3Fid%3D~Priyank_Pathak1)">Paper</a> /
                         <a href="https://ucf-crcv.github.io/lr0.fm/">Project Page</a> /
-                        <a href="https://github.com/shyammarjit/LR0.FM">Code</a>
+                        <a href="https://github.com/shyammarjit/LR0.FM">Code</a> / 
+                        <a href="https://arxiv.org/abs/2502.03950">Arxiv</a> 
                         <p></p>
                         <p>
                             LR0.FM benchmark evaluates the impact of low resolution on the zero-shot performance of VLMs, via novel Weighted Aggregated Robustness metric. 
@@ -262,45 +230,91 @@ function reveal_name(element) {
                         </p>
                     </td>
                 </tr>
-
-
+                
+                <!-- Colors - ICCV -->
                 <tr>
-                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
+                    <td >
                         <div class="one">
-                            <div class="two" id='ovvidcls_image'>
-                                <img src="images/fantastic_technique.png" width="200" style="transform: translateY(20px);">
-                            </div>
-                                <img src="images/fantastic_technique.png" width="200" style="transform: translateY(20px);">
+                            <img src='images/csci.gif' width="180">
                         </div>
                     </td>
-                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
-                            <papertitle>
-                                Video person re-id: Fantastic techniques and where to find them (student abstract)
-                            </papertitle>
+                    <td>
+                        <papertitle>
+                            Colors See Colors Ignore: Clothes Changing ReID with Color Disentanglement
+                        </papertitle>
+                        <br>
+                        <strong class="me">Priyank Pathak,</strong>
+                        <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>,
+                        <br><em>ICCV</em>, 2025<br>
+                        <a href="">Paper</a> /
+                        <a href="https://ucf-crcv.github.io/ReID/CSCI/">Project Page</a> /
+                        <a href="https://github.com/ppriyank/ICCV-CSCI-Person-ReID">Code</a> /
+                        <a href="https://arxiv.org/abs/2507.07230">Arxiv</a> 
+                        <p> Lightweight, annotation-free proxy for mitigating appearance bias in ReID models, when "expensive" clothing annotations aren't available.  
+                            Colors See, Colors Ignore (CSCI), an efficient RGB-only method leverages color information directly from raw images or video frames. 
+                        </p>
+                    </td>
+                </tr>
+                
+                <!-- CGAL - BMVC -->
+                <tr>
+                    <td>
+                        <div class="one">
+                            <img src='images/ubd_idea.jpg' width="180" style="transform: translateY(20px);">        
+                        </div>
+                    </td>
+                    <td>
+                        <papertitle>
+                            Coarse Attribute Prediction with Task Agnostic Distillation for Real World Clothes Changing ReID
+                        </papertitle>
+                        <br>
+                        <strong class="me">Priyank Pathak,</strong>
+                        <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>,
+                        <br><em>BMVC, 2025</em><br>
+                        <a href="https://github.com/ppriyank/RLQ-CGAL-UBD">Code</a> /
+                        <a href="https://arxiv.org/abs/2505.12580">Arxiv</a> 
+                        <p> We introduce Robustness against Low-Quality (RLQ) in clothes changing real-world ReID to make the model robust against low-quality artifacts like pixelation, out-of-focus blur, and motion blur.
+                        </p>
+                    </td>
+                </tr>
 
+                
+                <!-- Fantastic - AAAI -->
+                <tr>
+                    <td>
+                        <div class="one">
+                            <img src="images/fantastic_technique.png" width="180" style="transform: translateY(40px);">
+                        </div>
+                    </td>
+                    <td>
+                        <papertitle>
+                            Video person re-id: Fantastic techniques and where to find them (student abstract)
+                        </papertitle>
                         <br>
                         <strong class="me">Priyank Pathak,</strong>
                         <a href="https://scholar.google.com/citations?hl=en&user=fpNg6ZcAAAAJ">Amir Erfan Eshratifar</a>,
                         <a href="https://scholar.google.com/citations?hl=en&user=KOOCuDkAAAAJ">Michael Gormish</a>,
                         <br><em>AAAI</em>, 2020<br>
                         <a href="https://cdn.aaai.org/ojs/7219/7219-13-10448-1-10-20200526.pdf">Paper</a> /
-                        <a href="https://github.com/ppriyank/Video-Person-Re-ID-Fantastic-Techniques-and-Where-to-Find-Them">Code</a>
-                        <p></p>
-                        <p>One of the first works to solve Person Reid exploring multiple techniques to improve accuracy on the Video ReID model.</p>
+                        <a href="https://github.com/ppriyank/Video-Person-Re-ID-Fantastic-Techniques-and-Where-to-Find-Them">Code</a> /
+                        <a href="https://arxiv.org/abs/1912.05295">Arxiv</a> 
+                        <p>One of the first works in Person Reid exploring multiple techniques to improve accuracy on the Video ReID model, and proposing novel attention loss for helping model focus on certain frames more than the other. 
+                        </p>
                     </td>
                 </tr>
 
-                
-                <tr>
-                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
+
+
+                <!-- Pixel Onion -->
+                <tr style="transform: translateY(-10px);">
+                    <td>
+                    <!-- <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle"> -->
                         <div class="one">
-                            <div class="two" id='ovvidcls_image'>
-                                <img src='images/PixelOnion.jpg' width="200" style="padding:10px 0px 0px 0px;">
-                            </div>
-                                <img src='images/PixelOnion.jpg' width="200" style="padding:10px 0px 0px 0px;">
+                            <img src='images/PixelOnion.jpg' width="180" style="transform: translateY(20px);">
                         </div>
                     </td>
-                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
+                    <td>
+                    <!-- <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle"> -->
                         <papertitle>
                             Pixel Onion: Peeling Layers of Zero-Shot Object Detection in Pixelation
                         </papertitle>
@@ -322,29 +336,22 @@ function reveal_name(element) {
                             ]'
                             data-is-expanded="false">
                             3 more authors
-                        </span>
-                        <!-- <span class="more-authors" onclick=" var element=$(this); element.attr('title', ''); var more_authors_text=element.text() == '3 more authors' ? 'Shyam Marjit, Shruti Vyas, Yogesh S. Rawat' : '3 more authors'; var cursorPosition=0; var textAdder=setInterval(function(){ element.html(more_authors_text.substring(0, cursorPosition + 1)); if (++cursorPosition == more_authors_text.length){ clearInterval(textAdder); } }, '10'); ">Shyam Marjit, Shruti Vyas, Yogesh S. Rawat</span> -->
-                        
-
-                        <br><em>Under Review</em><br>
-                        <em>* equal contribution</em><br>
-                        <p> Removing bells and whistles of SOTA Zero-Shot Object Detectors under resolution degradation (`pixelation'), exposing the true vunerability of "backbones", and "dataset" (certain type of image are not affected by pixelation) with minimal impact of "lanugage".  
+                        </span><br>
+                        <em>* equal contribution</em>
+                        <br><em>Under Review</em>
+                        <p> Removing bells and whistles of SOTA Zero-Shot Object Detectors under resolution degradation (`pixelation'), exposing 1) Vunerability of "backbones", 2) Certain images are immune to degradation 3) Minimal impact of "lanugage".  
                         </p>
                     </td>
                 </tr>
-
-                <tr>
-                    <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle">
+                
+                <!-- ## COSPLAN -->
+                <tr style="transform: translateY(-30px);">
+                    <td>
                         <div class="one">
-                            <div class="two" id='ovvidcls_image'>
-                                <!-- <img src='images/CosPlan.png' width="200" style="padding:0px 0px 0px 50px;"> -->
-                                <img src='images/CosPlan.png' width="200" style="padding:35px 0px 0px 0px;">
-                            </div>
-                                <!-- <img src='images/CosPlan.png' width="200" style="padding:0px 0px 0px 50px;"> -->
-                                <img src='images/CosPlan.png' width="200" style="padding:35px 0px 0px 0px;">
+                            <img src='images/CosPlan.png' width="180" style="transform: translateY(40px);">
                         </div>
                     </td>
-                    <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle">
+                    <td>
                         <papertitle>
                             CosPlan: Corrective Sequential Planning with Visual-Language Models
                         </papertitle>
@@ -352,20 +359,8 @@ function reveal_name(element) {
                         <a href="https://scholar.google.com/citations?user=KI128PgAAAAJ&hl=en">Shresth Grover</a>,
                         <strong class="me">Priyank Pathak,</strong>
                         <a href="https://scholar.google.com/citations?user=gsHhV5kAAAAJ&hl=en">Akash Kumar</a>,
-                        <!-- <a href="https://scholar.google.com/citations?user=E_UlAVQAAAAJ&hl=en">Vibhav Vineet</a>,
-                        <a href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>, -->
-
-                        <span
-                            class="more-authors"
-                            onclick="reveal_name(this)"
-                            data-short-text="2 more authors"
-                            data-authors='[
-                                {"name": "Vibhav Vineet", "url": "https://scholar.google.com/citations?user=E_UlAVQAAAAJ&hl=en"}, 
-                                {"name": "Yogesh S. Rawat", "url": "https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en"}
-                            ]'
-                            data-is-expanded="false">
-                            2 more authors
-                        </span>
+                        <a href="https://scholar.google.com/citations?user=E_UlAVQAAAAJ&hl=en">Vibhav Vineet</a>, 
+                        <a href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>
                         <br><em>Under Review</em><br>
                         <p> CosPlan benchmarks evaluates VLMs on "error-prone" sequence completion tasks, testing abilities like Error Detection and Sequence Completion ability.
                             Novel SGI, incrementally updates Scene Graphs better handle decision making. 
@@ -374,15 +369,14 @@ function reveal_name(element) {
                 </tr>
 
                 
-                
                 </tbody>
                 </table>
 
                 
                 <!-- ########## Internships  -->            
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;transform: translateY(-40px);">
                     <tbody>
-                    <tr>
+                    <tr class="fade-in">
                         <td style="padding:20px;width:100%;vertical-align:middle">
                             <heading>Work Experience</heading>
                             <hr>
@@ -392,8 +386,8 @@ function reveal_name(element) {
                 </table>
                 <!-- ########## jobs  -->            
                  <!-- style="text-align:center"></div> -->
-                <table style="width:100%; border:0; border-spacing:0; border-collapse:collapse; margin:auto;">
-                    <tbody>
+                <table style="width:100%; border:0; border-spacing:0; border-collapse:collapse; margin:auto; transform: translateY(-40px);">
+                    <tbody class="fade-in">
                         <tr style="vertical-align:middle;">
                         <td style="padding:20px 50px 20px 50px; width:25%;vertical-align:middle">
                             <div class="company-icons">
@@ -456,7 +450,7 @@ function reveal_name(element) {
             
                 <!-- ########## MISC -->
                  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                    <tbody>
+                    <tbody class="fade-in">
                     <tr>
                         <td style="padding:20px;width:100%;vertical-align:middle">
                             <heading>Miscellaneous</heading>
@@ -467,7 +461,7 @@ function reveal_name(element) {
                 </table>
 
                 <table width="100%" align="center" border="0" cellpadding="20">
-                    <tbody>
+                    <tbody class="fade-in">
                     <tr>
                         <td align="center" style="padding:20px;width:25%;vertical-align:middle">
                             <heading>Service</heading></td>
