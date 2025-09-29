@@ -66,19 +66,21 @@ function reveal_name(element) {
 
 // Fade-in on scroll using IntersectionObserver
 document.addEventListener("DOMContentLoaded", () => {
-  const faders = document.querySelectorAll('.fade-in');
-  const options = { threshold: 0.2 };
+  const faders = document.querySelectorAll(".fade-in");
 
   const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
+    for (const entry of entries) {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target); // fade in only once
+        entry.target.classList.add("visible");
+        obs.unobserve(entry.target);
       }
-    });
-  }, options);
+    }
+  }, {
+    rootMargin: "100px 0px",  // start 100 px before it appears
+    threshold: 0.10           // only 5 % visible needed
+  });
 
-  faders.forEach(fader => observer.observe(fader));
+  faders.forEach(el => observer.observe(el));
 });
 </script>
 
@@ -320,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             Peeling Layers of Zero-Shot Object Detection for Robustness 
                         </papertitle>
                         <br>
-                        <strong class="me">Priyank Pathak,</strong>
+                        <strong class="me">Priyank Pathak*,</strong>
                         <a href="https://scholar.google.com/citations?hl=en&user=lepAbWsAAAAJ">Mukilan Karuppasamy*</a>,
                         <a href="https://scholar.google.com/citations?user=2pHFEhMAAAAJ&hl=en">Aaditya Baranwal</a>,
                         <!-- <a href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>, -->
