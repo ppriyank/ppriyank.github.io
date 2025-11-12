@@ -156,14 +156,14 @@ span.highlight {
 .social-icons i {
  text-decoration: none;
  color: #333;
- margin-right: 30px;
+ margin-right: 20px;
  font-size: 40px;
  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .social-icons img {
  text-decoration: none;
- margin-right: 30px;
+ margin-right: 20px;
  /* filter: hue-rotate(90deg) saturate(5); */
  max-width:40px;
  transition: transform 0.3s ease, color 0.3s ease;
