@@ -384,7 +384,7 @@ body.dark-mode .timeline {
 /* Date on the left side */
 .timeline-date {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: -150px;
     width: 120px;
     text-align: right;
