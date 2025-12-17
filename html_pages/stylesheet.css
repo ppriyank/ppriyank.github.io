@@ -114,6 +114,7 @@ name {
   width: 160px;
   height: 160px;
   position: relative;
+  margin: 0pt 0pt -10pt 0pt;
 }
 
 .two {
@@ -333,7 +334,7 @@ span.more-authors {
 /* Normalize paper row layout */
 .papers-table td {
   /* padding: 25px 30px; equal top/bottom + left/right spacing */
-  padding: 20px 30px; /* equal top/bottom + left/right spacing */
+  padding: 0px 30px; /* equal top/bottom + left/right spacing */
   vertical-align: middle;
 }
 
@@ -493,3 +494,11 @@ body.dark-mode .tag span {
 } 
 
 
+.conf {
+  font-weight: bold;
+  color: #3b3b3b;
+}
+
+body.dark-mode .conf {
+  color: #dbdbdb;
+}
