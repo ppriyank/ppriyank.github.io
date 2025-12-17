@@ -469,9 +469,13 @@ body.dark-mode .timeline-text .location {
   font-weight: 500; /* Bold */
   font-size: 11px; 
   line-height: 1; /* hieght of tag */
-  color: #000000; /* font color */
-  
+  color: #000000; /* font color */ 
 }
+body.dark-mode .tag {
+  color: #ffffff; /* font color */ 
+} 
+
+
 
 .tag span {
  display: inline-block;
@@ -480,6 +484,12 @@ body.dark-mode .timeline-text .location {
  border-radius: 40px; /* curv of tags */
  padding: 2px 5px; /* left top margin */
  background-color: #a0a0a01c; /* tag color */
+} 
+
+
+body.dark-mode .tag span {
+ border: 0.5px solid #ffffff;
+ background-color: #58585882; /* tag color */
 } 
 
 
