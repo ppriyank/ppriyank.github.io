@@ -460,3 +460,26 @@ body.dark-mode .timeline-text .location {
     text-decoration: none;
 }
 
+
+
+
+
+
+.tag {
+  font-weight: 500; /* Bold */
+  font-size: 11px; 
+  line-height: 1; /* hieght of tag */
+  color: #000000; /* font color */
+  
+}
+
+.tag span {
+ display: inline-block;
+ border: 0.5px solid #000000;
+ margin: 5px 0px 0px 2px;  /* top right bottom left */
+ border-radius: 40px; /* curv of tags */
+ padding: 2px 5px; /* left top margin */
+ background-color: #a0a0a01c; /* tag color */
+} 
+
+
