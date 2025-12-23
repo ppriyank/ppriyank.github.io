@@ -1,0 +1,42 @@
+
+.Genre  {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.Genre svg {
+	fill:white;
+	stroke: white;
+	text-transform: uppercase;
+	font-size: medium;
+	font-family: sans-serif;
+}
+
+
+.Genre .link {
+	stroke: yellow;
+}
+
+.Genre .node {
+	stroke: black;
+	fill: white;
+}
+
+.Genre .label {
+	font-size: 15px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	stroke: black;
+	stroke-width: 1px;
+	font-weight: bold;	
+}
+
+.Genre .legend {
+	fill:  white;
+	font-style:  italic;
+	font-size: 15px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	stroke: black;
+	stroke-width: 0.5px;
+	font-weight: bold;	
+}

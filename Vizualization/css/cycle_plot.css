@@ -1,0 +1,59 @@
+
+.Budget  {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.Budget svg {
+	fill:white;
+	stroke: white;
+	letter-spacing: normal;
+	text-transform: uppercase;
+	font-size: medium;
+	opacity: 1;
+	font-family: sans-serif;
+}
+
+.Budget .labels {
+	font-size: small;
+	text-transform: uppercase;
+	letter-spacing: 10;
+}
+
+.Budget .mean {
+	stroke: red;
+	stroke-width: 7px;
+	text-transform: uppercase;
+}
+
+.Budget .myYaxis path {
+	opacity: 0;
+	/*stroke: white;*/
+	/*stroke-width: 8px;*/
+}
+
+.Budget .myYaxis line {
+	stroke: white;
+	stroke-width: 0.8px;
+}
+
+.Budget .myYaxis text {
+	fill: white;
+	stroke-width: 0.1px;
+}
+
+.Budget .myXaxis line {
+	stroke: white;
+	stroke-width: 0.8px;
+}
+
+.Budget .myXaxis text {
+	fill:white;
+	stroke-width: 0.1px;
+	stroke: white;
+	/*stroke-width: 0.8px;*/
+}
+
+.Budget .myXaxis path {
+	stroke: white;
+	stroke-width: 0.8px;
+}

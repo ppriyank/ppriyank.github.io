@@ -1,0 +1,321 @@
+/* RESET RULES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+
+:root {
+  --page-header-bgColor: #242e42;
+  --page-header-txtColor: #dde9f8;
+  --page-header-headingColor: #7889a4;
+  --page-header-width: 220px;
+  --page-content-bgColor: #454545;
+  --page-content-txtColor: #171616;
+  --page-content-blockColor: black; 
+  --white: #fff;
+  --black: #333;
+  --blue: #00b9eb;
+  --red: #ec1848;
+  --border-radius: 4px;
+  --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.75);
+  --top-margin: 60px;
+  --world-height: 46%;
+  --padding_blocks: 5px;
+  --down-block1-width: 22%;
+  --down-block2-width: 26.3%;
+  --down-block3-width: 25%;
+  --down-block4-width: 25%;
+  --up-block-width: 49.5%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+svg {
+  display: block;
+}
+
+body {
+  font: 16px/1.5 "Lato", sans-serif;
+  background: black;
+  background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover; //safari chrome
+}
+
+/* PAGE CONTENT STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-content {
+  position: relative;
+  min-height: 100vh;
+  color: var(--page-content-txtColor);
+  background: var(--page-content-bgColor);
+}
+
+#dashboardHeader h3 {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+    color: white;
+    font-size: 40px;
+}
+
+button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  border: none;
+  font-weight: bold;
+  padding: 2px 10px;
+  font-size: medium;
+  opacity: 0.6;
+  transition: 0.3s;
+  border-radius: calc(5 * var(--border-radius));
+}
+
+button:hover {opacity: 1}
+
+.slider2{
+  position: absolute;
+  right : 100px;
+  top: calc(var(--world-height) + var(--top-margin) + var(--padding_blocks) + 40px) ;
+}
+
+
+.slider2 #Left_smoothing {
+  margin-top: -22px;
+  margin-left: -80px;
+  color:white; 
+  font-style: italic;
+}
+
+.slider2 input[type=range] {
+  -webkit-appearance: none; 
+  max-width: 4rem;
+  width: 100%; 
+  background: transparent; 
+}
+
+.slider2 input[type=range]:focus {
+  outline: none;
+}
+
+.slider2 input[type=range]::-webkit-slider-runnable-track {
+  height: 0.7rem;
+  margin: 0;
+  width: 100%;
+  cursor: pointer;
+  background: linear-gradient(
+    to bottom right, 
+    transparent 50%,
+    #464646 50%
+  );
+}
+
+.slider2 input[type=range]::-moz-range-track {
+  height: 0.7rem;
+  margin: 0;
+  width: 100%;
+  cursor: pointer;
+  background: linear-gradient(
+    to bottom right, 
+    transparent 50%,
+    #464646 50%
+  );
+}
+
+.slider2 input[type=range]::-ms-track {
+  height: 0.7rem;
+  margin: 0;
+  width: 100%;
+  cursor: pointer;
+  color: transparent;
+  background: #464646;
+  border: 0;
+  background: linear-gradient(
+    to bottom right, 
+    transparent 50%,
+    #464646 50%
+  );
+}
+
+.slider2 input[type=range]::-ms-fill-lower {
+ background: transparent;
+}
+
+.slider2 input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 1.5rem;
+  width: 0.5rem;
+  background: #ffffff;
+  border: 1px solid;
+  margin-top: -5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.slider2 input[type=range]:focus::-webkit-slider-thumb {
+  box-shadow: 0px 0px 7px 3px #0065c4;
+}
+
+.slider2 input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 1.5rem;
+  width: 0.5rem;
+  background: #ffffff;
+  border: 1px solid;
+  border-radius: 3px; 
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.slider2 input[type=range]:focus::-moz-range-thumb {
+  box-shadow: 0px 0px 7px 3px #0065c4;
+}
+
+.slider2 input[type=range]::-ms-thumb {
+  -webkit-appearance: none;
+  height: 0.75rem;
+  width: 0.5rem;
+  background: #ffffff;
+  border: 1px solid;
+  margin-top: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.slider2 input[type=range]:focus::-ms-thumb {
+  box-shadow: 0px 0px 7px 3px #0065c4;
+}
+
+
+
+
+
+
+.slider{
+  position: absolute;
+  right: 40px;
+  margin: 15px;
+  width: 250px;
+  height: 30px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  top: 0;
+}
+
+.slider p {
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  position: absolute;
+  text-align: center;
+}
+
+.slider #Left {
+  margin-left: -80px;
+}
+
+.slider #Right {
+  margin-left: 150px;
+}
+
+.page-content .grid {
+  padding: 30px;
+}
+
+.page-content .grid > article {
+  position: absolute;
+  /*background: var(--page-content-blockColor);*/
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  opacity: 1;
+  top: var(--top-margin); 
+  /*background-image: url('sep-half.png');  */
+  height: calc(var(--world-height));
+  text-align: center;
+ }
+
+.dash-unit dtitle {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: normal;
+    opacity: 1;
+}
+
+.page-content .grid .World {
+  left: var(--padding_blocks);
+  width: calc( var(--up-block-width));
+}
+
+.page-content .grid .Budget {
+  width: calc( var(--up-block-width));
+  left: calc(2 * var(--padding_blocks) + var(--up-block-width) );
+}
+
+.page-content .grid .Genre {
+  left: var(--padding_blocks);
+  width: calc( var(--down-block1-width));
+  top: calc(var(--world-height) + var(--top-margin) + var(--padding_blocks));
+}
+
+.page-content .grid .Timeline {
+  width: calc(var(--down-block2-width));
+  top: calc(var(--world-height) + var(--top-margin) + var(--padding_blocks));
+  left : calc( var(--down-block1-width) + 2 * var(--padding_blocks));
+}
+
+.page-content .grid .Gender {
+  width: calc(var(--down-block3-width));
+  top: calc(var(--world-height) + var(--top-margin) + var(--padding_blocks));
+  left : calc( var(--down-block1-width) + var(--down-block2-width) + 3 * var(--padding_blocks));
+}
+
+.page-content .grid .Rating {
+  width: calc(var(--down-block4-width));
+  top: calc(var(--world-height) + var(--top-margin) + var(--padding_blocks));
+  left : calc( var(--down-block1-width) + var(--down-block2-width) + var(--down-block3-width) + 4 * var(--padding_blocks));
+}
+
+
+/* Style the button */
+
+/*
+
+.page-content .grid > article:hover {
+background-color: grey;
+opacity: 1;
+-moz-box-shadow:    3px 3px 2px 0px #151515;
+-webkit-box-shadow: 3px 3px 2px 0px #151515;
+box-shadow:         3px 3px 2px 0px #151515;
+}
+
+*/
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  filter: blur(15px);
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+mark.red {
+    color:#ff0000;
+    background: none;
+}
+
+mark.italics {
+    text-decoration: italics
+}
