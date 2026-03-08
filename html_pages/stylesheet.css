@@ -103,7 +103,9 @@ heading {
 papertitle {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
-  font-weight: 700
+  font-weight: 600;
+  /* opacity: 10; */
+  /* color: #bbbbbb; */
 }
 
 name {
@@ -298,7 +300,7 @@ input:checked + .slider:before {
 
 
 span.more-authors {
-  color: var(--global-text-color-light);
+  /* color: var(--global-text-color-light); */
   border-bottom: 1px dashed var(--global-text-color-light);
   cursor: pointer;
   font-style: italic;
@@ -354,7 +356,13 @@ span.more-authors {
 
 
 .author {
-  color: rgb(65, 185, 255);
+  /* color: rgb(65, 185, 255); */
+  color: #9a9aa5;
+}
+
+body.dark-mode .author {
+  /* color: rgb(65, 185, 255); */
+  color: #9a9aa5;
 }
 
 
@@ -506,5 +514,5 @@ body.dark-mode .tag span {
 }
 
 body.dark-mode .conf {
-  color: #dbdbdb;
+  color: #ffff00;
 }
