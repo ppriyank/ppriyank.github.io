@@ -145,13 +145,14 @@ span.highlight {
   /* font-size: 15px; */
   font-weight: bold;
   /* text-decoration: underline; */
-  /* color: #d70000; */
+  color: #494949;
   /* color: #d70000; */
 } 
 
 .dark-mode .me {
   /* font-size: 15px; */
   font-weight: bold;
+  color: #e0e0e0;
   /* text-decoration: underline; */
   /* color: #ffff00; */
 }
@@ -510,6 +511,7 @@ body.dark-mode .tag span {
   /* font-weight: bold; */
   /* color: #3b3b3b; */
   color: #ff0202;
+  /* color: #063cfe; */
   font-family: "Comic Sans MS";
 }
 
