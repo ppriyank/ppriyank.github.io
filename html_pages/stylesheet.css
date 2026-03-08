@@ -139,18 +139,19 @@ span.highlight {
 
 
 
-.me {
+.me { 
   /* font-size: 15px; */
   font-weight: bold;
   /* text-decoration: underline; */
-  color: #d70000;
-}
+  /* color: #d70000; */
+  /* color: #d70000; */
+} 
 
 .dark-mode .me {
   /* font-size: 15px; */
   font-weight: bold;
   /* text-decoration: underline; */
-  color: #ffff00;
+  /* color: #ffff00; */
 }
 
 
@@ -352,7 +353,9 @@ span.more-authors {
 }
 
 
-
+.author {
+  color: rgb(65, 185, 255);
+}
 
 
 
@@ -498,7 +501,7 @@ body.dark-mode .tag span {
 .conf {
   /* font-weight: bold; */
   /* color: #3b3b3b; */
-  color: #7a0000;
+  color: #ff0202;
   font-family: "Comic Sans MS";
 }
 
