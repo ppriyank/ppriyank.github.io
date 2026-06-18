@@ -203,23 +203,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     </tr>
                     </tbody>
                 </table>
-
+                
             
                 <!-- ########## Papers  -->
                 <table  class="papers-table fade-in">
                 <tbody>
                 <br><br>
-                
-                <!-- LR-TK0 - ICLR / ICCV -->
                 <tr>
                     <td>
-                    <!-- <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle"> -->
                         <div class="one">
                             <img src="images/noise_logo.png" width="150">
                         </div>
                     </td>
                     <td>
-                    <!-- <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle"> -->
                         <papertitle>
                             With great Noises, Comes great Robustness
                         </papertitle>
@@ -239,7 +235,85 @@ document.addEventListener("DOMContentLoaded", () => {
                     </td>
                 </tr>
                 
+                 <!-- Robust onion -->
+                <tr>
+                    <td>
+                        <div class="one">
+                            <img src='images/robust_onion.png' width="180" style="transform: translateY(20px);">
+                        </div>
+                    </td>
+                    <td>
+                        <papertitle>
+                            Robust onion: Peeling Open Vocab Object Detectors Under Noise
+                        </papertitle>
+                        <br>
+                        <a class="me">Priyank Pathak*,</a>
+                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=lepAbWsAAAAJ">Mukilan Karuppasamy*</a>,
+                        <a class='author' href="https://scholar.google.com/citations?user=2pHFEhMAAAAJ&hl=en">Aaditya Baranwal</a>,
+                        <!-- <a href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>, -->
+                        <!-- <a href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>, -->
+                        <!-- <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>, -->
+                        <span
+                            class="author more-authors"
+                            onclick="reveal_name(this)"
+                            data-short-text="2 more authors"
+                            data-authors='[
+                                {"name": "Shruti Vyas", "url": "https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ"}, 
+                                {"name": "Yogesh S. Rawat", "url": "https://www.cs.ucf.edu/person/yogeshrawat/"}
+                            ]'
+                            data-is-expanded="false">
+                            2 more authors
+                        </span><br>
+                        <em>* equal contribution</em>
+                        <br><span class="conf">ECCV'26</span> 🪧 <br>
+                        <!-- <a href="">Paper</a> /
+                        <a href="">Project Page</a> /
+                        <a href="">Code</a> / 
+                        <a href="">Arxiv</a>  -->
+                        <!-- <p> Removing bells and whistles of SOTA Zero-Shot Object Detectors under resolution degradation (`pixelation'), exposing 1) Vunerability of "backbones", 2) Certain images are immune to degradation 3) Minimal impact of "lanugage". </p> --> 
+                         <div class="tag">
+                            <span>Noise Robustness</span>
+                            <span>Object Detectors</span>
+                            <span>Zero-shot</span>
+                            <span>Explainable AI</span>
+                            <span>Opening Black Box</span>
+                            <span>Noises</span>
+                        </div>
+                    </td>
+                </tr>
 
+                <!-- ## COSPLAN -->
+                <tr>
+                    <td>
+                        <div class="one">
+                            <img src='images/CosPlan.gif' width="180" style="transform: translateY(40px);">
+                        </div>
+                    </td>
+                    <td>
+                        <papertitle>
+                            CoSPlan: Corrective Sequential Planning via Scene Graph Incremental Updates
+                        </papertitle>
+                        <br>
+                        <a class='author' href="https://scholar.google.com/citations?user=KI128PgAAAAJ&hl=en">Shresth Grover</a>,
+                        <a class="me">Priyank Pathak,</a>
+                        <a class='author' href="https://scholar.google.com/citations?user=gsHhV5kAAAAJ&hl=en">Akash Kumar</a>,
+                        <a class='author' href="https://scholar.google.com/citations?user=E_UlAVQAAAAJ&hl=en">Vibhav Vineet</a>, 
+                        <a class='author' href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>
+                        <br><span class="conf">ECCV'26</span> 🪧 <br>
+                        <a href="https://shroglck.github.io/cos_plan/">Project Page</a> /
+                        <a href="https://github.com/shroglck/CosPlan">Code</a> /
+                        <a href="https://arxiv.org/pdf/2512.10342">Arxiv</a> 
+                        <!-- <p> CosPlan benchmarks evaluates VLMs on "error-prone" sequence completion tasks, testing abilities like Error Detection and Sequence Completion ability. Novel SGI, incrementally updates Scene Graphs better handle decision making.  </p> -->
+                         <div class="tag">
+                            <span>LLMs</span>
+                            <span>Resoning Technique</span>
+                            <span>Benchmark</span>
+                            <span>Sequence</span>
+                            <span>Error</span>
+                        </div>
+                    </td>
+                </tr>
+                
                 <!-- LR-TK0 - ICLR / ICCV -->
                 <tr>
                     <td>
@@ -365,86 +439,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     </td>
                 </tr>
 
-                <!-- Pixel Onion -->
-                <tr>
-                <!-- <tr style="transform: translateY(-20px);"> -->
-                    <td>
-                    <!-- <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle"> -->
-                        <div class="one">
-                            <img src='images/robust_onion.png' width="180" style="transform: translateY(20px);">
-                        </div>
-                    </td>
-                    <td>
-                    <!-- <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle"> -->
-                        <papertitle>
-                            <!-- Pixel Onion: Peeling Layers of Zero-Shot Object Detection in Pixelation -->
-                            Peeling Layers of Zero-Shot Object Detection for Robustness 
-                        </papertitle>
-                        <br>
-                        <a class="me">Priyank Pathak*,</a>
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=lepAbWsAAAAJ">Mukilan Karuppasamy*</a>,
-                        <a class='author' href="https://scholar.google.com/citations?user=2pHFEhMAAAAJ&hl=en">Aaditya Baranwal</a>,
-                        <!-- <a href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>, -->
-                        <!-- <a href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>, -->
-                        <!-- <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>, -->
-                        <span
-                            class="author more-authors"
-                            onclick="reveal_name(this)"
-                            data-short-text="2 more authors"
-                            data-authors='[
-                                {"name": "Shruti Vyas", "url": "https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ"}, 
-                                {"name": "Yogesh S. Rawat", "url": "https://www.cs.ucf.edu/person/yogeshrawat/"}
-                            ]'
-                            data-is-expanded="false">
-                            2 more authors
-                        </span><br>
-                        <em>* equal contribution</em>
-                        <br><em>Under Review</em>  🔒 <br>
-                        <a href="https://openreview.net/forum?id=REZ5cM8mFn">OpenReview</a> 
-                        <!-- <p> Removing bells and whistles of SOTA Zero-Shot Object Detectors under resolution degradation (`pixelation'), exposing 1) Vunerability of "backbones", 2) Certain images are immune to degradation 3) Minimal impact of "lanugage". </p> --> 
-                         <div class="tag">
-                            <span>Object Detectors</span>
-                            <span>Zero-shot</span>
-                            <span>Analysis</span>
-                            <span>Opening Black Box</span>
-                            <span>Noises</span>
-                        </div>
-                    </td>
-                </tr>
+               
                 
-                <!-- ## COSPLAN -->
-                <tr>
-                <!-- <tr style="transform: translateY(-40px);"> -->
-                    <td>
-                        <div class="one">
-                            <img src='images/CosPlan.gif' width="180" style="transform: translateY(40px);">
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            <!-- CosPlan: Corrective Sequential Planning with Visual-Language Models -->
-                            Incremental Scene Graph Updates in VLMs
-                        </papertitle>
-                        <br>
-                        <a class='author' href="https://scholar.google.com/citations?user=KI128PgAAAAJ&hl=en">Shresth Grover</a>,
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://scholar.google.com/citations?user=gsHhV5kAAAAJ&hl=en">Akash Kumar</a>,
-                        <a class='author' href="https://scholar.google.com/citations?user=E_UlAVQAAAAJ&hl=en">Vibhav Vineet</a>, 
-                        <a class='author' href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>
-                        <br><em>Under Review</em>  🔒<br> 
-                        <a href="https://shroglck.github.io/cos_plan/">Project Page</a> /
-                        <a href="https://github.com/shroglck/CosPlan">Code</a> /
-                        <a href="https://arxiv.org/pdf/2512.10342">Arxiv</a> 
-                        <!-- <p> CosPlan benchmarks evaluates VLMs on "error-prone" sequence completion tasks, testing abilities like Error Detection and Sequence Completion ability. Novel SGI, incrementally updates Scene Graphs better handle decision making.  </p> -->
-                         <div class="tag">
-                            <span>LLMs</span>
-                            <span>Resoning Technique</span>
-                            <span>Benchmark</span>
-                            <span>Sequence</span>
-                            <span>Error</span>
-                        </div>
-                    </td>
-                </tr>
+               
 
                 <!-- ## LQN Rajat -->
                 <tr>
