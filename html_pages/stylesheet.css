@@ -518,3 +518,22 @@ body.dark-mode .tag span {
 body.dark-mode .conf {
   color: #ffff00;
 }
+
+
+
+.blink {
+    animation: blinker 1.5s linear infinite;
+    color: red;
+    font-family: sans-serif;
+    text-align: left;
+    font-size: 20px;
+    margin: 20px;
+}
+
+.hero.is-light .blink {
+    color: hsl(181, 90%, 69%);
+}
+
+@keyframes blinker {
+    50% { opacity: 0;}
+}
