@@ -1,795 +1,589 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Priyank Pathak">
+<title>Priyank Pathak</title>
+<link rel="icon" href="html_pages/data/profile.jpg">
 <script>
-function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-}
-
-function reveal_name(element) {
-    // Stop any existing animation to prevent conflicts
-    const existingInterval = element.dataset.animationInterval;
-    if (existingInterval) {
-        clearInterval(parseInt(existingInterval));
-    }
-
-    // Get text and data from attributes
-    const shortText = element.getAttribute('data-short-text');
-    const authorsJson = element.getAttribute('data-authors');
-    const authors = JSON.parse(authorsJson);
-    const isExpanded = element.getAttribute('data-is-expanded') === 'true';
-
-    // Determine the new state and content
-    element.setAttribute('data-is-expanded', !isExpanded);
-    element.removeAttribute('title');
-
-    if (isExpanded) {
-        // Collapse the text, no animation needed here
-        element.innerHTML = shortText;
-    } else {
-        // Expand the text with links and animation
-        let authorIndex = 0;
-        let charIndex = 0;
-
-        // Clear the content to start fresh with the animation
-        element.innerHTML = '';
-
-        const textAdder = setInterval(() => {
-            if (authorIndex < authors.length) {
-                const author = authors[authorIndex];
-                const name = author.name;
-                const separator = authorIndex < authors.length - 1 ? ', ' : '';
-
-                // Type out the author's name
-                if (charIndex < name.length) {
-                    // Append the next character to the current content
-                    element.textContent += name.charAt(charIndex);
-                    charIndex++;
-                } else {
-                    // Name is fully typed, add the separator and move to the next name
-                    element.textContent += separator;
-                    
-                    // Reset for the next author
-                    charIndex = 0;
-                    authorIndex++;
-                }
-            } else {
-                // All authors have been revealed
-                clearInterval(textAdder);
-                element.dataset.animationInterval = '';
-            }
-        }, 20); // Adjust animation speed here
-
-        element.dataset.animationInterval = textAdder;
-    }
-}
-
-// Fade-in on scroll using IntersectionObserver
-document.addEventListener("DOMContentLoaded", () => {
-  const faders = document.querySelectorAll(".fade-in");
-
-  const observer = new IntersectionObserver((entries, obs) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        obs.unobserve(entry.target);
+  // apply saved / system theme before paint (no flash)
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark") {
+        document.documentElement.classList.add("dark");
       }
-    }
-  }, {
-    rootMargin: "100px 0px",  // start 100 px before it appears
-    threshold: 0.10           // only 5 % visible needed
-  });
-
-  faders.forEach(el => observer.observe(el));
-});
+    } catch (e) {}
+  })();
 </script>
+<style>
+:root{
+  --bg:#ffffff; --fg:#1d1d1f; --muted:#6b6b70; --line:#efefef;
+  --accent:#2e2c7d; --chip:#f6f6f6; --me:#111; --conf:#c2410c;
+  --max:760px;
+  color-scheme:light;
+}
+.dark{
+  --bg:#121214; --fg:#e6e6e8; --muted:#9a9aa2; --line:#26262b;
+  --accent:#2dd4bf; --chip:#1d1d21; --me:#fff; --conf:#fb923c;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  transition:background .3s,color .3s;
+}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .25s}
+a:hover{background-size:100% 1px}
+.wrap{max-width:var(--max);margin:0 auto;padding:56px 20px 40px}
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+/* theme toggle */
+.controls{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;display:flex;gap:10px;z-index:30}
+.ctl{width:46px;height:46px;border-radius:50%;padding:0;
+  border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;
+  display:grid;place-items:center;
+  transition:transform .3s,border-color .3s,background .3s,color .3s}
+.ctl:hover{transform:translateY(-2px) rotate(12deg);border-color:var(--accent);color:var(--accent)}
+.ctl svg{width:22px;height:22px}
+.ctl[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.ctl .sun{display:none}
+.dark .ctl .sun{display:block}
+.dark .ctl .moon{display:none}
 
-    <title>Priyank Pathak</title>
+/* spotlight torch */
+.spotlight{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:0;transition:opacity .4s ease;
+  background:radial-gradient(circle 300px at var(--mx,50%) var(--my,40%),
+    rgba(0,0,0,0) 0,rgba(0,0,0,0) 55%,rgba(10,10,14,.9) 100%)}
+.spotlight.on{opacity:1}
 
-    <meta name="author" content="Priyank Pathak">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+/* header */
+header{display:grid;grid-template-columns:1fr 200px;gap:36px;align-items:center}
+header h1{font-size:2rem;font-weight:600;letter-spacing:-.02em;margin:0 0 12px}
+header p{margin:0 0 14px}
+.photo{border-radius:14px;overflow:hidden;aspect-ratio:1/1;max-width:100%}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.photo:hover img{transform:scale(1.04)}
+.seeking{display:inline-flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:700;letter-spacing:.01em;
+  margin:6px 0 18px;color:var(--accent)}
+.seeking::before{content:"";width:10px;height:10px;border-radius:50%;background:#ef4444;flex:none;
+  box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:dot 1.6s ease-out infinite}
+@keyframes dot{0%{box-shadow:0 0 0 0 rgba(239,68,68,.6)}100%{box-shadow:0 0 0 9px rgba(239,68,68,0)}}
+.dark .ctl[aria-pressed="true"]{color:#06201d}
+.emails{font-size:1.1rem;font-weight:500;margin:0 0 14px}
+.social{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.social a{background:none;display:grid;place-items:center;width:44px;height:44px;
+  color:var(--fg);transition:color .2s,transform .2s}
+.social a:hover{color:var(--accent);transform:translateY(-3px) scale(1.08)}
+.social svg{width:34px;height:34px;fill:currentColor}
+.social img{width:34px;height:34px;object-fit:contain}
+.dark .social img{filter:invert(1) brightness(.85)}
 
-    <link rel="stylesheet" type="text/css" href="html_pages/stylesheet.css">
-    <link rel="icon" href="html_pages/data/profile.jpg">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+/* sections */
+section{margin-top:56px}
+h2.sec{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);
+  margin:0 0 18px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+u{text-decoration-color:var(--line);text-underline-offset:3px}
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/></head>
+/* papers */
+.paper{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.paper:last-child{border-bottom:0}
+.thumb{display:flex;align-items:flex-start;justify-content:center}
+.thumb img{max-height:130px;object-fit:contain;border-radius:8px;transition:transform .4s}
+.paper:hover .thumb img{transform:scale(1.05)}
+.ptitle{font-weight:600;font-size:1.02rem;line-height:1.4;display:block;margin-bottom:4px}
+.authors{font-size:.92rem;color:var(--muted)}
+.authors .me{color:var(--me);font-weight:600;background:none}
+.authors a.author{color:var(--muted)}
+.authors a.author:hover{color:var(--accent)}
+.more-authors{cursor:pointer;border-bottom:1px dashed var(--muted)}
+.meta{font-size:.9rem;margin-top:4px}
+.conf{display:inline-block;font-weight:700;font-size:.85rem;letter-spacing:.02em;color:var(--conf);
+  background:color-mix(in srgb,var(--conf) 10%,transparent);padding:2px 10px;border-radius:6px;
+  transition:background .2s,transform .2s}
+.paper:hover .conf{background:color-mix(in srgb,var(--conf) 18%,transparent);transform:translateY(-1px)}
+.links{font-size:.9rem;margin-top:2px}
+.tag{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag span{font-size:.72rem;padding:2px 9px;border-radius:999px;background:var(--chip);color:var(--muted)}
 
+/* timeline */
+.timeline{position:relative;padding-left:22px;border-left:1px solid var(--line)}
+.titem{position:relative;display:grid;grid-template-columns:1fr 80px;gap:16px;align-items:center;padding:10px 0 18px}
+.titem::before{content:"";position:absolute;left:-27px;top:18px;width:9px;height:9px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--accent)}
+.tdate{font-size:.8rem;color:var(--muted)}
+.titem h3{margin:2px 0;font-size:1rem;font-weight:600}
+.tcompany{font-size:.95rem;font-weight:600;color:var(--conf)}
+.tloc{font-size:.85rem;color:var(--muted)}
+.tlogo{display:flex;justify-content:flex-end}
+.tlogo img{max-height:40px;max-width:80px;object-fit:contain;opacity:.85;transition:opacity .2s}
+.titem:hover .tlogo img{opacity:1}
+.dark .tlogo img{background:#fff;padding:4px;border-radius:6px}
+
+/* misc */
+.misc{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:16px 0;border-bottom:1px solid var(--line)}
+.misc:last-child{border-bottom:0}
+.misc h3{margin:0;font-size:1rem;font-weight:600}
+.misc h3 + p{font-size:.85rem;color:var(--muted);margin:6px 0 0}
+.misc .body{font-size:.94rem}
+
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+footer .quote{text-align:center;margin:0 0 10px}
+footer .credit{text-align:right;margin:0}
+
+/* subtle reveal */
+.fade-in{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:none}
+header{animation:rise .8s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before{animation:none!important;transition:none!important}
+  .fade-in{opacity:1;transform:none}
+}
+
+/* mobile */
+@media (max-width:640px){
+  .wrap{padding-top:44px}
+  header{grid-template-columns:1fr;gap:20px}
+  header .photo{order:-1;width:150px;margin:0 auto;border-radius:50%}
+  header h1{text-align:center}
+  .social{justify-content:center}
+  .emails{text-align:center}
+  .seeking-wrap{text-align:center}
+  .paper{grid-template-columns:1fr;gap:12px}
+  .thumb{justify-content:flex-start}
+  .thumb img{max-height:110px}
+  .misc{grid-template-columns:1fr;gap:6px}
+  .titem{grid-template-columns:1fr 56px}
+  .tlogo img{max-width:56px;max-height:32px}
+  footer .credit{text-align:center}
+}
+</style>
 </head>
-
-
-
-
-
-
 <body>
-    
-    <div class="dark-mode-toggle">
-        <label class="switch">
-            <input type="checkbox" onclick="toggleDarkMode()">
-            <span class="slider round"></span>
-        </label>
+
+<div class="spotlight" id="spotlight"></div>
+
+<div class="controls">
+  <button class="ctl" id="torchBtn" onclick="toggleTorch()" aria-pressed="false" aria-label="Toggle spotlight torch" title="Spotlight torch">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+  </button>
+  <button class="ctl" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Dark / light mode">
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+</div>
+
+<div class="wrap">
+
+  <!-- ########## HEADER -->
+  <header>
+    <div>
+      <h1>Priyank Pathak</h1>
+      <p>
+        I am a final year <a href="https://www.crcv.ucf.edu/people/students/">Computer Vision</a> Ph.D. Candidate <em>(Jan'23 - May'27)</em> at University of Central Florida under <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Prof. Yogesh S. Rawat</a>.
+        My research focuses on Interpretable / Explainable AI, Re-Identification (ReID), and Targetted Adaptation. 
+        Prior to UCF, I earned my Master’s in Computer Science from <a href="https://cims.nyu.edu/dynamic/">New York University (NYU) Courant</a>, where I completed my thesis under the guidance of <a href="https://cims.nyu.edu/people/profiles/FERGUS_Rob.html">Prof. Rob Fergus</a>.
+        I hold Dual Bachelor of Technology (B.Tech) degrees in Electrical Engineering and Computer Science from the <a href="https://www.iitk.ac.in/">Indian Institute of Technology (IIT) Kanpur</a>.
+      </p>
+      <div class="seeking-wrap"><span class="seeking">Seeking Full-time roles starting January</span></div>
+      <p class="emails">
+        <a href="mailto:priyank@ucf.edu">priyank@ucf.edu</a> &nbsp;/&nbsp; <a href="mailto:pp1953@nyu.edu">pp1953@nyu.edu</a>
+      </p>
+      <nav class="social">
+        <a href="https://drive.google.com/file/d/1cjJhc-2hklZehBBnoUpoOQSsXxNibSfm/view?usp=sharing" target="_blank" rel="noopener" title="Resume"><img src="html_pages/data/resume.png" alt="Resume"></a>
+        <a href="https://github.com/ppriyank" target="_blank" rel="noopener" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
+        <a href="https://www.linkedin.com/in/priyank-pathak-11b9b08a/" target="_blank" rel="noopener" title="Linkedin"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+        <a href="https://scholar.google.com/citations?user=wnVyeJ0AAAAJ&hl=en" target="_blank" rel="noopener" title="Scholar"><img src="html_pages/data/icons8-google-scholar-500.png" alt="Google Scholar"></a>
+        <a href="https://openreview.net/profile?id=%7EPriyank_Pathak1" target="_blank" rel="noopener" title="OpenReview"><img src="html_pages/data/open_review.png" alt="OpenReview"></a>
+        <a href="https://www.instagram.com/banarasi_guy/" target="_blank" rel="noopener" title="Insta"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
+        <a href="https://unsplash.com/@ppriyank" target="_blank" rel="noopener" title="Unsplash"><svg viewBox="0 0 24 24"><path d="M7.5 6.75V0h9v6.75h-9zm9 3.75H24V24H0V10.5h7.5v6.75h9V10.5z"/></svg></a>
+      </nav>
+    </div>
+    <a class="photo" href="html_pages/data/profile.jpg" style="background:none"><img src="html_pages/data/profile.jpg" alt="profile photo"></a>
+  </header>
+
+  <!-- ########## Research -->
+  <section class="fade-in">
+    <h2 class="sec">Research</h2>
+    <p>
+      My research centers around <b><u>efficient training</u></b> in <b><u>computer vision</u></b>, with a strong emphasis on <b><u>improving robustness</u></b> to real world noise, like autonomous driving scenarios of fog, rain, and snow.
+      My primary focus lies in <b><u>Zero Shot learning</u></b> and <b><u>VLMs (transformers) </u></b>, with a specific emphasis on <b><u>object detection</u></b>.
+      I also have substantial experience in <b><u>interpretable and explainable AI</u></b> and <b><u>Visualization</u></b>, enabling easy to understand insights into models.
+      In parallel, I have been actively working on <b><u>Person Re Identification (ReID)</u></b> for the past seven years, which was the core of my Master’s thesis as well.
+    </p>
+  </section>
+
+  <!-- ########## Papers -->
+  <section>
+
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/noise_logo.png" alt="" loading="lazy"></div>
+      <div>
+        <span class="ptitle">With great Noises, Comes great Robustness</span>
+        <div class="authors">
+          <a class="me">Priyank Pathak,</a>
+          <a class="author" href="https://scholar.google.com/citations?hl=en&user=D_JvEcwAAAAJ">Yogesh S. Rawat</a>
+        </div>
+        <div class="meta"><span class="conf">PhD Dissertation || Dissertation Proposal</span> 🎙️</div>
+        <div class="links"><a href="https://www.youtube.com/watch?v=OgIn2oQZuFE">YouTube</a></div>
+        <div class="tag"><span>Noise Robustness</span><span>Opening Black Box</span><span>OOD</span><span>Zero-shot</span><span>VLMs</span><span>Prompts</span></div>
+      </div>
+    </article>
+
+    <!-- Robust onion -->
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/robust onion.gif" alt="" loading="lazy" style="max-height:150px"></div>
+      <div>
+        <span class="ptitle">Robust onion: Peeling Open Vocab Object Detectors Under Noise</span>
+        <div class="authors">
+          <a class="me">Priyank Pathak*,</a>
+          <a class="author" href="https://scholar.google.com/citations?hl=en&user=lepAbWsAAAAJ">Mukilan Karuppasamy*</a>,
+          <a class="author" href="https://scholar.google.com/citations?user=2pHFEhMAAAAJ&hl=en">Aaditya Baranwal</a>,
+          <span class="author more-authors" onclick="reveal_name(this)"
+            data-short-text="2 more authors"
+            data-authors='[{"name": "Shruti Vyas", "url": "https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ"},{"name": "Yogesh S. Rawat", "url": "https://www.cs.ucf.edu/person/yogeshrawat/"}]'
+            data-is-expanded="false">2 more authors</span>
+          <br><em>* equal contribution</em>
+        </div>
+        <div class="meta"><span class="conf">ECCV'26</span> 🪧</div>
+        <div class="links">
+          <a href="https://eccv.ecva.net/virtual/2026/poster/5437">Paper</a> /
+          <a href="https://ucf-crcv.github.io/RobustOnion/">Project Page</a> /
+          <a href="https://github.com/ppriyank/RobustOnion">Code</a> /
+          <a href="https://arxiv.org/abs/2606.26734">Arxiv</a> /
+          <a href="https://www.youtube.com/watch?v=C-CG62LR4Ao">Video</a>
+        </div>
+        <div class="tag"><span>Noise Robustness</span><span>Object Detectors</span><span>Zero-shot</span><span>Explainable AI</span><span>Opening Black Box</span></div>
+      </div>
+    </article>
+
+    <!-- COSPLAN -->
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/CosPlan.gif" alt="" loading="lazy"></div>
+      <div>
+        <span class="ptitle">CoSPlan: Corrective Sequential Planning via Scene Graph Incremental Updates</span>
+        <div class="authors">
+          <a class="author" href="https://scholar.google.com/citations?user=KI128PgAAAAJ&hl=en">Shresth Grover</a>,
+          <a class="me">Priyank Pathak,</a>
+          <a class="author" href="https://scholar.google.com/citations?user=gsHhV5kAAAAJ&hl=en">Akash Kumar</a>,
+          <a class="author" href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>
+        </div>
+        <div class="meta"><span class="conf">ECCV'26</span> 🪧</div>
+        <div class="links">
+          <a href="https://eccv.ecva.net/virtual/2026/poster/5459">Paper</a> /
+          <a href="https://huggingface.co/datasets/shrg7/COSPLAN">Dataset</a> /
+          <a href="https://shroglck.github.io/cos_plan/">Project Page</a> /
+          <a href="https://github.com/shroglck/CosPlan">Code</a> /
+          <a href="https://arxiv.org/pdf/2512.10342">Arxiv</a>
+        </div>
+        <div class="tag"><span>LLMs</span><span>Resoning Technique</span><span>Benchmark</span><span>Sequence</span><span>Error</span></div>
+      </div>
+    </article>
+
+    <!-- LR-TK0 - ICLR / ICCV -->
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/lr0_fm.gif" alt="" loading="lazy"></div>
+      <div>
+        <span class="ptitle">LR0.FM: Low-Res Benchmark and Improving Robustness for Zero-Shot Classification in Foundation Models</span>
+        <div class="authors">
+          <a class="me">Priyank Pathak,</a>
+          <a class="author" href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>,
+          <a class="author" href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>,
+          <a class="author" href="https://scholar.google.com/citations?hl=en&user=D_JvEcwAAAAJ">Yogesh S. Rawat</a>
+        </div>
+        <div class="meta"><span class="conf">ICLR'25 || ICCV'25 (Non-Proceedings) </span> 🎙️</div>
+        <div class="links">
+          <a href="https://openreview.net/forum?id=AsFxRSLtqR&referrer=%5Bthe%20profile%20of%20Priyank%20Pathak%5D(%2Fprofile%3Fid%3D~Priyank_Pathak1)">Paper</a> /
+          <a href="https://ucf-crcv.github.io/lr0.fm/">Project Page</a> /
+          <a href="https://github.com/shyammarjit/LR0.FM">Code</a> /
+          <a href="https://arxiv.org/abs/2502.03950">Arxiv</a>
+        </div>
+        <div class="tag"><span>Noise Robustness</span><span>Zero-shot Images</span><span>VLMs</span><span>Prompts</span><span>Benchmark</span></div>
+      </div>
+    </article>
+
+    <!-- Colors - ICCV -->
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/csci.gif" alt="" loading="lazy"></div>
+      <div>
+        <span class="ptitle">Colors See Colors Ignore: Clothes Changing ReID with Color Disentanglement</span>
+        <div class="authors">
+          <a class="me">Priyank Pathak,</a>
+          <a class="author" href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>
+        </div>
+        <div class="meta"><span class="conf">ICCV'25</span> || <span class="conf">Patent filed</span> 📜</div>
+        <div class="links">
+          <a href="https://openaccess.thecvf.com/content/ICCV2025/html/Pathak_Colors_See_Colors_Ignore_Clothes_Changing_ReID_with_Color_Disentanglement_ICCV_2025_paper.html">Paper</a> /
+          <a href="https://ucf-crcv.github.io/ReID/CSCI/">Project Page</a> /
+          <a href="https://github.com/ppriyank/ICCV-CSCI-Person-ReID">Code</a> /
+          <a href="https://arxiv.org/abs/2507.07230">Arxiv</a>
+        </div>
+        <div class="tag"><span>Person ReID</span><span>Self-Attention</span><span>Video &amp; Image</span><span>Efficiency</span></div>
+      </div>
+    </article>
+
+    <!-- CGAL - BMVC -->
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/ubd_idea.jpg" alt="" loading="lazy"></div>
+      <div>
+        <span class="ptitle">Coarse Attribute Prediction with Task Agnostic Distillation for Real World Clothes Changing ReID</span>
+        <div class="authors">
+          <a class="me">Priyank Pathak,</a>
+          <a class="author" href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>
+        </div>
+        <div class="meta"><span class="conf">BMVC'25</span> 🪧</div>
+        <div class="links">
+          <a href="https://bmvc2025.bmva.org/proceedings/346/">Paper</a> /
+          <a href="https://github.com/ppriyank/RLQ-CGAL-UBD">Code</a> /
+          <a href="https://arxiv.org/abs/2505.12580">Arxiv</a>
+        </div>
+        <div class="tag"><span>Person ReID</span><span>Real World</span><span>Noisy Images</span><span>ResNets</span></div>
+      </div>
+    </article>
+
+    <!-- Fantastic - AAAI -->
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/fantastic_technique.png" alt="" loading="lazy"></div>
+      <div>
+        <span class="ptitle">Video person re-id: Fantastic techniques and where to find them</span>
+        <div class="authors">
+          <a class="me">Priyank Pathak,</a>
+          <a class="author" href="https://scholar.google.com/citations?hl=en&user=fpNg6ZcAAAAJ">Amir Erfan Eshratifar</a>,
+          <a class="author" href="https://scholar.google.com/citations?hl=en&user=KOOCuDkAAAAJ">Michael Gormish</a>
+        </div>
+        <div class="meta"><span class="conf">AAAI'20</span></div>
+        <div class="links">
+          <a href="https://cdn.aaai.org/ojs/7219/7219-13-10448-1-10-20200526.pdf">Paper</a> /
+          <a href="https://github.com/ppriyank/Video-Person-Re-ID-Fantastic-Techniques-and-Where-to-Find-Them">Code</a> /
+          <a href="https://arxiv.org/abs/1912.05295">Arxiv</a>
+        </div>
+        <div class="tag"><span>Person ReID</span><span>Video &amp; Image</span><span>Techniques</span><span>Novel Loss</span></div>
+      </div>
+    </article>
+
+    <!-- LQN Rajat -->
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/rajat.png" alt="" loading="lazy"></div>
+      <div>
+        <span class="ptitle">Efficinet Test-Time Training for Dense Task Prediction</span>
+        <div class="authors">
+          <a class="author" href="https://scholar.google.com/citations?hl=en&user=Ypzln1UAAAAJ&view_op=list_works&sortby=pubdate">Rajat Modi</a>,
+          <a class="me">Priyank Pathak,</a>
+          <a class="author" href="https://scholar.google.com/citations?user=RTjfhNAAAAAJ&hl=en">Xin Liang</a>,
+          <a class="author" href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>
+        </div>
+        <div class="meta"><em>Under Review</em>🔒</div>
+        <div class="links"><a href="https://arxiv.org/abs/2609.34021">Arxiv</a></div>
+        <div class="tag"><span>Test Time Training</span><span>VLMs</span><span>Efficinet</span><span>Distillation</span><span>Dense Task</span></div>
+      </div>
+    </article>
+
+    <!-- Medical Avinash -->
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/medical.gif" alt="" loading="lazy"></div>
+      <div>
+        <span class="ptitle">Synthetic Medical Care Dataset</span>
+        <div class="authors">
+          <a class="author" href="https://scholar.google.com/citations?user=ATHcWokAAAAJ&hl=en">Avinash Gyawali</a>,
+          <a class="me">Priyank Pathak,</a>
+          <a class="author" href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>,
+          <a class="author" href="https://scholar.google.com/citations?hl=en&user=D_JvEcwAAAAJ">Yogesh S. Rawat</a>
+        </div>
+        <div class="meta"><em>Under Review</em> 🔒</div>
+        <div class="tag"><span>Synthetic Dataset</span><span>Benchmark</span><span>Diffusion</span></div>
+      </div>
+    </article>
+
+    <!-- Zero-shot Robustness -->
+    <article class="paper fade-in">
+      <div class="thumb"><img src="images/LoRA_heatmap.png" alt="" loading="lazy"></div>
+      <div>
+        <span class="ptitle">Zero-shot robustness in real-world</span>
+        <div class="authors">
+          <a class="me">Priyank Pathak,</a>
+          <a class="author" href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>
+        </div>
+        <div class="meta"><em>Preprint</em> 🤫</div>
+        <div class="tag"><span>Zero-Shot</span><span>VLMs</span><span>Object Detectors</span><span>Robustness</span></div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ########## Work Experience -->
+  <section class="fade-in">
+    <h2 class="sec">Work Experience</h2>
+    <div class="timeline">
+
+      <div class="titem">
+        <div>
+          <div class="tdate">May'26 – Aug'26</div>
+          <h3>Applied Scientist Intern</h3>
+          <div class="tcompany">Amazon Rings Research</div>
+          <div class="tloc">Sunnyvale, California</div>
+        </div>
+        <div class="tlogo"><img src="images/Amazon_logo.svg.webp" alt="Amazon" loading="lazy"></div>
+      </div>
+
+      <div class="titem">
+        <div>
+          <div class="tdate">Aug'22 – Dec'22</div>
+          <h3>Research Assistant</h3>
+          <div class="tcompany">National University of Singapore</div>
+          <div class="tloc">Singapore</div>
+        </div>
+        <div class="tlogo"><img src="images/nus.png" alt="NUS" loading="lazy"></div>
+      </div>
+
+      <div class="titem">
+        <div>
+          <div class="tdate">June'20 - Aug'21</div>
+          <h3>Research Engineer</h3>
+          <div class="tcompany">Amobee</div>
+          <div class="tloc">New York (Remote) / Redwood City, California</div>
+        </div>
+        <div class="tlogo"><img src="images/amobee.png" alt="Amobee" loading="lazy"></div>
+      </div>
+
+      <div class="titem">
+        <div>
+          <div class="tdate">May'19 - Sept'19</div>
+          <h3>Deep Learning Research Intern</h3>
+          <div class="tcompany">Clarifai</div>
+          <div class="tloc">San Francisco, California</div>
+        </div>
+        <div class="tlogo"><img src="images/clarifai.png" alt="Clarifai" loading="lazy"></div>
+      </div>
+
+      <div class="titem">
+        <div>
+          <div class="tdate">May'17 - Aug'17</div>
+          <h3>Deep Learning Research Intern</h3>
+          <div class="tcompany">Rice University</div>
+          <div class="tloc">Houston, Texas</div>
+        </div>
+        <div class="tlogo"><img src="images/rice.png" alt="Rice University" loading="lazy"></div>
+      </div>
+
+      <div class="titem">
+        <div>
+          <div class="tdate">May'16 - Aug'16</div>
+          <h3>Summer SDE Intern</h3>
+          <div class="tcompany">Reliance Jio</div>
+          <div class="tloc">Gurugram, India</div>
+        </div>
+        <div class="tlogo"><img src="images/Reliance_Jio_Logo.png" alt="Reliance Jio" loading="lazy"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ########## Miscellaneous -->
+  <section class="fade-in">
+    <h2 class="sec">Miscellaneous</h2>
+
+    <div class="misc">
+      <h3>Service</h3>
+      <div class="body">
+        Reviewer, Neurips 2026 <br>
+        Reviewer, ECCV 2026 <br>
+        Reviewer, CVPR 2026 (<a href="https://media.eventhosts.cc/Conferences/CVPR2026/CVPR_main_conf_2026_15.pdf">Outstanding Reviewer</a> / <a href="https://x.com/CVPR/status/2056432742208876945?s=20"> Tweet </a> / <a href="files/certificate.pdf">Certificate</a>)<br>
+        Reviewer, ICLR 2026 <br>
+        Reviewer, AAAI 2026 <br>
+        Reviewer, Neurips 2025 <br>
+        Reviewer, BMVC 2025 <br>
+        Reviewer, CVPR 2025 <a href="https://cvpr.thecvf.com/Conferences/2025/ProgramCommittee">(Outstanding Reviewer)</a> <br>
+        Reviewer, ICLR 2025 <a href="https://iclr.cc/Conferences/2025/Reviewers">(Outstanding Reviewer)</a>
+      </div>
     </div>
 
+    <div class="misc">
+      <h3>Pre-Prints</h3>
+      <div class="body">
+        <a href="https://arxiv.org/pdf/2011.13475"> Fine-Grained Re-Identification (Master's Thesis)</a><br>
+        <a href="https://arxiv.org/pdf/2212.14215"> Local Learning on Transformers via Feature Reconstruction </a>
+      </div>
+    </div>
 
-    
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-    <tbody>
-        <tr style="padding:0px">
-            <td style="padding:0px">
-                
-                <!-- ########## HEADER  -->
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                    <tbody>
-                        <tr style="padding:0px">
-                            <td style="padding:2.5%;width:63%;vertical-align:middle">
-                                <p style="text-align:center">
-                                    <name>Priyank Pathak</name>
-                                </p>
-                                <p>
-                                    I am a final year Ph.D. Candidate <em>(Jan'23 - Dec'26)</em> from <a href="https://www.crcv.ucf.edu/">Center for Research in Computer Vision</a> (University of Central Florida) under <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Prof. Yogesh S. Rawat</a>.
-                                    My research focuses on Noise Robustness, Person Re-Identification (ReID) and efficient Deep Learning.
-                                    Prior to UCF, I earned my Master’s in Computer Science from <a href="https://cims.nyu.edu/dynamic/">New York University (NYU) Courant Institute</a>, where I completed my thesis under the guidance of <a href="https://cims.nyu.edu/people/profiles/FERGUS_Rob.html">Prof. Rob Fergus</a>. 
-                                    I hold Dual Bachelor of Technology (B.Tech) degrees in Electrical Engineering and Computer Science from the <a href="https://www.iitk.ac.in/">Indian Institute of Technology (IIT) Kanpur</a>.
-                                </p>
+    <div class="misc">
+      <div>
+        <h3>Misc Projects</h3>
+        <p>I sometimes open-source implementation of others' papers.</p>
+      </div>
+      <div class="body">
+        Success of Filmmaking (JS &amp; Novel Visuals) [<a href="https://www.youtube.com/watch?v=D29tnAJDpOk&list=PLyCRt3MN8s8PcL9uMoobW3dO03qTKdriu&index=1&ab_channel=PriyankPathak">Youtube Feature </a> | <a href="Vizualization/index.html">Online</a> | <a href="images/Dashboard.gif"> GIF</a> ]<br>
+        Beautiful Customizable plots for Research Papers [<a href="https://github.com/ppriyank/plot">GitHub</a>]<br>
+        Faster RCNN tutorial [ <a href="https://github.com/ppriyank/Pytorch-CustomDataset-FasterRCNN">Githhub</a>]<br>
+        Reinforcement learning tutorial [<a href="MARL/final.html">Web Page</a>]<br>
+        Spatial Transformers for traffic signal detection [<a href="https://github.com/ppriyank/Deep-neural-network-for-traffic-sign-recognition-systems">Github</a>]<br>
+        Video-Action-Transformer-Network [<a href="https://github.com/ppriyank/Video-Action-Transformer-Network-Pytorch-">Github</a>]<br>
+        Online softmining loss [<a href="https://github.com/ppriyank/-Online-Soft-Mining-and-Class-Aware-Attention-Pytorch">Github</a>]
+      </div>
+    </div>
+  </section>
 
-                                <h4 class="blink">Seeking Full-time roles starting December</h4>
-                                
+  <!-- ########## CREDITS -->
+  <footer>
+    <p class="quote"><em> "Aloo has no place in Biryani" - Every Desi Foodie </em></p>
+    <p class="credit">Built upon <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron's</a> template, and modified upon <a href="https://www.rohitg.xyz/">Rohit Gupta</a> and re-written by Claude</p>
+  </footer>
 
+</div>
 
-                                <p style="text-align:center">
-                                    <!-- Email: priyank@ucf.edu &nbsp;/&nbsp pp1953@nyu.edu <br> -->
-                                    <a href="mailto:priyank@ucf.edu">priyank@ucf.edu</a> &nbsp;/&nbsp <a href="mailto:pp1953@nyu.edu">pp1953@nyu.edu</a> <br>
-                                </p> 
-                                
-                                <div class="social-icons" style="text-align:center">
-                                    <a href="https://drive.google.com/file/d/1cjJhc-2hklZehBBnoUpoOQSsXxNibSfm/view?usp=sharing" target="_blank" title="Scholar">
-                                    <img src="html_pages/data/resume.png"></img>
-                                    </a>
-                                    <!-- &nbsp;/&nbsp -->
-                                    <a href="https://github.com/ppriyank" target="_blank" title="GitHub">
-                                    <i class="fab fa-github"></i>
-                                    </a>
-                                    <!-- &nbsp;/&nbsp -->
-                                    <a href="https://www.linkedin.com/in/priyank-pathak-11b9b08a/" target="_blank" title="Linkedin">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                    </a>
-                                    <!-- &nbsp;/&nbsp -->
-                                    <a href="https://scholar.google.com/citations?user=wnVyeJ0AAAAJ&hl=en" target="_blank" title="Scholar">
-                                    <img src="html_pages/data/icons8-google-scholar-500.png"></img>
-                                    </a>
-                                    
-                                    <a href="https://openreview.net/profile?id=%7EPriyank_Pathak1" target="_blank" title="Scholar">
-                                    <img src="html_pages/data/open_review.png"></img>
-                                    </a>
-                                    
-                                    <!-- &nbsp;/&nbsp -->
-                                    <a href="https://www.instagram.com/banarasi_guy/" target="_blank" title="Insta">
-                                    <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                    <a href="https://unsplash.com/@ppriyank" target="_blank" title="Insta">
-                                    <i class="fa-brands fa-unsplash"></i>
-                                    </a>
-                                    </a>
-                                    
-                                    <!-- &nbsp;/&nbsp -->
-                                </div> 
-                                
-                                
-                            </td>
-                            <td style="padding:2.5%;width:40%;max-width:40%">
-                                <a href="html_pages/data/profile.jpg"><img style="width:100%;max-width:100%" alt="profile photo"
-                                    src="html_pages/data/profile.jpg" class="hoverZoomLink"></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<script>
+function toggleDarkMode() {
+  var on = document.documentElement.classList.toggle("dark");
+  try { localStorage.setItem("theme", on ? "dark" : "light"); } catch (e) {}
+}
 
+function reveal_name(el) {
+  if (el.dataset.animationInterval) clearInterval(+el.dataset.animationInterval);
+  var authors = JSON.parse(el.getAttribute("data-authors"));
+  var expanded = el.getAttribute("data-is-expanded") === "true";
+  el.setAttribute("data-is-expanded", !expanded);
+  if (expanded) { el.textContent = el.getAttribute("data-short-text"); return; }
+  var a = 0, c = 0;
+  el.textContent = "";
+  var t = setInterval(function () {
+    if (a >= authors.length) { clearInterval(t); el.dataset.animationInterval = ""; return; }
+    var name = authors[a].name;
+    if (c < name.length) { el.textContent += name.charAt(c++); }
+    else { el.textContent += a < authors.length - 1 ? ", " : ""; c = 0; a++; }
+  }, 20);
+  el.dataset.animationInterval = t;
+}
 
-                <!-- ########## Research  -->
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                    <tbody>
-                    <tr class="fade-in">
-                        <td style="padding:30px 20px 0px 20px;width:100%;vertical-align:middle">
-                            <heading>Research</heading>
-                            <hr>
-                            <p>
-                                My research centers around <b><u>efficient training</u></b> in <b><u>computer vision</u></b>, with a strong emphasis on <b><u>improving robustness</u></b> to real world noise, like autonomous driving scenarios of fog, rain, and snow.
-                                My primary focus lies in <b><u>Zero Shot learning</u></b> and <b><u>VLMs (transformers) </u></b>, with a specific emphasis on <b><u>object detection</u></b>. 
-                                I also have substantial experience in <b><u>interpretable and explainable AI</u></b> and <b><u>Visualization</u></b>, enabling easy to understand insights into models.
-                                In parallel, I have been actively working on <b><u>Person Re Identification (ReID)</u></b> for the past seven years, which was the core of my Master’s thesis as well.
-                                <!-- &nbsp; -->
-                            </p>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                
-            
-                <!-- ########## Papers  -->
-                <table  class="papers-table fade-in">
-                <tbody>
-                <br><br>
-                <tr>
-                    <td>
-                        <div class="one">
-                            <img src="images/noise_logo.png" width="150">
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            With great Noises, Comes great Robustness
-                        </papertitle>
-                        <br>
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=D_JvEcwAAAAJ">Yogesh S. Rawat</a>
-                        <br><span class="conf">PhD Dissertation || Dissertation Proposal</span> 🎙️ <br>
-                        <a href="https://www.youtube.com/watch?v=OgIn2oQZuFE">YouTube</a>  
-                        <div class="tag">
-                            <span>Noise Robustness</span>
-                            <span>Opening Black Box</span>
-                            <span>OOD</span>
-                            <span>Zero-shot</span>
-                            <span>VLMs</span>
-                            <span>Prompts</span>
-                        </div>
-                    </td>
-                </tr>
-                
-                 <!-- Robust onion -->
-                <tr>
-                    <td>
-                        <div class="one">
-                            <img src='images/robust onion.gif' width="70" style="transform: translateY(10px);">
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            Robust onion: Peeling Open Vocab Object Detectors Under Noise
-                        </papertitle>
-                        <br>
-                        <a class="me">Priyank Pathak*,</a>
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=lepAbWsAAAAJ">Mukilan Karuppasamy*</a>,
-                        <a class='author' href="https://scholar.google.com/citations?user=2pHFEhMAAAAJ&hl=en">Aaditya Baranwal</a>,
-                        <!-- <a href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>, -->
-                        <!-- <a class='author' href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>, -->
-                        <!-- <a class='author' href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>, -->
-                        <span
-                            class="author more-authors"
-                            onclick="reveal_name(this)"
-                            data-short-text="2 more authors"
-                            data-authors='[
-                                {"name": "Shruti Vyas", "url": "https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ"}, 
-                                {"name": "Yogesh S. Rawat", "url": "https://www.cs.ucf.edu/person/yogeshrawat/"}
-                            ]'
-                            data-is-expanded="false">
-                            2 more authors
-                        </span>
-                        <br> 
-                        <em>* equal contribution</em>
-                        <br><span class="conf">ECCV'26</span> 🪧 <br>
-                        <a href="https://eccv.ecva.net/virtual/2026/poster/5437">Paper</a> /
-                        <a href="https://ucf-crcv.github.io/RobustOnion/">Project Page</a> /
-                        <a href="https://github.com/ppriyank/RobustOnion">Code</a> / 
-                        <a href="https://arxiv.org/abs/2606.26734">Arxiv</a> / 
-                        <a href="https://www.youtube.com/watch?v=C-CG62LR4Ao">Video</a> 
-                         <div class="tag">
-                            <span>Noise Robustness</span>
-                            <span>Object Detectors</span>
-                            <span>Zero-shot</span>
-                            <span>Explainable AI</span>
-                            <span>Opening Black Box</span>
-                            <span>Noises</span>
-                        </div>
-                    </td>
-                </tr>
+// spotlight torch (optional, follows mouse / finger)
+var spot = document.getElementById("spotlight");
+function moveSpot(x, y) {
+  spot.style.setProperty("--mx", x + "px");
+  spot.style.setProperty("--my", y + "px");
+}
+document.addEventListener("pointermove", function (e) { moveSpot(e.clientX, e.clientY); }, { passive: true });
+document.addEventListener("touchmove", function (e) {
+  var t = e.touches[0]; if (t) moveSpot(t.clientX, t.clientY);
+}, { passive: true });
+function toggleTorch() {
+  var on = spot.classList.toggle("on");
+  document.getElementById("torchBtn").setAttribute("aria-pressed", on);
+}
 
-                <!-- ## COSPLAN -->
-                <tr>
-                    <td>
-                        <div class="one">
-                            <img src='images/CosPlan.gif' width="160" style="transform: translateY(20px);">
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            CoSPlan: Corrective Sequential Planning via Scene Graph Incremental Updates
-                        </papertitle>
-                        <br>
-                        <a class='author' href="https://scholar.google.com/citations?user=KI128PgAAAAJ&hl=en">Shresth Grover</a>,
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://scholar.google.com/citations?user=gsHhV5kAAAAJ&hl=en">Akash Kumar</a>,
-                        <!-- <a class='author' href="https://scholar.google.com/citations?user=E_UlAVQAAAAJ&hl=en">Vibhav Vineet</a>,  -->
-                        <a class='author' href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>
-                        <br><span class="conf">ECCV'26</span> 🪧 <br>
-                        <a href="https://eccv.ecva.net/virtual/2026/poster/5459">Paper</a> /
-                        <a href="https://huggingface.co/datasets/shrg7/COSPLAN">Dataset</a> /
-                        <a href="https://shroglck.github.io/cos_plan/">Project Page</a> /
-                        <a href="https://github.com/shroglck/CosPlan">Code</a> /
-                        <a href="https://arxiv.org/pdf/2512.10342">Arxiv</a> 
-                        <!-- <p> CosPlan benchmarks evaluates VLMs on "error-prone" sequence completion tasks, testing abilities like Error Detection and Sequence Completion ability. Novel SGI, incrementally updates Scene Graphs better handle decision making.  </p> -->
-                         <div class="tag">
-                            <span>LLMs</span>
-                            <span>Resoning Technique</span>
-                            <span>Benchmark</span>
-                            <span>Sequence</span>
-                            <span>Error</span>
-                        </div>
-                    </td>
-                </tr>
-                
-                <!-- LR-TK0 - ICLR / ICCV -->
-                <tr>
-                    <td>
-                    <!-- <td style="padding:60px 20px 0px 20px;width:25%;vertical-align:middle"> -->
-                        <div class="one">
-                            <img src="images/lr0_fm.gif" width="150">
-                        </div>
-                    </td>
-                    <td>
-                    <!-- <td style="padding:50px 50px 0px 50px;width:75%;vertical-align:middle"> -->
-                        <papertitle>
-                            LR0.FM: Low-Res Benchmark and Improving Robustness for Zero-Shot Classification in Foundation Models
-                        </papertitle>
-                        <br>
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://scholar.google.com/citations?user=tg4LJ94AAAAJ&hl=en">Shyam Marjit</a>,
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>,
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=D_JvEcwAAAAJ">Yogesh S. Rawat</a>
-                        <br><span class="conf">ICLR'25 || ICCV'25 (Non-Proceedings) </span> 🎙️ <br>
-                        <!-- <em style="color: rgb(255, 0, 0);">ICLR</em>, 2025 || <em style="color: blue;"></em>, 2025<br> -->
-                        
-                        <a href="https://openreview.net/forum?id=AsFxRSLtqR&referrer=%5Bthe%20profile%20of%20Priyank%20Pathak%5D(%2Fprofile%3Fid%3D~Priyank_Pathak1)">Paper</a> /
-                        <a href="https://ucf-crcv.github.io/lr0.fm/">Project Page</a> /
-                        <a href="https://github.com/shyammarjit/LR0.FM">Code</a> / 
-                        <a href="https://arxiv.org/abs/2502.03950">Arxiv</a> 
-                        <div class="tag">
-                            <span>Noise Robustness</span>
-                            <span>Zero-shot Images</span>
-                            <span>VLMs</span>
-                            <span>Prompts</span>
-                            <span>Benchmark</span>
-                        </div>
-                        
-                        <!-- <p>LR0.FM 1) Evaluates the impact of low resolution images via novel WAR evaluation metric 3) LR-TK0 enhances the robustness of zero-shot performance of VLMs on 16 bencharks w/o compromising vanilla performance</p> -->
-                    </td>
-                </tr>
-                
-                <!-- Colors - ICCV -->
-                <tr>
-                    <td >
-                        <div class="one">
-                            <img src='images/csci.gif' width="150">
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            Colors See Colors Ignore: Clothes Changing ReID with Color Disentanglement
-                        </papertitle>
-                        <br>
-                        
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>
-                        <br><span class="conf">ICCV'25</span> || <span class="conf">Patent filed</span> 📜 <br>
-                        <a href="https://openaccess.thecvf.com/content/ICCV2025/html/Pathak_Colors_See_Colors_Ignore_Clothes_Changing_ReID_with_Color_Disentanglement_ICCV_2025_paper.html">Paper</a> /
-                        <a href="https://ucf-crcv.github.io/ReID/CSCI/">Project Page</a> /
-                        <a href="https://github.com/ppriyank/ICCV-CSCI-Person-ReID">Code</a> /
-                        <a href="https://arxiv.org/abs/2507.07230">Arxiv</a> 
-                        <!-- <p> Lightweight, annotation-free proxy for mitigating appearance bias (via colors) in ReID models, w/o "expensive" clothing annotations. Efficinet RGB-only method entanlges and disentangles all in 1 architecutre. </p>-->
-                         <div class="tag">
-                            <span>Person ReID</span>
-                            <span>Self-Attention</span>
-                            <span>Video & Image</span>
-                            <span>Efficiency</span>
-                        </div>
-                    </td>
-                </tr>
-                
-                <!-- CGAL - BMVC -->
-                <tr>
-                    <td>
-                        <div class="one">
-                            <img src='images/ubd_idea.jpg' width="150" style="transform: translateY(30px);">        
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            Coarse Attribute Prediction with Task Agnostic Distillation for Real World Clothes Changing ReID
-                        </papertitle>
-                        <br>
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://www.cs.ucf.edu/person/yogeshrawat/">Yogesh S. Rawat</a>
-                        <br><span class="conf">BMVC'25</span> 🪧 <br>
-                        <a href="https://bmvc2025.bmva.org/proceedings/346/">Paper</a> /
-                        <a href="https://github.com/ppriyank/RLQ-CGAL-UBD">Code</a> /
-                        <a href="https://arxiv.org/abs/2505.12580">Arxiv</a> 
-                        <!-- <p> We introduce Robustness against Low-Quality (RLQ) in clothes changing real-world ReID to make the model robust against low-quality artifacts like pixelation, out-of-focus blur, and motion blur. </p> -->
-                        <div class="tag">
-                            <span>Person ReID</span>
-                            <span>Real World</span>
-                            <span>Noisy Images</span>
-                            <span>ResNets</span>
-                        </div>
-                    </td>
-                </tr>
-                
-                <!-- Fantastic - AAAI -->
-                <!-- <tr style="transform: translateY(-5px);"> -->
-                <tr>
-                    <td>
-                        <div class="one">
-                            <img src="images/fantastic_technique.png" width="180" style="transform: translateY(40px);">
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            Video person re-id: Fantastic techniques and where to find them 
-                        </papertitle>
-                        <br>
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=fpNg6ZcAAAAJ">Amir Erfan Eshratifar</a>,
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=KOOCuDkAAAAJ">Michael Gormish</a>
-                        <br><span class="conf">AAAI'20</span><br>
-                        <a href="https://cdn.aaai.org/ojs/7219/7219-13-10448-1-10-20200526.pdf">Paper</a> /
-                        <a href="https://github.com/ppriyank/Video-Person-Re-ID-Fantastic-Techniques-and-Where-to-Find-Them">Code</a> /
-                        <a href="https://arxiv.org/abs/1912.05295">Arxiv</a> 
-                        <!-- <p>One of the first works in Person Reid exploring multiple techniques to improve accuracy on the Video ReID model, and proposing novel attention loss for helping model focus on certain frames more than the other. </p> -->
-                        <div class="tag">
-                            <span>Person ReID</span>
-                            <span>Video & Image</span>
-                            <span>Techniques</span>
-                            <span>Novel Loss</span>
-                        </div>
-                    </td>
-                </tr>
-
-               
-                
-               
-
-                <!-- ## LQN Rajat -->
-                <tr>
-                    <td>
-                        <div class="one">
-                            <img src='images/rajat.png' width="120" style="transform: translateY(20px);">
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            Efficinet Test-Time Training for Dense Task Prediction 
-                        </papertitle>
-                        <br>
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=Ypzln1UAAAAJ&view_op=list_works&sortby=pubdate">Rajat Modi</a>,
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://scholar.google.com/citations?user=RTjfhNAAAAAJ&hl=en">Xin Liang</a>,
-                        <a class='author' href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>
-                        <br><span><em>Under Review</em>🔒</span><br>
-                        <a href="https://arxiv.org/abs/2609.34021">Arxiv</a> 
-                        <div class="tag">
-                            <span>Test Time Training</span>
-                            <span>VLMs</span>
-                            <span>Efficinet</span>
-                            <span>Distillation</span>
-                            <span>Dense Task</span>
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- ## Medical Avinash -->
-                <tr>
-                    <td>
-                        <div class="one">
-                            <img src='images/medical.gif' width="180" style="transform: translateY(20px);">
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            Synthetic Medical Care Dataset 
-                        </papertitle>
-                        <br>
-                        <a class='author' href="https://scholar.google.com/citations?user=ATHcWokAAAAJ&hl=en">Avinash Gyawali</a>,
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://scholar.google.com/citations?user=iGUWpfkAAAAJ&hl=en">Sirshapan Mitra</a>,
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>,
-                        <a class='author' href="https://scholar.google.com/citations?hl=en&user=D_JvEcwAAAAJ">Yogesh S. Rawat</a>
-                        <br><em>Under Review</em> 🔒<br>
-                        <!-- <p> Lightweight (five-layer) MLP outperforms frozen VLM via intermediate-layer distillation and self-supervision using 3D positional embeddings.  Faster convergence and strong dense-prediction performance.</p> -->
-                         <div class="tag">
-                            <span>Synthetic Dataset</span>
-                            <span>Benchmark</span>
-                            <span>Diffusion</span>
-                        </div>
-                    </td>
-                </tr>
-
-
-                <!-- ##Zero-shot Robustness -->
-                <!-- <tr> -->
-                <tr style="transform: translateY(-20px);">
-                    <td>
-                        <div class="one">
-                            <img src='images/LoRA_heatmap.png' width="120" style="transform: translateY(30px);">
-                        </div>
-                    </td>
-                    <td>
-                        <papertitle>
-                            Zero-shot robustness in real-world 
-                        </papertitle>
-                        <br>
-                        <a class="me">Priyank Pathak,</a>
-                        <a class='author' href="https://scholar.google.com/citations?user=D_JvEcwAAAAJ&hl=en">Yogesh S Rawat</a>
-                        <br><em>Preprint</em> 🤫<br>
-                        <!-- <p> Do models need to know what noise is there to improve robustness? Are synthetic datasets the best measure against robustness of models? </p> -->
-                         <div class="tag">
-                            <span>Zero-Shot</span>
-                            <span>VLMs</span>
-                            <span>Object Detectors</span>
-                            <span>Robustness</span>
-                        </div>
-                    </td>
-                </tr>
-
-                
-                </tbody>
-                </table>
-
-                
-                <!-- ########## Internships  -->            
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                    <tbody>
-                    <tr class="fade-in">
-                        <td style="padding:20px;width:100%;vertical-align:middle">
-                            <heading>Work Experience</heading>
-                            <hr>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                
-                
-                <!-- ########## jobs  -->            
-                 <!-- style="text-align:center"></div> -->
-                <table style="width:100%; border:0; border-spacing:0; border-collapse:collapse; margin:auto; transform: translateY(-10px);">
-                    <tbody class="fade-in">
-                        <tr>
-                            <td style="padding:0;">
-                                <div class="timeline-container">
-                                    <div class="timeline">
-                                        
-                                        <!-- 1 -->
-                                        <div class="timeline-item">
-                                            <div class="timeline-date">May'26 – Aug'26</div>
-                                            <div class="company-icons timeline-logo"><img src="images/Amazon_logo.svg.webp" width="90"></div>
-                                            <div class="timeline-text">
-                                                <h2>Applied Scientist Intern</h2>
-                                                <div class="company"><a href="">Amazon Rings Research</a></div>
-                                                <div class="location">Sunnyvale, California</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- 1 -->
-                                        <div class="timeline-item">
-                                            <div class="timeline-date">Aug'22 – Dec'22</div>
-                                            <div class="company-icons timeline-logo"><img src="images/nus.png" width="90"></div>
-                                            <div class="timeline-text">
-                                                <h2>Research Assistant</h2>
-                                                <div class="company"><a href="https://www.comp.nus.edu.sg/~ayao/">National University of Singapore</a></div>
-                                                <div class="location">Singapore</div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- 2 -->
-                                        <div class="timeline-item">
-                                            <div class="timeline-date">June'20 - Aug'21</div>
-                                            <div class="company-icons2 timeline-logo"><img src="images/amobee.png" width="120"></div>
-                                            <div class="timeline-text">
-                                                <h2>Research Engineer</h2>
-                                                <div class="company"><a href="https://www.amobee.com/">Amobee</a></div>
-                                                <div class="location">New York (Remote) / Redwood City, California</div>
-                                            </div>
-                                        </div>
-                                            
-                                        <!-- 3 -->
-                                        <div class="timeline-item">
-                                            <div class="timeline-date">May'19 - Sept'19</div>
-                                            <div class="company-icons timeline-logo"><img src="images/clarifai.png" width="100"></div>
-                                            <div class="timeline-text">
-                                                <h2>Deep Learning Research Intern</h2>
-                                                <div class="company"><a href="https://www.clarifai.com/">Clarifai</a></div>
-                                                <div class="location">San Francisco, California</div>
-                                            </div>
-                                        </div>      
-
-                                        <!-- 4 -->
-                                        <div class="timeline-item">
-                                            <div class="timeline-date">May'17 - Aug'17</div>
-                                            <div class="company-icons timeline-logo"><img src="images/rice.png" width="100"></div>
-                                            <div class="timeline-text">
-                                                <h2>Deep Learning Research Intern</h2>
-                                                <div class="company"><a href="https://www.cs.rice.edu/~as143/">Rice University</a></div>
-                                                <div class="location">Houston, Texas</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="timeline-item">
-                                            <div class="timeline-date">May'16 - Aug'16</div>
-                                            <div class="company-icons timeline-logo"><img src="images/Reliance_Jio_Logo.png" width="50"></div>
-                                            <div class="timeline-text">
-                                                <h2>Summer SDE Intern</h2>
-                                                <div class="company"><a>Reliance Jio</a></div>
-                                                <div class="location">Gurugram, India</div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                 <!-- style="text-align:center"></div> -->
-                <!-- <table style="width:100%; border:0; border-spacing:0; border-collapse:collapse; margin:auto; transform: translateY(-40px);">
-                    <tbody class="fade-in">
-                        <tr style="vertical-align:middle;">
-                        <td style="padding:20px 50px 20px 50px; width:25%;vertical-align:middle">
-                            <div class="company-icons">
-                                <img src="images/nus.png" width="90">
-                            </div> 
-                        </td>
-                        <td style="padding:0; width:75%;">
-                            <papertitle>Research Assistant, National University of Singapore</papertitle><br>
-                            <em>Singapore</em><br>
-                            Aug'22 - Dec'22
-                        </td>
-                        </tr>
-                        
-                        <tr style="vertical-align:middle;">
-                        <td style="padding:20px 50px 20px 50px; width:25%;vertical-align:middle">
-                            <div class="company-icons2">
-                                <img src="images/amobee.png" width="100">
-                            </div>
-                        </td>
-                        <td style="padding:0; width:75%;">
-                            <papertitle>Research Engineer, Amobee</papertitle><br>
-                            <em>New York (Remote), Full-time</em><br>
-                            June'20 - Aug'21
-                        </td>
-                        </tr>
-
-                        <tr style="vertical-align:middle;">
-                        <td style="padding:20px 50px 20px 50px; width:25%;vertical-align:middle">
-                            <div class="company-icons">
-                                <img src="images/clarifai.png" width="100">
-                            </div>
-                        </td>
-                        <td style="padding:0; width:75%;">
-                            <papertitle>Deep Learning Research Intern, Clarifai,</papertitle><br>
-                            <em>San Francisco (California), Internship</em><br>
-                            May'19 - Sept'19
-                        </td>
-                        </tr>
-
-                        <tr style="vertical-align:middle;">
-                        <td style="padding:20px 50px 20px 50px; width:25%;vertical-align:middle">
-                            <div class="company-icons">
-                                <img src="images/rice.png" width="100">
-                            </div>
-                        </td>
-                        <td style="padding:0; width:75%;">
-                            <papertitle>Deep Learning Research Intern, Rice University,</papertitle><br>
-                            <em>Houston (Texas), Internship</em><br>
-                            May'17 - Aug'17
-                        </td>
-                        </tr>
-                        
-                    </tbody>
-                </table> -->
-                
-                
-
-                
-                
-            
-                <!-- ########## MISC -->
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                    <tbody class="fade-in">
-                    <tr>
-                        <td style="padding:20px;width:100%;vertical-align:middle">
-                            <heading>Miscellaneous</heading>
-                            <hr>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <!-- ########## Reviewer -->
-                <table width="100%" align="center" border="0" cellpadding="20">
-                    <tbody class="fade-in">
-                    <tr>
-                        <td align="center" style="padding:20px;width:25%;vertical-align:middle">
-                            <heading>Service</heading></td>
-                        <td width="75%" valign="center">
-                            Reviewer, Neurips 2026 <br>
-                            Reviewer, ECCV 2026 <br>
-                            Reviewer, CVPR 2026 <a href="https://media.eventhosts.cc/Conferences/CVPR2026/CVPR_main_conf_2026_15.pdf">(Outstanding Reviewer)</a> / <a href="https://x.com/CVPR/status/2056432742208876945?s=20"> (Tweet) </a> /  <a href="files/certificate.pdf">Certificate</a><br>
-                            Reviewer, ICLR 2026 <br>
-                            Reviewer, AAAI 2026 <br>
-                            Reviewer, Neurips 2025 <br>
-                            Reviewer, BMVC 2025 <br>
-                            Reviewer, CVPR 2025 <a href="https://cvpr.thecvf.com/Conferences/2025/ProgramCommittee">(Outstanding Reviewer)</a> <br>
-                            Reviewer, ICLR 2025 <a href="https://iclr.cc/Conferences/2025/Reviewers">(Outstanding Reviewer)</a>  <br>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td align="center" style="padding:20px;width:25%;vertical-align:middle">
-                            <heading>Pre-Prints</heading></td>
-                        <td width="75%" valign="middle">
-                            <a href="https://arxiv.org/pdf/2011.13475"> Fine-Grained Re-Identification (Master's Thesis)</a><br>
-                            <a href="https://arxiv.org/pdf/2212.14215"> Local Learning on Transformers via Feature Reconstruction </a><br>
-                        </td>
-                    </tr>
-
-
-                    
-                    <tr>
-                        <td align="center" style="padding:20px;width:25%;vertical-align:middle">
-                            <heading>Misc Projects</heading>
-                            <p>
-                                I sometimes open-source implementation of others' papers. 
-                            </p>
-                            </td>
-                            <td width="75%" valign="middle">
-                                Success of Filmmaking (JS & Novel Visuals) [<a href="https://www.youtube.com/watch?v=D29tnAJDpOk&list=PLyCRt3MN8s8PcL9uMoobW3dO03qTKdriu&index=1&ab_channel=PriyankPathak">Youtube Feature </a> | <a href="Vizualization/index.html">Online</a> | <a href="images/Dashboard.gif"> GIF</a> ]
-                                <br>
-                                Beautiful Customizable plots for Research Papers [<a href="https://github.com/ppriyank/plot">GitHub</a>]
-                                <br>
-                                
-                                Faster RCNN tutorial [ <a href="https://github.com/ppriyank/Pytorch-CustomDataset-FasterRCNN">Githhub</a>] 
-                                <br>
-                                Reinforcement learning tutorial [<a href="MARL/final.html">Web Page</a>] 
-                                <br>
-                                Spatial Transformers for traffic signal detection [<a href="https://github.com/ppriyank/Deep-neural-network-for-traffic-sign-recognition-systems">Github</a>] 
-                                <br>
-                                Video-Action-Transformer-Network [<a href="https://github.com/ppriyank/Video-Action-Transformer-Network-Pytorch-">Github</a>] 
-                                <br>
-                                Online softmining loss [<a href="https://github.com/ppriyank/-Online-Soft-Mining-and-Class-Aware-Attention-Pytorch">Github</a>] 
-                                <br>     
-                            </td>
-                     </tr>
-                    </tbody>
-                </table>
-                
-                <!-- ########## CREDITS -->
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                    <tbody>
-                    <tr>
-                        <td style="padding:0px">
-                            <br>
-                            <p style="text-align:center;font-size:small;">
-                                <em> "Aloo has no place in Biryani" - Every Desi Foodie </em>
-
-                            </p>
-                            <p style="text-align:right;font-size:small;">
-                                Built upon <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron's</a> 
-                                template, and modified upon <a href="https://www.rohitg.xyz/">Rohit Gupta</a>
-
-                            </p>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-
-
-            </td>
-        </tr>
-    </tbody>
-    </table>
-
-
-
+// subtle fade-in on scroll
+(function () {
+  var els = document.querySelectorAll(".fade-in");
+  if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("visible"); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); }
+    });
+  }, { rootMargin: "60px 0px", threshold: 0.08 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
 </body>
 </html>
