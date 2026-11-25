@@ -6,17 +6,6 @@
 <meta name="author" content="Priyank Pathak">
 <title>Priyank Pathak</title>
 <link rel="icon" href="html_pages/data/profile.jpg">
-<script>
-  // apply saved / system theme before paint (no flash)
-  (function () {
-    try {
-      var t = localStorage.getItem("theme");
-      if (t === "dark") {
-        document.documentElement.classList.add("dark");
-      }
-    } catch (e) {}
-  })();
-</script>
 <style>
 :root{
   --bg:#ffffff; --fg:#1d1d1f; --muted:#6b6b70; --line:#efefef;
@@ -62,11 +51,16 @@ a:hover{background-size:100% 1px}
 .spotlight.on{opacity:1}
 
 /* header */
-header{display:grid;grid-template-columns:1fr 200px;gap:36px;align-items:center}
+header{display:grid;grid-template-columns:1fr 220px;column-gap:38px;align-items:center}
+header > .intro{display:contents}
+header > .intro > *{grid-column:1}
+header .bio{grid-row:2}
+header .photo{grid-column:2;grid-row:2}
+header .bio,.research-text{text-align:justify;hyphens:auto}
 header h1{font-size:2rem;font-weight:600;letter-spacing:-.02em;margin:0 0 12px}
 header p{margin:0 0 14px}
-.photo{border-radius:14px;overflow:hidden;aspect-ratio:1/1;max-width:100%}
-.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.photo{display:block;align-self:center;border-radius:14px;overflow:hidden;max-width:100%}
+.photo img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center 30%;display:block;transition:transform .6s ease}
 .photo:hover img{transform:scale(1.04)}
 .seeking{display:inline-flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:700;letter-spacing:.01em;
   margin:6px 0 18px;color:var(--accent)}
@@ -80,8 +74,8 @@ header p{margin:0 0 14px}
   color:var(--fg);transition:color .2s,transform .2s}
 .social a:hover{color:var(--accent);transform:translateY(-3px) scale(1.08)}
 .social svg{width:34px;height:34px;fill:currentColor}
-.social img{width:34px;height:34px;object-fit:contain}
-.dark .social img{filter:invert(1) brightness(.85)}
+.social .ico{width:34px;height:34px;background:currentColor;
+  -webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat}
 
 /* sections */
 section{margin-top:56px}
@@ -148,8 +142,9 @@ header{animation:rise .8s ease both}
 /* mobile */
 @media (max-width:640px){
   .wrap{padding-top:44px}
-  header{grid-template-columns:1fr;gap:20px}
-  header .photo{order:-1;width:150px;margin:0 auto;border-radius:50%}
+  header{grid-template-columns:1fr;row-gap:0}
+  header .bio,header .photo{grid-row:auto}
+  header .photo{grid-column:1;order:-1;width:150px;margin:0 auto 20px;border-radius:50%}
   header h1{text-align:center}
   .social{justify-content:center}
   .emails{text-align:center}
@@ -182,10 +177,10 @@ header{animation:rise .8s ease both}
 
   <!-- ########## HEADER -->
   <header>
-    <div>
+    <div class="intro">
       <h1>Priyank Pathak</h1>
-      <p>
-        I am a final year <a href="https://www.crcv.ucf.edu/people/students/">Computer Vision</a> Ph.D. Candidate <em>(Jan'23 - May'27)</em> at University of Central Florida under <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Prof. Yogesh S. Rawat</a>.
+      <p class="bio">
+        I am a final year Computer Vision Ph.D. Candidate <em>(Jan'23 - May'27)</em> at University of Central Florida under <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Prof. Yogesh S. Rawat</a>.
         My research focuses on Interpretable / Explainable AI, Re-Identification (ReID), and Targetted Adaptation. 
         Prior to UCF, I earned my Master’s in Computer Science from <a href="https://cims.nyu.edu/dynamic/">New York University (NYU) Courant</a>, where I completed my thesis under the guidance of <a href="https://cims.nyu.edu/people/profiles/FERGUS_Rob.html">Prof. Rob Fergus</a>.
         I hold Dual Bachelor of Technology (B.Tech) degrees in Electrical Engineering and Computer Science from the <a href="https://www.iitk.ac.in/">Indian Institute of Technology (IIT) Kanpur</a>.
@@ -195,11 +190,11 @@ header{animation:rise .8s ease both}
         <a href="mailto:priyank@ucf.edu">priyank@ucf.edu</a> &nbsp;/&nbsp; <a href="mailto:pp1953@nyu.edu">pp1953@nyu.edu</a>
       </p>
       <nav class="social">
-        <a href="https://drive.google.com/file/d/1cjJhc-2hklZehBBnoUpoOQSsXxNibSfm/view?usp=sharing" target="_blank" rel="noopener" title="Resume"><img src="html_pages/data/resume.png" alt="Resume"></a>
+        <a href="https://drive.google.com/file/d/1cjJhc-2hklZehBBnoUpoOQSsXxNibSfm/view?usp=sharing" target="_blank" rel="noopener" title="Resume"><span class="ico" role="img" aria-label="Resume" style="--src:url(html_pages/data/resume.png)"></span></a>
         <a href="https://github.com/ppriyank" target="_blank" rel="noopener" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
         <a href="https://www.linkedin.com/in/priyank-pathak-11b9b08a/" target="_blank" rel="noopener" title="Linkedin"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
-        <a href="https://scholar.google.com/citations?user=wnVyeJ0AAAAJ&hl=en" target="_blank" rel="noopener" title="Scholar"><img src="html_pages/data/icons8-google-scholar-500.png" alt="Google Scholar"></a>
-        <a href="https://openreview.net/profile?id=%7EPriyank_Pathak1" target="_blank" rel="noopener" title="OpenReview"><img src="html_pages/data/open_review.png" alt="OpenReview"></a>
+        <a href="https://scholar.google.com/citations?user=wnVyeJ0AAAAJ&hl=en" target="_blank" rel="noopener" title="Scholar"><span class="ico" role="img" aria-label="Google Scholar" style="--src:url(html_pages/data/icons8-google-scholar-500.png)"></span></a>
+        <a href="https://openreview.net/profile?id=%7EPriyank_Pathak1" target="_blank" rel="noopener" title="OpenReview"><span class="ico" role="img" aria-label="OpenReview" style="--src:url(html_pages/data/open_review.png)"></span></a>
         <a href="https://www.instagram.com/banarasi_guy/" target="_blank" rel="noopener" title="Insta"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
         <a href="https://unsplash.com/@ppriyank" target="_blank" rel="noopener" title="Unsplash"><svg viewBox="0 0 24 24"><path d="M7.5 6.75V0h9v6.75h-9zm9 3.75H24V24H0V10.5h7.5v6.75h9V10.5z"/></svg></a>
       </nav>
@@ -210,11 +205,19 @@ header{animation:rise .8s ease both}
   <!-- ########## Research -->
   <section class="fade-in">
     <h2 class="sec">Research</h2>
-    <p>
-      My research centers around <b><u>efficient training</u></b> in <b><u>computer vision</u></b>, with a strong emphasis on <b><u>improving robustness</u></b> to real world noise, like autonomous driving scenarios of fog, rain, and snow.
-      My primary focus lies in <b><u>Zero Shot learning</u></b> and <b><u>VLMs (transformers) </u></b>, with a specific emphasis on <b><u>object detection</u></b>.
-      I also have substantial experience in <b><u>interpretable and explainable AI</u></b> and <b><u>Visualization</u></b>, enabling easy to understand insights into models.
-      In parallel, I have been actively working on <b><u>Person Re Identification (ReID)</u></b> for the past seven years, which was the core of my Master’s thesis as well.
+    <p class="research-text">
+      
+      <!-- I primarily focus on <b><u>Targetted adaptation </u></b> while preserving Zero Shot properties of <b><u>VLMs (transformers) </u></b> with a specific emphasis on <b><u>object detection</u></b>. -->
+      <!-- I also have substantial experience in <b><u>interpretable and explainable AI</u></b> and <b><u>Visualization</u></b>, enabling easy to understand insights into models. -->
+      <!-- In parallel, I have been actively working on <b><u>Person Re Identification (ReID)</u></b> for the past seven years, which was the core of my Master’s thesis and Amazon internship as well. -->
+    
+    
+    My research centers on <b><u>efficient training</u></b> of computer vision models, with a strong emphasis on <b><u>improving robustness</u></b> to real-world noise, such as fog, rain, and snow in autonomous driving. 
+    I primarily focus on <b><u>Targetted adaptation</u></b> while preserving the zero-shot properties of <b><u>VLMs (transformers)</u></b>, with a specific emphasis on <b><u>object detection</u></b>. 
+    I also have substantial experience in <b><u>interpretable and explainable AI</u></b> and Visualization, enabling easy-to-understand insights into models (opening black box). 
+    In parallel, I have been actively working on <b><u>Re Identification (ReID)</u></b> for the past seven years, which was the core of my Master’s thesis and Amazon internship.
+    
+    
     </p>
   </section>
 
@@ -229,7 +232,7 @@ header{animation:rise .8s ease both}
           <a class="me">Priyank Pathak,</a>
           <a class="author" href="https://scholar.google.com/citations?hl=en&user=D_JvEcwAAAAJ">Yogesh S. Rawat</a>
         </div>
-        <div class="meta"><span class="conf">PhD Dissertation || Dissertation Proposal</span> 🎙️</div>
+        <div class="meta"><span class="conf">PhD Dissertation Proposal</span> 🎙️</div>
         <div class="links"><a href="https://www.youtube.com/watch?v=OgIn2oQZuFE">YouTube</a></div>
         <div class="tag"><span>Noise Robustness</span><span>Opening Black Box</span><span>OOD</span><span>Zero-shot</span><span>VLMs</span><span>Prompts</span></div>
       </div>
@@ -296,7 +299,7 @@ header{animation:rise .8s ease both}
           <a class="author" href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>,
           <a class="author" href="https://scholar.google.com/citations?hl=en&user=D_JvEcwAAAAJ">Yogesh S. Rawat</a>
         </div>
-        <div class="meta"><span class="conf">ICLR'25 || ICCV'25 (Non-Proceedings) </span> 🎙️</div>
+        <div class="meta"><span class="conf">ICLR'25</span> || <span class="conf">ICCV'25 (Non-Proceedings) </span> 🎙️</div>
         <div class="links">
           <a href="https://openreview.net/forum?id=AsFxRSLtqR&referrer=%5Bthe%20profile%20of%20Priyank%20Pathak%5D(%2Fprofile%3Fid%3D~Priyank_Pathak1)">Paper</a> /
           <a href="https://ucf-crcv.github.io/lr0.fm/">Project Page</a> /
@@ -390,9 +393,10 @@ header{animation:rise .8s ease both}
         <span class="ptitle">Synthetic Medical Care Dataset</span>
         <div class="authors">
           <a class="author" href="https://scholar.google.com/citations?user=ATHcWokAAAAJ&hl=en">Avinash Gyawali</a>,
-          <a class="me">Priyank Pathak,</a>
+          <a class="me">Priyank Pathak*,</a>
           <a class="author" href="https://scholar.google.com/citations?hl=en&user=15YqUQUAAAAJ">Shruti Vyas</a>,
           <a class="author" href="https://scholar.google.com/citations?hl=en&user=D_JvEcwAAAAJ">Yogesh S. Rawat</a>
+          <br><em>* equal contribution</em>
         </div>
         <div class="meta"><em>Under Review</em> 🔒</div>
         <div class="tag"><span>Synthetic Dataset</span><span>Benchmark</span><span>Diffusion</span></div>
@@ -492,13 +496,13 @@ header{animation:rise .8s ease both}
       <div class="body">
         Reviewer, Neurips 2026 <br>
         Reviewer, ECCV 2026 <br>
-        Reviewer, CVPR 2026 (<a href="https://media.eventhosts.cc/Conferences/CVPR2026/CVPR_main_conf_2026_15.pdf">Outstanding Reviewer</a> / <a href="https://x.com/CVPR/status/2056432742208876945?s=20"> Tweet </a> / <a href="files/certificate.pdf">Certificate</a>)<br>
+        Reviewer, CVPR 2026 [<a href="https://media.eventhosts.cc/Conferences/CVPR2026/CVPR_main_conf_2026_15.pdf">Outstanding Reviewer</a> | <a href="https://x.com/CVPR/status/2056432742208876945?s=20"> Tweet </a> | <a href="files/certificate.pdf">Certificate</a>]<br>
         Reviewer, ICLR 2026 <br>
         Reviewer, AAAI 2026 <br>
         Reviewer, Neurips 2025 <br>
         Reviewer, BMVC 2025 <br>
-        Reviewer, CVPR 2025 <a href="https://cvpr.thecvf.com/Conferences/2025/ProgramCommittee">(Outstanding Reviewer)</a> <br>
-        Reviewer, ICLR 2025 <a href="https://iclr.cc/Conferences/2025/Reviewers">(Outstanding Reviewer)</a>
+        Reviewer, CVPR 2025 [<a href="https://cvpr.thecvf.com/Conferences/2025/ProgramCommittee">Outstanding Reviewer</a>] <br>
+        Reviewer, ICLR 2025 [<a href="https://iclr.cc/Conferences/2025/Reviewers">Outstanding Reviewer</a>]
       </div>
     </div>
 
@@ -516,8 +520,8 @@ header{animation:rise .8s ease both}
         <p>I sometimes open-source implementation of others' papers.</p>
       </div>
       <div class="body">
-        Success of Filmmaking (JS &amp; Novel Visuals) [<a href="https://www.youtube.com/watch?v=D29tnAJDpOk&list=PLyCRt3MN8s8PcL9uMoobW3dO03qTKdriu&index=1&ab_channel=PriyankPathak">Youtube Feature </a> | <a href="Vizualization/index.html">Online</a> | <a href="images/Dashboard.gif"> GIF</a> ]<br>
         Beautiful Customizable plots for Research Papers [<a href="https://github.com/ppriyank/plot">GitHub</a>]<br>
+        Success of Filmmaking (JS &amp; Novel Visuals) [<a href="https://www.youtube.com/watch?v=D29tnAJDpOk&list=PLyCRt3MN8s8PcL9uMoobW3dO03qTKdriu&index=1&ab_channel=PriyankPathak">Youtube Feature </a> | <a href="Vizualization/index.html">Online</a> | <a href="images/Dashboard.gif"> GIF</a> ]<br>
         Faster RCNN tutorial [ <a href="https://github.com/ppriyank/Pytorch-CustomDataset-FasterRCNN">Githhub</a>]<br>
         Reinforcement learning tutorial [<a href="MARL/final.html">Web Page</a>]<br>
         Spatial Transformers for traffic signal detection [<a href="https://github.com/ppriyank/Deep-neural-network-for-traffic-sign-recognition-systems">Github</a>]<br>
@@ -537,8 +541,7 @@ header{animation:rise .8s ease both}
 
 <script>
 function toggleDarkMode() {
-  var on = document.documentElement.classList.toggle("dark");
-  try { localStorage.setItem("theme", on ? "dark" : "light"); } catch (e) {}
+  document.documentElement.classList.toggle("dark");
 }
 
 function reveal_name(el) {
