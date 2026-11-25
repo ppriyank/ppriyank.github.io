@@ -9,7 +9,7 @@
 <style>
 :root{
   --bg:#ffffff; --fg:#1d1d1f; --muted:#6b6b70; --line:#efefef;
-  --accent:#2e2c7d; --chip:#f6f6f6; --me:#111; --conf:#c2410c;
+  --accent:#020087; --chip:#f6f6f6; --me:#111; --conf:#c2410c;
   --max:760px;
   color-scheme:light;
 }
@@ -51,7 +51,7 @@ a:hover{background-size:100% 1px}
 .spotlight.on{opacity:1}
 
 /* header */
-header{display:grid;grid-template-columns:1fr 220px;column-gap:38px;align-items:center}
+header{display:grid;grid-template-columns:1fr 190px;column-gap:38px;align-items:center}
 header > .intro{display:contents}
 header > .intro > *{grid-column:1}
 header .bio{grid-row:2}
@@ -68,7 +68,27 @@ header p{margin:0 0 14px}
   box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:dot 1.6s ease-out infinite}
 @keyframes dot{0%{box-shadow:0 0 0 0 rgba(239,68,68,.6)}100%{box-shadow:0 0 0 9px rgba(239,68,68,0)}}
 .dark .ctl[aria-pressed="true"]{color:#06201d}
-.emails{font-size:1.1rem;font-weight:500;margin:0 0 14px}
+/* bio links: black, with the same smooth underline-on-hover as other links */
+header .bio a{color:var(--fg);font-weight:600}
+/* dark mode: bold bits of the bio & research blurb in a deep teal */
+.dark header .bio a,.dark .research-text b{color:#14b8a6}
+.dark .research-text u{text-decoration-color:color-mix(in srgb,#14b8a6 40%,transparent)}
+
+/* emails: scrambled until you hover / tap, then they decode */
+.emails{font-size:1.05rem;font-weight:500;margin:0 0 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.mail{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem;letter-spacing:.01em;
+  cursor:pointer;color:var(--muted);display:inline-flex;align-items:center;
+  padding:3px 10px;border:1px dashed var(--line);border-radius:999px;transition:color .3s,border-color .3s}
+.mail:hover{border-color:var(--muted)}
+.mail.done{color:var(--conf);border-style:solid;border-color:var(--conf);cursor:auto}
+.dark .mail.done{color:var(--accent);border-color:var(--accent)}
+/* one shared "locked envelope" icon for both addresses */
+.mail-ico{position:relative;font-size:1.6rem;line-height:1;display:inline-block}
+.mail-ico::after{content:"\1F512";position:absolute;right:-5px;bottom:-3px;font-size:.75rem}
+.emails.open .mail-ico{animation:pop .5s ease}
+.emails.open .mail-ico::after{content:"\1F513"}
+@keyframes pop{0%{transform:scale(.6) rotate(-15deg)}70%{transform:scale(1.2) rotate(6deg)}100%{transform:none}}
+.mail a{color:inherit}
 .social{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 .social a{background:none;display:grid;place-items:center;width:44px;height:44px;
   color:var(--fg);transition:color .2s,transform .2s}
@@ -87,6 +107,12 @@ u{text-decoration-color:var(--line);text-underline-offset:3px}
 .paper{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
 .paper:last-child{border-bottom:0}
 .thumb{display:flex;align-items:flex-start;justify-content:center}
+.thumb img.pending{max-height:50px!important}
+/* dark mode: repaint the black question mark.  >>> change --qmark to recolor <<< */
+:root{--qmark:color-mix(in srgb,#025349,#fff);
+  --qmask:url(data:image/png;base64,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)}
+.dark .thumb img.pending{object-position:-9999px 0;background:var(--qmark);
+  -webkit-mask:var(--qmask) center/contain no-repeat;mask:var(--qmask) center/contain no-repeat}
 .thumb img{max-height:130px;object-fit:contain;border-radius:8px;transition:transform .4s}
 .paper:hover .thumb img{transform:scale(1.05)}
 .ptitle{font-weight:600;font-size:1.02rem;line-height:1.4;display:block;margin-bottom:4px}
@@ -144,10 +170,10 @@ header{animation:rise .8s ease both}
   .wrap{padding-top:44px}
   header{grid-template-columns:1fr;row-gap:0}
   header .bio,header .photo{grid-row:auto}
-  header .photo{grid-column:1;order:-1;width:150px;margin:0 auto 20px;border-radius:50%}
+  header .photo{grid-column:1;order:-1;width:130px;margin:0 auto 20px;border-radius:50%}
   header h1{text-align:center}
   .social{justify-content:center}
-  .emails{text-align:center}
+  .emails{justify-content:center}
   .seeking-wrap{text-align:center}
   .paper{grid-template-columns:1fr;gap:12px}
   .thumb{justify-content:flex-start}
@@ -180,14 +206,15 @@ header{animation:rise .8s ease both}
     <div class="intro">
       <h1>Priyank Pathak</h1>
       <p class="bio">
-        I am a final year Computer Vision Ph.D. Candidate <em>(Jan'23 - May'27)</em> at University of Central Florida under <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Prof. Yogesh S. Rawat</a>.
-        My research focuses on Interpretable / Explainable AI, Re-Identification (ReID), and Targetted Adaptation. 
-        Prior to UCF, I earned my Master’s in Computer Science from <a href="https://cims.nyu.edu/dynamic/">New York University (NYU) Courant</a>, where I completed my thesis under the guidance of <a href="https://cims.nyu.edu/people/profiles/FERGUS_Rob.html">Prof. Rob Fergus</a>.
-        I hold Dual Bachelor of Technology (B.Tech) degrees in Electrical Engineering and Computer Science from the <a href="https://www.iitk.ac.in/">Indian Institute of Technology (IIT) Kanpur</a>.
+        I am a Computer Vision Ph.D. Candidate at the <i>University of Central Florida</i> (Jan'23 - May'27), advised by <a href="https://www.cs.ucf.edu/person/yogeshrawat/">Prof. Yogesh S. Rawat</a>.
+        My research focuses on Explainable AI, Re-Identification (ReID), and Targeted Adaptation. 
+        Previously, I earned an M.S. in Computer Science from <i>NYU Courant</i>, advised by <a href="https://cims.nyu.edu/people/profiles/FERGUS_Rob.html">Prof. Rob Fergus</a>, and Dual B.Tech. degrees in Electrical Engineering and Computer Science from <i>IIT Kanpur</i>.
       </p>
       <div class="seeking-wrap"><span class="seeking">Seeking Full-time roles starting January</span></div>
       <p class="emails">
-        <a href="mailto:priyank@ucf.edu">priyank@ucf.edu</a> &nbsp;/&nbsp; <a href="mailto:pp1953@nyu.edu">pp1953@nyu.edu</a>
+        <span class="mail-ico" aria-hidden="true">&#x1F4E7;</span>
+        <span class="mail" data-u="knayirp" data-d="ude.fcu" tabindex="0" role="button" title="Hover or tap to decode" aria-label="Reveal UCF email"></span>
+        <span class="mail" data-u="3591pp" data-d="ude.uyn" tabindex="0" role="button" title="Hover or tap to decode" aria-label="Reveal NYU email"></span>
       </p>
       <nav class="social">
         <a href="https://drive.google.com/file/d/1cjJhc-2hklZehBBnoUpoOQSsXxNibSfm/view?usp=sharing" target="_blank" rel="noopener" title="Resume"><span class="ico" role="img" aria-label="Resume" style="--src:url(html_pages/data/resume.png)"></span></a>
@@ -206,18 +233,10 @@ header{animation:rise .8s ease both}
   <section class="fade-in">
     <h2 class="sec">Research</h2>
     <p class="research-text">
-      
-      <!-- I primarily focus on <b><u>Targetted adaptation </u></b> while preserving Zero Shot properties of <b><u>VLMs (transformers) </u></b> with a specific emphasis on <b><u>object detection</u></b>. -->
-      <!-- I also have substantial experience in <b><u>interpretable and explainable AI</u></b> and <b><u>Visualization</u></b>, enabling easy to understand insights into models. -->
-      <!-- In parallel, I have been actively working on <b><u>Person Re Identification (ReID)</u></b> for the past seven years, which was the core of my Master’s thesis and Amazon internship as well. -->
-    
-    
     My research centers on <b><u>efficient training</u></b> of computer vision models, with a strong emphasis on <b><u>improving robustness</u></b> to real-world noise, such as fog, rain, and snow in autonomous driving. 
     I primarily focus on <b><u>Targetted adaptation</u></b> while preserving the zero-shot properties of <b><u>VLMs (transformers)</u></b>, with a specific emphasis on <b><u>object detection</u></b>. 
     I also have substantial experience in <b><u>interpretable and explainable AI</u></b> and Visualization, enabling easy-to-understand insights into models (opening black box). 
     In parallel, I have been actively working on <b><u>Re Identification (ReID)</u></b> for the past seven years, which was the core of my Master’s thesis and Amazon internship.
-    
-    
     </p>
   </section>
 
@@ -560,6 +579,53 @@ function reveal_name(el) {
   }, 20);
   el.dataset.animationInterval = t;
 }
+
+// unpublished papers: if the venue line says "Under Review" or "Preprint",
+// show a question mark instead of the teaser. Change the status to a venue
+// and the real image comes back automatically.
+document.querySelectorAll(".paper").forEach(function (p) {
+  var meta = p.querySelector(".meta"), img = p.querySelector(".thumb img");
+  if (meta && img && /under\s*review|preprint/i.test(meta.textContent)) {
+    img.src = "images/question_mark.png";
+    img.classList.add("pending");
+  }
+});
+
+// email decoder: addresses are stored reversed (keeps scrapers off) and
+// shown scrambled until hovered / focused / tapped, then decoded char by char
+(function () {
+  var glyphs = "!<>-_\\/[]{}=+*^?#$%&01";
+  function rnd() { return glyphs[Math.floor(Math.random() * glyphs.length)]; }
+  document.querySelectorAll(".mail").forEach(function (el) {
+    var rev = function (x) { return x.split("").reverse().join(""); };
+    var addr = rev(el.dataset.u) + "@" + rev(el.dataset.d);
+    var scrambled = addr.replace(/[^@.]/g, rnd);
+    el.textContent = scrambled;
+    var started = false;
+    function decode() {
+      if (started) return; started = true;
+      var i = 0;
+      var t = setInterval(function () {
+        var out = addr.slice(0, i);
+        for (var k = i; k < addr.length; k++) out += /[@.]/.test(addr[k]) ? addr[k] : rnd();
+        el.textContent = out;
+        if (i++ >= addr.length) {
+          clearInterval(t);
+          el.textContent = "";
+          var a = document.createElement("a");
+          a.href = "mailto:" + addr; a.textContent = addr;
+          el.appendChild(a);
+          el.classList.add("done");
+          el.parentNode.classList.add("open");
+          el.removeAttribute("role"); el.removeAttribute("tabindex"); el.removeAttribute("title");
+        }
+      }, 45);
+    }
+    el.addEventListener("mouseenter", decode);
+    el.addEventListener("focus", decode);
+    el.addEventListener("click", decode);
+  });
+})();
 
 // spotlight torch (optional, follows mouse / finger)
 var spot = document.getElementById("spotlight");
