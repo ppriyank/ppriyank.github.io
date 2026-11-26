@@ -156,7 +156,7 @@ footer .quote{text-align:center;margin:0 0 10px}
 footer .credit{text-align:right;margin:0}
 
 /* subtle reveal */
-.fade-in{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.fade-in{opacity:0;transform:translateY(10px);transition:opacity .35s ease-out,transform .35s ease-out}
 .fade-in.visible{opacity:1;transform:none}
 header{animation:rise .8s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -650,7 +650,7 @@ function toggleTorch() {
     entries.forEach(function (en) {
       if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); }
     });
-  }, { rootMargin: "60px 0px", threshold: 0.08 });
+  }, { rootMargin: "0px", threshold: 0.01 });
   els.forEach(function (e) { io.observe(e); });
 })();
 </script>
